@@ -1,6 +1,6 @@
-# ME414 - Estatística para Experimentalistas
+# Mestrado Profissional Hemoterapia
 
-## Departamento de Estatística - IMECC - Unicamp
+## Curso de Bioestatística
 
 Slides das aulas preparados pelos professores Samara Kiihl, Tatiana Benaglia e Benilton Carvalho.
 
