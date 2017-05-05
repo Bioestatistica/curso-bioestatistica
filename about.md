@@ -4,9 +4,7 @@ title: Informações gerais
 permalink: /about/
 ---
 
-* Professora: Samara F. Kiihl - Sala 245 - IMECC
-* Horário das aulas: Segunda 8-10 sala PB13 e Quarta 8-10 sala PB14
-* Email
+* Professoras: Samara F. Kiihl e Tatiana Benaglia Carvalho
 
 
 ### Bibliografia
