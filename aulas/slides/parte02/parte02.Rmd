@@ -11,9 +11,9 @@ logo: ../logo_fcm_0.jpg
 
 ## Introdução{.build}
 
-> Vimos na aula anterior como usar gráficos e tabelas para resumir os dados.
+Vimos na aula anterior como usar gráficos e tabelas para resumir os dados.
 
-> Podemos também usar **estatísticas**: quantidades numéricas calculadas a partir dos dados.
+Podemos também usar **estatísticas**: quantidades numéricas calculadas a partir dos dados.
 
 > Por exemplo, podemos estar interessados em encontrar qual seria um valor "típico"  do conjunto de dados.
 
@@ -35,43 +35,52 @@ $$\bar{x}=\frac{1}{n}\sum_{i=1}^nx_i\,.$$
 
 <center><img src="figuras/balanco.png" width=400></center>
 
+## Exemplo: Pressão sistólica {.smaller}
 
-## Exemplo: Cereais matinais
-<center>
-![cereal](figuras/cereais.png)
-</center>
-
-## Exemplo: Cereais matinais
- 
-Porção de 30g:
 ```{r,echo=FALSE}
-# library(printr)
-# 30 gramas
-cereais <- data.frame(Cereal=c("Sucrilhos","All Bran","Nesfit","Nescau","Snow","Crunch","Moça","Fibra Mais","Froot Loops"),Calorias=c(109,81,102,115,113,119,113,84,113),Carboidratos=c(26,13.5,21,23,25,23,25,15,25))
-cereais
+#http://www.biostat-edu.com/DataSets.html
+
+dados <- read.table("dig40.txt",header=TRUE)
+
+n = dim(dados)[1]
 ```
 
-## Exemplo: Cereais matinais
+
+Pressão sistólica de 40 pacientes:
+
+```{r,echo=FALSE}
+library(knitr)
+kable(matrix(dados$sysbp,ncol=4,nrow=10))
+```
+
+
+*Fonte: Biostatistics - A Guide to Design, Analysis, and Discovery. Ronald N. Forthofer, Eun Sul Lee, Mike Hernandez*
+
+
+## Exemplo: Pressão sistólica
+
 <center>
 ```{r, echo=FALSE, fig.height=4, fig.width=8}
-stripchart(cereais$Calorias, xlab="Calorias (porção 30g)", method="stack", col="blue", pch=19)
-media <- mean(cereais$Calorias)
+stripchart(dados$sysbp, xlab="Pressão Sistólica", method="stack", col="blue", pch=19)
+media <- mean(dados$sysbp)
 ```
 </center>
 
-## Exemplo: Cereais matinais{.build}
+## Exemplo: Pressão sistólica
 
-> $x_i$: calorias do cereal $i$.
+$x_i$: pressão sistólica do paciente $i$.
 
-> $$\bar{x}=\frac{1}{n}\sum_{i=1}^nx_i=\frac{1}{9}\sum_{i=1}^9x_i=`r round(mean(cereais$Calorias),2)`$$
-> <center>
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^nx_i=\frac{1}{`r length(dados$sysbp)`}\sum_{i=1}^{`r length(dados$sysbp)`}x_i=`r round(mean(dados$sysbp),2)`$$
+
+<center>
 ```{r,echo=FALSE, fig.height=3.3, fig.width=8}
-stripchart(cereais$Calorias,xlab="Calorias (porção 30g)", method="stack", col="blue", 
+stripchart(dados$sysbp,xlab="Pressão Sistólica", method="stack", col="blue", 
 lwd=2, pch=19)
-media <- mean(cereais$Calorias)
+media <- mean(dados$sysbp)
 abline(v=media, col="red", lwd=2)
 ```
 </center>
+
 
 ## Mediana{.build}
 
@@ -86,90 +95,55 @@ A mediana é o valor que deixa 50% das observações abaixo dele e 50% acima.
 > * Se $n$ é par, a mediana é a média aritmética das duas observações  que caem no meio da sequência ordenada.
 
 
-## Exemplo: Cereais matinais{.build}
+## Exemplo: IMC {.build .smaller}
 
-Calorias dos 9 cereais:
+IMC de 40 pacientes (ordem crescente):
 ```{r,echo=FALSE}
-cereais$Calorias
+tmp <- sort(dados$bmi)
+tmp
+n=length(tmp)
 ```
-
-> Ordenando:
-```{r,echo=FALSE}
-sort(cereais$Calorias)
-```
-> Mediana é `r median(cereais$Calorias)` (5ª observação).
-
-> Se descartássemos o maior valor, 119, teríamos oito observações e aí a mediana seria:
-$$\mbox{mediana} = \frac{109 + 113}{2} = 111.$$
-
-## Moda{.build}
-
-A moda é o valor mais frequente.
-
-> Calorias dos 9 cereais:
-```{r, echo=FALSE}
-cereais$Calorias
-```
-
-> Tabela de frequências:
-```{r, echo=FALSE}
-table(cereais$Calorias)
-```
-
-Portanto a moda de calorias dos cereias é 113.
-
-## Exemplo: Emissão de $CO_2$ {.smaller}
-
-Emissão per capita (em toneladas) para 8 países, em 2009 ([http://data.worldbank.org](http://data.worldbank.org)):
-
-País | Emissão $CO_2$ | País | Emissão $CO_2$   
----- | -------------- | ---- | --------------
-China | 5.8 | Brazil | 1.9
-Índia | 1.7 | Rússia | 11.1 
-EUA   | 17.3 | Paquistão | 0.9
-Indonésia | 1.9 | Bangaladesh | 0.3
 
 <center>
-```{r, echo=FALSE, fig.height=2.5, fig.width=8}
-par(mar=c(5.1,4.1,1.1,2.1))
-co2 <- c(5.8,1.7,17.3,1.9,1.9,11.1,0.9,0.3)
-stripchart(co2, xlab="Emissão de CO2 per capita (em toneladas)", col="blue", pch=19)
+```{r,echo=FALSE, fig.height=3, fig.width=8}
+stripchart(dados$bmi,xlab="IMC", method="stack", col="blue", 
+lwd=2, pch=19)
+media <- mean(dados$bmi)
+abline(v=media, col="red", lwd=2)
+median <- median(dados$bmi)
+abline(v=median,col="green",lwd=2)
 ```
 </center>
 
-## Exemplo: Emissão de $CO_2${.build}
+Em vermelho está a média, em verde, a mediana.
 
-$\bar{x}=\frac{1}{8}(5.8+1.7+17.3+1.9+1.9+11.1+0.9+0.3)\approx`r round(mean(co2),2)`$
+*Fonte: Biostatistics - A Guide to Design, Analysis, and Discovery. Ronald N. Forthofer, Eun Sul Lee, Mike Hernandez*
 
-> Ordenando:
-```{r,echo=FALSE}
-sort(co2)
+
+## Exemplo: IMC
+
+A mediana é a média entre a 20ª e a 21ª observações ordenadas ($n$ é par): $$\mbox{mediana} = \frac{`r tmp[n/2]` + `r tmp[n/2+1]`}{2} = `r round(median(tmp),3)`$$
+
+
+Se descartássemos o maior valor, $43.269$, teríamos $39$ observações e aí a mediana seria a 20ª observação ordenada:
+$$\mbox{mediana} = `r round(median(tmp[-40]),3)`$$
+
+## Moda {.build .smaller}
+
+
+A moda é o valor mais frequente.
+
+> Tabela de frequências para a pressão sistólica dos `r length(dados$sysbp)`  pacientes:
+
+```{r, echo=FALSE}
+tabela <- as.data.frame(table(dados$sysbp))
+colnames(tabela) <- c("Pressão Sistólica","Frequência")
+tmp <- cbind(tabela[1:6,],tabela[7:12,],tabela[13:18,])
+kable(tmp)
 ```
 
-> Mediana é `r median(co2)`.
+> Portanto a moda da pressão sistólica é 140.
 
-## Exemplo: Emissão de $CO_2${.build}
-
-A mediana é bem menor do que a média.
-
-> Se desconsiderarmos os EUA:
-
-```{r,echo=FALSE}
-co2 <- c(5.8,1.7,1.9,1.9,11.1,0.9,0.3)
-co2
-```
-
-
-$\bar{x}=\frac{1}{7}(5.8+1.7+1.9+1.9+11.1+0.9+0.3)\approx `r  round(mean(co2),2)`$
-
-> Ordenando:
-```{r,echo=FALSE}
-sort(co2)
-```
-
-> Mediana é `r median(co2)`.
-
-> Mediana é menos afetada por valores muito extremos (muito diferentes do resto das observações).
 
 
 ## Exemplo: número de casamentos
@@ -278,16 +252,6 @@ Média de $C$: 207.6.
 Mediana de $C$: 10.
 
 
-## Exemplo: Salários 
-
-> A **média** salarial anual em 1998 nos EUA para pessoas com ensino superior era \$528.200. 
-
-> A **mediana** do salário anual em 1998 nos EUA para pessoas com ensino superior era \$146.400. 
-
-> Por que a média e a mediana diferem tanto?
-
-> Qual medida de posição você acredita que retrata de maneira mais realística um salário típico de pessoas com ensino superior nos EUA em 1998?
-
 
 
 ## Média, mediana e a distribuição dos dados{.build}
@@ -335,59 +299,56 @@ stripchart(C,method="stack",offset=1,at=0,ylim=c(0,11),cex=1.7,cex.axis=2,xlab="
 
 # Medidas de Dispersão
 
-## Exemplo: Salário professor de música{.build}
+## Exemplo: Idade de pacientes {.smaller}
 
-Salário anual hipotético de professores de música na Dinamarca (esquerda) e nos EUA (direita).
+Idade de pacientes em dois tratamentos: A (esquerda) e B (direita).
 
 ```{r,echo=FALSE}
 set.seed(3)
 usa <- rnorm(800, mean=40, sd=10)
 den <- rnorm(800, mean=40, sd=4)
-dados <- data.frame(cidade=rep(c("Dinamarca", "USA"), each=800), salario=c(den, usa))
+dados <- data.frame(cidade=rep(c("Tratamento A", "Tratamento B"), each=800), salario=c(den, usa))
 ```
 
 
-```{r, echo=FALSE, fig.height=3.5, fig.width=8}
+```{r, echo=FALSE, fig.height=3.5, fig.width=8,warning=FALSE,fig.align='center'}
 ggplot(data=dados, aes(salario, ..density..)) + 
     geom_histogram(binwidth=3, colour="black", fill="blue") +
-    labs(x="Salário anual (mil dólares)", y="Densidade") + 
+    labs(x="Idade (anos)", y="Densidade") + 
     facet_grid(~ cidade) + 
     theme(axis.title = element_text(face="bold", size=12, color="black"),
           axis.text = element_text(face="bold", size=12, color="black"))
 ```
 
-> Média salarial Dinamarca: `r round(mean(den),2)`. Média salarial EUA: `r round(mean(usa),2)`. 
+Média da idade entre pacientes do Tratamento A: `r round(mean(den),2)`. Média da idade entre pacientes do Tratamento B: `r round(mean(usa),2)`. 
 
+Mediana da idade entre pacientes do Tratamento A: `r round(median(den),2)`. Mediana da idade entre pacientes do Tratamento B: `r round(median(usa),2)`. 
 
 ## Amplitude {.build}
 
 Uma medida de dispersão é **amplitude**: a diferença entre o maior e o menor valor observado na amostra.
 
-> Na Dinamarca, os salários variam de `r round(min(den),0)` a `r round(max(den),0)`.
+> No Tratamento A, as idades variam de `r round(min(den),0)` a `r round(max(den),0)`.
 
-> Amplitude dos salários na Dinamarca: $`r round(max(den),0)`-`r round(min(den),0)`=`r round(max(den),0)-round(min(den),0)`$.
+> Amplitude das idades no Tratamento A: $`r round(max(den),0)`-`r round(min(den),0)`=`r round(max(den),0)-round(min(den),0)`$.
 
-> Nos EUA, variam de `r round(min(usa),0)` a `r round(max(usa),0)`.
+> No Tratamento B, variam de `r round(min(usa),0)` a `r round(max(usa),0)`.
 
-> Amplitude dos salários nos EUA: $`r round(max(usa),0)`-`r round(min(usa),0)` = `r round(max(usa),0)-round(min(usa),0)`$.
+> Amplitude das idades no Tratamento B: $`r round(max(usa),0)`-`r round(min(usa),0)` = `r round(max(usa),0)-round(min(usa),0)`$.
 
 > Problema com a amplitude: utiliza apenas duas observações (a máxima e a mínima).
 
-## Medidas de dispersão {.build}
+## Medidas de dispersão
 
-Considere dois conjuntos de dados:
+Em ambos os tratamentos, a média e a mediana das idades é similar.
 
-$A=\{1,2,5,6,6\}$ e $B=\{ -40,0,5,20,35\}$ 
+No entanto, claramente temos que as idades dos pacientes do Tratamento $B$ são mais dispersos do que as idades dos pacientes do Tratamento $A$. 
 
-> Ambos com média 4  e mediana 5. 
+Que medida podemos usar para considerar essa característica dos dados?
 
-> No entanto, claramente temos que os valores de $B$ são mais dispersos do que em $A$. 
+## Medidas de dispersão {.build }
 
-> Que medida podemos usar para considerar essa característica dos dados?
-
-## Medidas de dispersão {.build}
-
-> Podemos observar quão afastadas de uma determinada medida de posição estão as observações.
+Quão afastadas de uma determinada medida de posição estão as observações?
 
 > * **Desvio** de uma observação $x_i$ da média $\bar{x}$ é a diferença entre a observação e a média dos dados: $(x_i-\bar{x})$.
 
@@ -429,8 +390,6 @@ $$s=\sqrt{\frac{1}{n-1} \sum_{i=1}^n(x_i-\bar{x})^2}$$
 > Interpretação: distância típica entre uma observação e a média dos dados.
 
 > Quanto maior $s$, maior a dispersão dos dados.
-
-> Para facilitar cálculos: $\sum_{i=1}^n(x_i-\bar{x})^2=\sum_{i=1}^nx_i^2-n\bar{x}^2$.
 
 
 ## Exemplo{.build}

@@ -7,49 +7,6 @@ output:
 logo: ../logo_fcm_0.jpg
 ---
 
-## Simetria e Assimetria da Distribuição {.build}
-
-> O formato da distribuição influencia se a média será maior ou menor do que a mediana.
-
-> Um valor extremamente grande na cauda direita, puxa a média para a direita.
-
-> Em geral, se o formato é: 
-
-> * perfeitamente simétrico: média = mediana.
-
-> * assimétrico à direita: média $>$ mediana.
-
-> * assimétrico à esquerda: média $<$ mediana.
-
----
-
-## Simetria e Assimetria da Distribuição {.build}
-
-```{r, echo=FALSE, fig.height=4, fig.width=10}
-par(mfrow=c(1, 3))
-set.seed(44)
-sym <- rnorm(10000)
-plot(density(sym), ylab="", main="Média=Mediana", xlab="", axes=FALSE, 
-     xlim=c(-3,3), cex.lab=1.5, lwd=3)
-abline(v=0, col="red", lty=2,lwd=3)
-abline(v=0, col="blue", lty=2,lwd=3)
-legend("topright", legend=c("Média", "Mediana"), col=c("blue", "red"), 
-       lty=2, border="white", lwd=3)
-
-set.seed(44)
-asymDir <- c(rchisq(1000, df=15))
-plot(density(asymDir), ylab="", main="Média > Mediana", xlim=c(4, 35),
-     axes=FALSE, xlab="", cex.lab=1.5, lwd=3)
-abline(v=14, col="red", lty=2, lwd=3)
-abline(v=18, col="blue", lty=2, lwd=3)
-
-asymEsq <- -asymDir
-plot(density(asymEsq), ylab="", main="Média < Mediana", xlim=c(-35, -4),
-     axes=FALSE, xlab="", cex.lab=1.5, lwd=3)
-abline(v=-14, col="red", lty=2, lwd=3)
-abline(v=-18, col="blue", lty=2, lwd=3)
-#legend("topright", legend=c("Média", "Mediana"), col=c("blue", "red"), lty=2, border="white", lwd=3)
-```
 
 
 ## Dispersão dos Dados {.build}
