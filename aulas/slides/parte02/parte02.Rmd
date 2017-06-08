@@ -11,7 +11,7 @@ logo: ../logo_fcm_0.jpg
 
 ## Introdução{.build}
 
-Vimos na aula anterior como usar gráficos e tabelas para resumir os dados.
+Vimos anteriormente como usar gráficos e tabelas para resumir os dados.
 
 Podemos também usar **estatísticas**: quantidades numéricas calculadas a partir dos dados.
 
