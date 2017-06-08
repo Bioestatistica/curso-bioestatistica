@@ -245,15 +245,39 @@ pessoa, os valores mudam.
 >      + Discreta: os valores possíveis formam um conjunto finito ou enumerável (ex: número de filhos)
 >      + Contínua: os valores possíveis estão dentro de um intervalo, aberto ou fechado, dos números reais (ex: peso, altura, salário)
 
-## Tipos de variável {.build}
+## Exemplo
 
-Coletamos três variáveis entre os alunos da classe:
+<center>
+<img src="figuras/A.png" width=600>
+</center>
 
-* Número de irmãos
-* Altura
-* Se já fez algum curso de estatística anteriormente
+<center>
+<img src="figuras/B.png" width=500>
+</center>
 
-> Qual o tipo de cada variável?
+## Exemplo
+
+<center>
+<img src="figuras/C.png" width=600>
+</center>
+
+## Exemplo
+
+<center>
+<img src="figuras/D.png" width=600>
+</center>
+
+## Exemplo
+
+<center>
+<img src="figuras/E.png" width=500>
+</center>
+
+## Exemplo
+
+<center>
+<img src="figuras/F.png" width=400>
+</center>
 
 
 # Resumindo Dados Categóricos: Frequências e Proporções
@@ -272,6 +296,23 @@ Podemos fazer uma **Tabela de frequência**, ou seja, simplesmente contar quanto
 addmargins(table(dados$`liver big`))
 ```
 
+## Exemplo
+
+
+<center>
+<img src="figuras/A.png" width=600>
+</center>
+
+
+
+<center>
+<img src="figuras/G.png" width=600>
+</center>
+
+
+<center>
+<img src="figuras/H.png" width=600>
+</center>
 
 # Resumindo Dados Categóricos: Representação Gráfica
 
@@ -290,7 +331,7 @@ ggplot(liver, aes(Resposta, freq)) +
   coord_flip() + ylab("Frequência") +xlab("Resposta")+theme(axis.text.x = element_text(face="bold", hjust = 1,size=12,color="black"),axis.text.y = element_text(face="bold", hjust = 1,size=12,color="black"))
 ```
 
-## Exemplo: Doctor Who
+## Exemplo: Hepatite
 
 Gráfico de barras das proporções
 
@@ -301,6 +342,29 @@ ggplot(liver, aes(Resposta, prop)) +
   coord_flip() + ylab("Proporção") + xlab("Resposta")+theme(axis.text.x = element_text(face="bold", hjust = 1,size=12,color="black"),axis.text.y = element_text(face="bold", hjust = 1,size=12,color="black"))
 
 ```
+
+
+## Exemplo
+
+<center>
+<img src="figuras/A.png" width=600>
+</center>
+
+
+<center>
+<img src="figuras/I.png" width=500>
+</center>
+
+## Exemplo
+
+<center>
+<img src="figuras/A.png" width=600>
+</center>
+
+
+<center>
+<img src="figuras/J.png" width=500>
+</center>
 
 
 # Resumindo Dados Quantitativos
@@ -428,6 +492,17 @@ ggplot(data=dadosBili, aes(dadosBili$bili)) +
           axis.text = element_text(face="bold", size=12, color="black"))
 ```
 
+## Exemplo
+
+
+<center>
+<img src="figuras/A.png" width=600>
+</center>
+
+
+<center>
+<img src="figuras/K.png" width=400>
+</center>
 
 ## Dados sobre vacinas nos EUA
 
