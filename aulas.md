@@ -28,46 +28,6 @@ permalink: /aulas/
 [Parte04](slides/parte04/parte04.html)
 
 
-## Probabilidade
-
-* Definição
-* Espaço amostral
-* Eventos
-* Operações com eventos
-* Partições do espaço amostral
-* Probabilidade Condicional
-* Independência de Eventos
-* Teorema de Bayes 
-
-[Parte05](slides/parte05/parte05.html)
-[Parte06](slides/parte06/parte06.html)
-[Parte07](slides/parte07/parte07.html)
-[Parte08](slides/parte08/parte08.html)
-
-
-
-## Variáveis aleatórias discretas
-* Distribuições de Probabilidade Discreta
-* Função Distribuição Acumulada (FDA)
-* Esperança e variância
-* Distribuições discretas: Uniforme, Bernoulli, Binomial, Geométrica, Hipergeométrica e Poisson
-* Aproximação da Binomial pela Poisson
-
-[Parte09](slides/parte09/parte09.html)
-[Parte10](slides/parte10/parte10.html)
-[Parte11](slides/parte11/parte11.html)
-
-
-## Variáveis aleatórias contínuas
-* Função densidade
-* Função de distribuição acumulada
-* Esperança e variância
-* Distribuições contínuas: Uniforme, Exponencial, Normal
-* Aproximação da Binomial pela Normal
-
-[Parte12](slides/parte12/parte12.html)
-[Parte13](slides/parte13/parte13.html)
-
 ## Distribuição Amostral
 * População e Amostra
 * Estatística e Parâmetro
