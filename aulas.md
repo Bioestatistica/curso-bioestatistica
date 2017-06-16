@@ -34,29 +34,17 @@ permalink: /aulas/
 * Distribuições Amostrais
 * Teorema Central do Limite
 
-[Parte14](slides/parte14/parte14.html)
+[Parte05](slides/parte14/parte14.html)
 
-## Estimação Pontual e Intervalos de Confiança - uma população
-* Estimação Pontual
-* Estimação por intervalo: proporção
-* Estimação por intervalo: média
-
-[Parte15](slides/parte15/parte15.html)
-[Parte16](slides/parte16/parte16.html)
-
-## Teste de Hipóteses - uma população
-* Teste de hipótese: proporção
-* Teste de hipótese: média
-
-[Parte17](slides/parte17/parte17.html)
-[Parte18](slides/parte18/parte18.html)
 
 ## Inferência para duas populações
 * Intervalo de confiança para duas médias
 * Intervalo de confiança para duas proporções
+* Teste de permutação
 * Teste de hipótese para duas médias
 * Teste de hipótese para duas proporções
 
+[Parte20]
 [Parte19](slides/parte19/parte19.html)
 [Parte20](slides/parte20/parte20.html)
 
