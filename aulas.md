@@ -34,7 +34,7 @@ permalink: /aulas/
 * Distribuições Amostrais
 * Teorema Central do Limite
 
-[Parte05](slides/parte14/parte14.html)
+[Parte05](slides/parte05/parte05.html)
 
 
 ## Inferência para duas populações
