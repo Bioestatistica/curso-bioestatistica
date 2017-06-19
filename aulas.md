@@ -37,6 +37,15 @@ permalink: /aulas/
 [Parte05](slides/parte05/parte05.html)
 
 
+## Estimação Pontual e Intervalos de Confiança - uma população
+* Estimação Pontual
+* Estimação por intervalo: proporção
+* Estimação por intervalo: média
+
+[Parte06](slides/parte06/parte06.html)
+[Parte07](slides/parte07/parte07.html)
+
+
 ## Inferência para duas populações
 * Intervalo de confiança para duas médias
 * Intervalo de confiança para duas proporções
