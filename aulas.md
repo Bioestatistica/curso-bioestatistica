@@ -53,9 +53,6 @@ permalink: /aulas/
 [Parte21](slides/parte21/parte21.html)
 [Parte22](slides/parte22/parte22.html)
 
-## Regressão Linear Simples
-
-[Parte23](slides/parte23/parte23.html)
 
 ## Análise de variância
 
