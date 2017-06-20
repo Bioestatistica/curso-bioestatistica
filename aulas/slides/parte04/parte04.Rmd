@@ -7,7 +7,7 @@ output:
 logo: ../logo_fcm_0.jpg
 ---
 
-```{r, include=FALSE}
+```{r, include=FALSE,warning=FALSE,message=FALSE}
 library(reshape2)
 library(ggplot2)
 library(plotly)
@@ -18,74 +18,90 @@ library(knitr)
 
 # Análise Bivariada
 
-## Associação entre duas variáveis {.build}
+## Associação entre duas variáveis 
 
-> Sua opinião sobre o comportamento de uma variável muda na presença de informação de uma segunda variável?
+Sua opinião sobre o comportamento de uma variável muda na presença de informação de uma segunda variável?
 
-> A **distribuição conjunta** das duas variáveis descreve a associação existente entre elas.
+A **distribuição conjunta** das duas variáveis descreve a associação existente entre elas.
 
-> Grau de dependência: como uma variável "explica" ou se "associa" a outra.
+Grau de dependência: como uma variável "explica" ou se "associa" a outra.
 
 
-> Temos três casos:
+Temos três casos:
 
-> * as duas variáveis são quantitativas
+* as duas variáveis são quantitativas
 
-> * as duas variáveis são qualitativas
+* as duas variáveis são qualitativas
 
-> * uma variável é quantitativa e a outra qualitativa
+* uma variável é quantitativa e a outra qualitativa
 
 # Associação entre duas variáveis qualitativas
 
-## Exemplo: Grau de instrução X Procedência {.smaller .build}
+## Exemplo
 
-Queremos estudar o comportamento conjunto de duas variáveis:  Grau de Instrução ($X$) e Região de Procedência ($Y$).
+<center>
+<img src="figuras/A.png" width=700>
+</center>
+
+
+<center>
+<img src="figuras/N.png" width=700>
+</center>
+
+Queremos estudar o comportamento conjunto de duas variáveis:  Endometrioma de ovário ($X$) e Adenomiose ($Y$).
+
+
+
+## Exemplo
 
 ```{r, echo=FALSE}
-x <- matrix(c(4, 5, 2, 3, 7, 2, 5, 6, 2), nrow=3, byrow=TRUE)
-rownames(x) <- c("Capital","Interior", "Outra")
-colnames(x) <- c("Ensino Fundamental", "Ensino Médio", "Ensino Superior")
 
-y <- rbind(x, c(12, 18, 6))
-y <- cbind(y, c(11, 12, 13, 36))
-rownames(y) <- c("Capital", "Interior", "Outra", "Total")
-colnames(y) <- c("Ensino Fundamental", "Ensino Médio", "Ensino Superior", "Total")
+x <- matrix(c(61,473,54,122), nrow=2, byrow=TRUE)
+rownames(x) <- c("Endometrioma: Sim","Endometrioma: Não")
+colnames(x) <- c("Adenomiose Focal","Adenomiose Difusa")
 
+y <- data.frame(x)
+y <- rbind(y,rowSums(x))
+y$Total <- rowSums(y)
+y <- cbind(c("Sim","Não","Total"),y)
+
+rownames(y) <- NULL
+colnames(y) <- c("Endometrioma de ovário","Adenomiose Focal", "Adenomiose Difusa", "Total")
 kable(y)
 ```
 
-> * 4 pessoas da capital com ensino fundamental.
-> * Na última coluna: frequência de cada nível da variável $Y$.
-> * Na última linha:  frequência de cada nível da variável $X$.
-> * Parte interna da tabela: frequências conjuntas entre $X$ e $Y$.
+* 61 pessoas com endometrioma de ovário e adenomiose focal.
+* Na última coluna: frequência de cada nível da variável $X$.
+* Na última linha:  frequência de cada nível da variável $Y$.
+* Parte interna da tabela: frequências conjuntas entre $X$ e $Y$.
 
 
-## Frequências Relativas {.build}
+## Frequências Relativas
 
 Podemos considerar também proporções condicionais (frequências relativas):
 
-> * em relação ao total de elementos;
+* em relação ao total de elementos;
 
-> * em relação ao total de cada linha;
+* em relação ao total de cada linha;
 
-> * em relação ao total de cada coluna.
+* em relação ao total de cada coluna.
 
-> A proporção condicional escolhida depende do estudo que pretendemos fazer.
+A proporção condicional escolhida depende do estudo que pretendemos fazer.
 
 ## Frequências Relativas {.build}
 
 Distribuição das frequências relativas ao total da amostra.
 
-Total da amostra é 36.
+Total da amostra é `r sum(x)`.
 
 ```{r, echo=FALSE}
 kable(addmargins(prop.table(x)), digits=3)
 ```
 
-11\% dos funcionários são da capital e possuem ensino fundamental.
+8,6\% possuem endometrioma de ovário e adenomiose focal.
 
 
-## Frequências relativas ao total das colunas  {.build .smaller}
+## Frequências relativas ao total das colunas  {.smaller}
 
 Distribuição das frequências relativas ao total de cada coluna.
 
@@ -93,18 +109,19 @@ Distribuição das frequências relativas ao total de cada coluna.
 kable(addmargins(prop.table(x, 2), 1), digits=3)
 ```
 
-Entre os funcionários com ensino médio:
+Entre as mulheres com adenomiose focal:
 
-* $28\%$ são da capital.
+* $53\%$ apresentam endomitrioma de ovário.
  
-* $39\%$ são do interior.
+Entre as mulheres com adenomiose difusa:
 
-* $33\%$ são de outros locais.
-
-Permite comparar a distribuição de procedência ($Y$) conforme o grau de instrução ($X$).
+* $79,5\%$ apresentam endomitrioma de ovário.
 
 
-## Procedência conforme o grau de instrução {.build}
+Permite comparar a distribuição de endometrioma ($X$) conforme o tipo de adenomiose ($Y$).
+
+
+## Exemplo
 
 <center>
 ```{r, echo=FALSE, eval=FALSE, fig.width=8, fig.height=4.5}
@@ -125,18 +142,18 @@ eixos <- theme(axis.text = element_text(size=14),
                legend.title = element_text(size=14, face="bold"), 
                legend.text=element_text(size=14))
 
-x.long <- melt(prop.table(x, 2), varnames=c("Procedência", "Instrução"),
+x.long <- melt(prop.table(x, 2), varnames=c("Endometrioma", "Adenomiose"),
                value.name="Proporção")
 
-g <- ggplot(x.long, aes(x=Instrução, y=Proporção, fill=Procedência)) + 
+g <- ggplot(x.long, aes(x=Adenomiose, y=Proporção, fill=Endometrioma)) + 
     geom_bar(stat="identity", width=0.7, position="dodge", colour="lightgrey") +
-    scale_fill_brewer(name="Procedência", palette="Accent") +
-    xlab("") + ylim(0, 0.5) + eixos
+    scale_fill_brewer(name="Endometrioma", palette="Accent") +
+    xlab("") + ylim(0, 0.8) + eixos
 ggplotly(g)
 ```
 </center>
 
-> Observando o gráfico e a tabela de proporções  parece haver evidências de associação entre o grau de instrução e a procedência do funcionário.
+Observando o gráfico e a tabela de proporções parece haver evidências de associação entre a presença de endometrioma e o tipo de adenomiose.
 
 
 ## Frequências relativas ao total das linhas {.build .smaller}
@@ -147,17 +164,21 @@ Distribuição das frequências relativas ao total de cada linha.
 kable(addmargins(prop.table(x, 1), 2), digits=3)
 ```
 
-Entre os funcionários do interior:
+Entre as mulheres com endometrioma de ovário:
 
-* $25\%$ possuem Ensino Fundamental
+* $88,6\%$ possuem adenomiose difusa
  
-* $58\%$ possuem Ensino Médio.
 
-* $17\%$ possuem Ensino Superior.
+Entre as mulheres sem endometrioma de ovário:
 
-Permite comparar a distribuição do grau de instrução ($X$) conforme a procedência ($Y$).
+* $69,3\%$ possuem adenomiose difusa
+ 
 
-## Grau de instrução conforme a procedência
+
+Permite comparar a distribuição do tipo de adenomiose ($Y$) conforme a presença de endometrioma ($X$).
+
+
+## Exemplo
 
 <center>
 ```{r, echo=FALSE, eval=FALSE, fig.width=8, fig.height=4.5}
@@ -171,94 +192,21 @@ barplot(t(prop.table(x, 1)), xlab=" ", ylab="Proporção", main=" ",
 
 <center>
 ```{r, echo=FALSE, fig.width=10, fig.height=5,warning=FALSE}
-x.long <- melt(prop.table(x, 1), varnames=c("Procedência", "Instrução"),
+x.long <- melt(prop.table(x, 1), varnames=c("Endometrioma", "Adenomiose"),
                value.name="Proporção")
 
-g <- ggplot(x.long, aes(x=Procedência, y=Proporção, fill=Instrução))+
+g <- ggplot(x.long, aes(x=Endometrioma, y=Proporção, fill=Adenomiose))+
     geom_bar(stat="identity", width=0.7, position="dodge", colour="lightgrey") +
     scale_fill_brewer(name="Grau de Instrução", palette="Accent") +
-    xlab("") + ylim(0, 0.7) + eixos
+    xlab("") + ylim(0, 1) + eixos
 ggplotly(g)
 ```
 </center>
 
 
-## Exemplo: Escolha da carreira {.build}
-Existe dependência entre o sexo ($X$) e a carreira escolhida ($Y$) por 200 alunos de Economia e Administração?
-
-```{r, echo=FALSE}
-x <- matrix(c(85, 35, 55, 25), nrow=2, byrow=TRUE)
-rownames(x) <- c("Economia", "Administração")
-colnames(x) <- c("Masculino", "Feminino")
- 
-y <- rbind(x, c(85 + 55, 35 + 25))
-y <- cbind(y, c(85 + 35, 55 + 25, sum(x)))
-rownames(y) <- c("Economia", "Administração", "Total")
-colnames(y) <- c("Masculino", "Feminino", "Total")
-kable(y)
-```
-
-> Se quisermos estudar se a proporção de mulheres escolhendo Economia é similar à proporção de homens que escolhem Economia, devemos avaliar: 
-
-* Distribuição das frequências relativas ao total de cada coluna?
-
-* Distribuição das frequências relativas ao total de cada linha?
-
- 
-## Exemplo: Escolha da carreira {.build} 
-
-> * A proporção de alunos em Economia é similar para cada sexo?
-
-> * Ser similar em cada sexo não quer dizer que seja 50% na Economia e 50% na Administração em cada sexo.
-
-> * Queremos saber se o padrão das proporções dos cursos é parecido ou não entre os sexos.
-
-> * Usaremos a distribuição das frequências relativas ao total de cada coluna.
-
-## Exemplo: Escolha da carreira {.smaller .build} 
-
-```{r, echo=FALSE}
-y2 <- addmargins(round(prop.table(y[-3,], 2), 2), 1)
-rownames(y2) <- c("Economia", "Administração", "Total")
-kable(y2)
-```
-
-> * No geral, sem considerar os sexos (última coluna), temos que $60\%$ dos estudantes preferem economia e $40\%$ administração.
-
-> * Se sexo e carreira escolhida forem independentes (sem associação), espera-se que, para cada sexo, a escolha das carreiras tenha essas mesmas proporções.
-
-> * Sexo masculino: $61\%$ dos estudantes na carreira de economia e $39\%$ na de administração.
-
-> * Sexo feminino: $58\%$ dos estudantes na carreira de economia e $42\%$ na de administração.
-
-> * Os dados indicam que não há associação entre as variáveis.
 
 
-## Exemplo: Escolha da carreira conforme gênero
 
-<center>
-```{r, echo=FALSE, eval=FALSE, fig.width=7, fig.height=4.5}
-par(mar=c(4.1, 4.1, 1.1, 2.1))
-barplot(prop.table(x, 2), xlab=" ", ylab="Proporção", main=" ", beside=TRUE,
-        legend.text=TRUE, ylim=c(0, 0.9), col=c("lightgreen", "lightpink"),
-        cex.axis=1.3, cex.lab=1.3, cex=1.3, las=1) 
-```
-</center>
-
-<center>
-```{r, echo=FALSE, fig.width=8, fig.height=4.5,warning=FALSE}
-x.long <- melt(prop.table(x, 2), varnames=c("Carreira", "Sexo"), 
-               value.name="Proporção")
-
-g <- ggplot(x.long, aes(x=Sexo, y=Proporção, fill=Carreira))+
-    geom_bar(stat="identity", width=0.6, position="dodge", colour="lightgrey") +
-    scale_fill_brewer(name="Carreira", palette="Set2") +
-    xlab("Sexo") + ylim(0, 0.7) + eixos
-ggplotly(g)
-```
-</center>
-
-Observando o gráfico e a tabela de proporções condicionais  parece não haver evidências de associação entre gênero e escolha da carreira.
 
 ## Exemplo: Pesticidas{.smaller .build}
 > Uma [pesquisa](http://www.tandfonline.com/doi/abs/10.1080/02652030110113799#.VbOlP-hVhBA) foi feita para investigar a presença de pesticidas em alimentos orgânicos e convencionais.
@@ -642,7 +590,7 @@ $$Corr(X, Y)=\frac{1}{n-1}\sum_{i=1}^{n}z_{x_i}z_{y_i}=\frac{3.8}{5-1}=0.95$$
 Número de passos diários coletados para uma pessoa usando um [Fitbit](http://en.wikipedia.org/wiki/Fitbit) durante 297 dias.
 
 <center>
-```{r, echo=FALSE, fig.height=3.5, fig.width=5}
+```{r, echo=FALSE, fig.height=3.5, fig.width=5,warning=FALSE}
 fitbit <- read.csv("Fitbit.csv", sep=";")
 fitbit <- fitbit[-which(fitbit$steps<300), ] # removendo os dias em que não usou Fitbit
 
@@ -669,7 +617,7 @@ abline(v=mean(fitbit$steps), col="red", lty=2, lwd=2)
 > Há relação entre o total de passos e o tempo gasto em atividade intensa?
 
 <center>
-```{r, echo=FALSE, fig.height=3.5, fig.width=5.5}
+```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE}
 # par(mar=c(4.1, 4.1, 0.1, 2.1))
 # plot(x=fitbit$steps, y=fitbit$minutesVeryActive, xlab="Número de Passos", 
 #      ylab="Tempo (min) de atividade intensa", col="blue", las=1)
@@ -689,7 +637,7 @@ ggplotly(g)
 > Há relação entre o total de passos e o tempo (em minutos) de sedentarismo?
 
 <center>
-```{r, echo=FALSE, fig.height=4, fig.width=6}
+```{r, echo=FALSE, fig.height=4, fig.width=6,warning=FALSE}
 ## par(mar=c(5.1, 4.1, 1.1, 2.1))
 ## plot(x=fitbit$steps[fitbit$minutesSedentary > 1000], 
 ##      y <- fitbit$minutesSedentary[fitbit$minutesSedentary > 1000],
@@ -714,7 +662,7 @@ Baseado na altura, peso e gênero, o Fitbit estima o comprimento de cada passo.
 > Há relação entre o total de passos e distância percorrida?
 
 <center>
-```{r, echo=FALSE, fig.height=3.5, fig.width=5.5}
+```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE}
 # par(mar=c(5.1, 4.1, 1.1, 2.1))
 # plot(x=fitbit$steps, y=fitbit$distance, xlab="Número de Passos",
 #      ylab="Distância (km)", cex.lab=1.2, col="blue", las=1)
@@ -805,10 +753,11 @@ Analfabetismo: % de analfabetos na população de 18 anos ou mais.
 
 * [OpenIntro](https://www.openintro.org/stat/textbook.php): seções 1.6, 1.7
 * [Ross](http://www.sciencedirect.com/science/book/9780123743886): seções 2.5, 3.7
+* [Clinical profiles of 710 premenopausal women with
+adenomyosis who underwent hysterectomy](http://onlinelibrary.wiley.com/doi/10.1111/jog.12211/full)
+* [Online Dashboards: Eight Helpful Tips You Should Hear From Visualization Experts](http://blog.plot.ly/post/123617968702/online-dashboards-eight-helpful-tips-you-should)
 
-Leitura complementar: [Online Dashboards: Eight Helpful Tips You Should Hear From Visualization Experts](http://blog.plot.ly/post/123617968702/online-dashboards-eight-helpful-tips-you-should)
-
-<center><img src="figuras/raquete.jpg" width=250></center>
+<center><img src="figuras/raquete.jpg" width=200></center>
 
 
 ##
