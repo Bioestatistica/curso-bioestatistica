@@ -282,83 +282,6 @@ ggplotly(g)
 Observando o gráfico e a tabela de proporções condicionais parece haver evidências de associação entre presença de pesticida e tipo de alimento.
 
 
-## Exemplo: Renda e Felicidade
-
- Pesquisa da [GSS](http://www3.norc.org/GSS+Website/) de 2002.
- 
-  - Você se considera feliz?
-  
-  - Comparando com as demais famílias dos EUA, como você considera  sua renda familiar?
-  
-```{r, echo=FALSE}
-x <- matrix(c(17, 90, 51, 45, 265, 143, 31, 139, 71), nrow=3, byrow=TRUE)
-rownames(x) <- c("Acima da média", "Na média", "Abaixo da média")
-colnames(x) <- c("Não muito feliz", "Feliz", "Muito feliz")
-
-y <- rbind(x, colSums(x))
-y <- cbind(y, as.vector(rowSums(y)))
-rownames(y) <- c("Acima da média", "Na média", "Abaixo da média", "Total")
-colnames(y) <- c("Não muito feliz", "Feliz", "Muito feliz", "Total")
-#kable(y)
-```
-
-
-|      Renda     | Não muito feliz| Feliz| Muito feliz| Total|
-|:---------------|---------------:|-----:|-----------:|-----:|
-|Acima da média  |              17|    90|          51|   158|
-|Na média        |              45|   265|         143|   453|
-|Abaixo da média |              31|   139|          71|   241|
-|Total           |              93|   494|         265|   852|
-
-
-## Exemplo: Renda e Felicidade {.build}
-```{r, echo=FALSE}
-kable(y)
-```
-
-No geral, qual a proporção de pessoas diz que está **Muito feliz**?
- 
-> $$\frac{265}{852}=`r round(265/852, 2)`$$
- 
-> Será que o nível de felicidade muda para cada tipo de renda? Como comparar?
-
-## Exemplo: Renda e Felicidade
-
-Proporções condicionais do nível de felicidade para cada nível de renda:
-
-```{r, echo=FALSE}
-a <- addmargins(round(prop.table(x, 1), 2), 2)
-kable(a)
-```
-
-
-## Nível de felicidade por nível de renda
-
-<center>
-```{r, echo=FALSE, eval=FALSE, fig.width=8, fig.height=4.5}
-par(mar=c(5.1, 4.1, 1.1, 2.1))
-barplot(t(prop.table(x, 1)), xlab="Renda", ylab="Proporção", main=" ",
-        beside=TRUE, legend.text=TRUE, ylim=c(0, .9), 
-        col=c("lightgreen", "lightyellow", "lightpink"), cex.axis=1.3, 
-        cex.lab=1.3, cex=1.3, las=1) 
-```
-</center>
-
-<center>
-```{r, echo=FALSE, fig.width=10, fig.height=4.5,warning=FALSE}
-x.long <- melt(prop.table(x, 1), varnames=c("Renda", "Felicidade"),
-               value.name="Proporção")
-
-g <- ggplot(x.long, aes(x=Renda, y=Proporção, fill=Felicidade))+
-    geom_bar(stat="identity", width=0.7, position="dodge", colour="lightgrey") +
-    scale_fill_brewer(name="Nível de Felicidade", palette="Accent") +
-    xlab("Renda") + ylim(0, 0.7) + eixos
-ggplotly(g)
-```
-</center>
-
-Observando o gráfico e a tabela de proporções condicionais parece não haver evidências de associação entre nível de felicidade e nível de renda.
-
 
 ## Exemplo: Bebidas alcoólicas {.build}
 
@@ -769,3 +692,5 @@ Slides produzidos pelos professores:
 * Tatiana Benaglia
 
 * Benilton Carvalho
+
+* Rafael Maia

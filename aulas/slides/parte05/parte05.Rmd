@@ -230,25 +230,6 @@ https://nishantsbi.shinyapps.io/CLT_Shiny
 https://gallery.shinyapps.io/CLT_mean/
 
 
-# Aproximação da Distribuição Binomial pela Normal
-
-## Aproximação da Binomial pela Normal {.build}
-
-> *  Consideremos uma população em que a proporção de indivíduos portadores de uma certa característica seja $p$. 
-$$ X_{i} = \left\{
-\begin{array}{ll}
-1, & \mbox{se o indivíduo i possui a característica} \\
-0, & \mbox{caso contrário} \\
-\end{array}
-\right.$$ 
-
-> *  $\Rightarrow$ $X_{i}\sim Bernoulli(p)$; $i=1,2,...,n$. 
-
-> *  Se as observações são independentes: $S_{n}=X_{1}+...+X_{n}\sim  Bin(n,p)$. 
-
-> *  Após a coleta de uma amostra aleatória simples de $n$ indivíduos, podemos considerar: 
-
-> *  $\hat{p}=\frac{S_{n}}{n}$  (média amostral como estimador da média populacional).
 
 
 
