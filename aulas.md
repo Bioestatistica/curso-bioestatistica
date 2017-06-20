@@ -40,26 +40,31 @@ permalink: /aulas/
 * Estimação Pontual
 * Estimação por intervalo: proporção
 * Estimação por intervalo: média
+* Introdução à Teste de Hipóteses
+* Teste de permutação
 
 [Parte06](slides/parte06/parte06.html)
 [Parte07](slides/parte07/parte07.html)
+[Parte08](slides/parte08/parte08.html)
+[Parte09](slides/parte09/parte09.html)
 
 
-## Inferência para duas populações
-* Intervalo de confiança para duas médias
-* Intervalo de confiança para duas proporções
-* Teste de permutação
-* Teste de hipótese para duas médias
-* Teste de hipótese para duas proporções
-
-[Parte20]
-[Parte19](slides/parte19/parte19.html)
-[Parte20](slides/parte20/parte20.html)
 
 ## Testes de Aderência, Independência e Homogeneidade
 
 [Parte21](slides/parte21/parte21.html)
 [Parte22](slides/parte22/parte22.html)
+
+## Análise de Sobrevivência
+
+## Inferência para duas populações
+* Teste de hipótese para duas médias
+* Teste de hipótese para duas proporções
+* Intervalo de confiança para duas médias
+* Intervalo de confiança para duas proporções
+
+[Parte19](slides/parte19/parte19.html)
+[Parte20](slides/parte20/parte20.html)
 
 
 ## Análise de variância
