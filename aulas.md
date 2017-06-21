@@ -52,8 +52,8 @@ permalink: /aulas/
 
 ## Testes de Aderência, Independência e Homogeneidade
 
-[Parte21](slides/parte21/parte21.html)
-[Parte22](slides/parte22/parte22.html)
+[Parte10](slides/parte10/parte10.html)
+[Parte11](slides/parte11/parte11.html)
 
 ## Análise de Sobrevivência
 
