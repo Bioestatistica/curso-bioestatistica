@@ -8,17 +8,30 @@ logo: ../logo_fcm_0.jpg
 ---
 
 
+```{r, include=FALSE, echo=FALSE,}
+library(reshape2)
+library(ggplot2)
+library(plotly)
+
+# library(printr)
+library(knitr)
+library(DT)
+
+library(RColorBrewer)
+mycol <- brewer.pal(8, "Dark2")
+```
+
 # Fundamentos de Inferência
 
 ## Introdução 
 
-> Um dos principais objetivos da Estatística é tirar conclusões a partir dos dados.
+Um dos principais objetivos da Estatística é tirar conclusões a partir dos dados.
 
-> Dados em geral consistem de uma amostra de elementos de uma população de interesse.
+Dados em geral consistem de uma amostra de elementos de uma população de interesse.
 
-> O objetivo é usar a amostra e tirar conclusões sobre a população.
+O objetivo é usar a amostra e tirar conclusões sobre a população.
 
-> Quão confiável será utilizar a informação obtida apenas de uma amostra para concluir algo sobre a população?
+Quão confiável será utilizar a informação obtida apenas de uma amostra para concluir algo sobre a população?
 
 
 ## Inferência Estatística 
@@ -79,37 +92,301 @@ Exemplos:
 
 Temos interesse em conhecer a média e variância das alturas dos brasileiros adultos. Sabemos que a distribuição das alturas pode ser representada por um modelo normal. 
 
-> Solução 1: Medir a altura de todos os brasileiros adultos.
+Solução 1: Medir a altura de todos os brasileiros adultos.
 
-> Solução 2: Selecionar de forma aleatória algumas pessoas (amostra), analisá-las e inferir propriedades para toda a população.
+Solução 2: Selecionar de forma aleatória algumas pessoas (amostra), analisá-las e inferir propriedades para toda a população.
 
 <center><img src="figuras/inferencia2.PNG" width=550></center>
 
 
-## Exemplo {.build}
+## Exemplo
 
-Seja $\theta$ a proporção de alunos na Unicamp que concorda com a presença da PM no campus.
+Seja $\theta$ a proporção de alunos na Unicamp que doou sangue pelo menos uma vez nos últimos dois anos.
 
-> *  Inviável perguntar para todos os estudantes: coleta-se uma amostra. 
+*  Inviável perguntar para todos os estudantes: coleta-se uma amostra. 
 
-> *  Planejamento amostral:  obter uma amostra aleatória simples de tamanho $n=100$ alunos, sem reposição. 
+*  Planejamento amostral:  obter uma amostra aleatória simples de tamanho $n=100$ alunos, sem reposição. 
 
-> *  cada $X_{i}$, $i=1,...,100$, vai assumir o valor 1 se o aluno $i$ concorda com presença da PM, e 0 se não. 
+*  cada $X_{i}$, $i=1,...,100$, vai assumir o valor 1 se o aluno $i$ doou sangue pelo menos uma vez nos últimos dois anos, e 0 se não. 
 
-> *  estatística: $T=\frac{X_{1}+...+X_{100}}{100}$. 
+*  estatística: $T=\frac{X_{1}+...+X_{100}}{100}$. 
 
-> *  uma vez que a coleta foi implementada, $T$ assume um valor, por exemplo, 0.63, que será usado para estimar $\theta$, ou seja, $\hat\theta=0.63$.
+*  uma vez que a coleta foi implementada, $T$ assume um valor, por exemplo, 0.63, que será usado para estimar $\theta$, ou seja, $\hat\theta=0.63$.
 
 
-## Parâmetro {.build}
+## Parâmetro
 
-> *  Cada quantidade de interesse (como $\theta$ no exemplo anterior) é chamada de parâmetro da população. 
+*  Cada quantidade de interesse (como $\theta$ no exemplo anterior) é chamada de parâmetro da população. 
 
-> *  Para apresentar uma estimativa de um parâmetro ($\hat\theta$), devemos escolher uma estatística ($T$). 
+*  Para apresentar uma estimativa de um parâmetro ($\hat\theta$), devemos escolher uma estatística ($T$). 
 
-> *  Note que da maneira que o plano amostral foi executado (amostra aleatória simples), a estatística $T$ é uma variável aleatória, visto que cada vez que executarmos o plano amostral poderemos obter resultados diversos.
+*  Note que da maneira que o plano amostral foi executado (amostra aleatória simples), a estatística $T$ é uma variável aleatória, visto que cada vez que executarmos o plano amostral poderemos obter resultados diversos.
 
-> *  Portanto, a estatística $T$ possui uma distribuição de probabilidade, chamada de **distribuição amostral** de T.
+*  Portanto, a estatística $T$ possui uma distribuição de probabilidade, chamada de **distribuição amostral** de T.
+
+
+## Exemplo: Lançamento de dado
+
+Se o dado é "honesto", quantos 6 você espera que ocorram em 100 lançamentos?
+
+Se um dado "honesto" é lançado diversas vezes, esperamos que o 6 ocorra $1/6$ das vezes.
+
+100 lançamentos: $100/6\approx 17$ vezes.
+
+É muito improvável que o 6 saia 23 vezes em 100 lançamentos? Como verificar?
+
++ Lance o dado 100 vezes.
++ Conte o número de 6 que aparecem.
++ Repita várias vezes esse processo.
+
+Você obtém assim a distribuição de frequências do 6 em 100 lançamentos do dado.
+
+
+## Simulação 1: lançamento de um dado 100 vezes {.smaller .build}
+
+<center>
+```{r, echo=FALSE, message=FALSE, fig.height=4}
+library(TeachingDemos)
+set.seed(1234)
+x1 <- dice(rolls=100, ndice=1)
+plot.dice(x1, layout=c(15, 7))
+```
+</center>
+
+```{r, echo=FALSE}
+
+a <- as.data.frame(table(x1))
+
+d <- data.frame(Freq=a$Freq)
+d <- t(d)
+colnames(d) <- as.character(1:6)
+rownames(d) <- c("Freq")
+kable(d)
+
+# cum1 <- matrix(NA, ncol=1, nrow=length(x1$Red))
+# for (i in 1:length(x1$Red)){
+#     cum1[i] <- length(which(x1$Red[1:i]==6))/i
+# }
+
+cum1 <- cumsum(x1$Red==6)/1:length(x1$Red)
+```
+
+## Simulação 2: lançamento de um dado 100 vezes {.smaller }
+
+<center>
+```{r, echo=FALSE, message=FALSE, fig.height=4}
+set.seed(12345)
+x2 <- dice(rolls=100, ndice=1)
+plot.dice(x2)
+```
+</center>
+
+```{r,echo=FALSE}
+a <- as.data.frame(table(x2))
+
+d <- data.frame(Freq=a$Freq)
+d <- t(d)
+colnames(d) <- as.character(1:6)
+rownames(d) <- c("Freq")
+kable(d)
+
+# cum2 <- matrix(NA, ncol=1, nrow=length(x2$Red))
+# for (i in 1:length(x2$Red)){
+#     cum2[i] <- length(which(x2$Red[1:i]==6))/i
+# }
+
+cum2 <- cumsum(x2$Red==6)/1:length(x2$Red)
+```
+
+
+## Simulação 3: lançamento de um dado 100 vezes {.smaller }
+
+<center>
+```{r, echo=FALSE, message=FALSE, fig.height=4}
+set.seed(12347)
+x <- dice(rolls=100, ndice=1)
+plot.dice(x)
+```
+</center>
+
+```{r, echo=FALSE}
+a <- as.data.frame(table(x))
+
+d <- data.frame(Freq=a$Freq)
+d <- t(d)
+colnames(d) <- as.character(1:6)
+rownames(d) <- c("Freq")
+kable(d)
+```
+
+## Simulação 3: lançamento de um dado 100 vezes {.smaller }
+
+```{r, echo=FALSE}
+## cum <- matrix(NA, ncol=1, nrow=length(x$Red))
+## for (i in 1:length(x$Red)){
+##     cum[i] <- length(which(x$Red[1:i]==6))/i
+##   }
+
+cs6 <- cumsum(x$Red==6)
+cum3 <- round(cs6/1:100, 2)
+
+ocorre6 <- ifelse(x$Red==6, "sim", "não")
+dd <- data.frame(v1=1:100, v2=ocorre6, v3=cs6, v4=cum3)
+colnames(dd)=c("Lançamento", "Face 6 ocorre?", "Soma Acumulada de 6", "Proporção Acumulada de 6")
+## kable(dd[c(1:4, 96:100), ])
+
+datatable(dd, rownames=FALSE)
+```
+
+## Simulação 3: lançamento de um dado 100 vezes {.smaller }
+
+<center>
+```{r, echo=FALSE, fig.height=5,message=FALSE,warning=FALSE}
+# plot(x=1:length(x$Red), y=cum3, ylim=c(0, 1), type="l", 
+#      xlab="Número de Lançamentos", ylab="Proporção Acumulada de 6",
+#      cex.axis=1.3, cex.lab=1.3, lwd=2, col="blue", las=1)
+# abline(h=1/6, col="red", lwd=2, lty=2)
+
+eixos <- theme(plot.title = element_text(size=16, face="bold"),
+               axis.text = element_text(size=14), 
+               axis.title = element_text(size=14),
+               legend.title = element_text(size=14, face="bold"), 
+               legend.text=element_text(size=14))
+
+dados <- data.frame(x=1:length(cum3), y=cum3)
+
+g <- ggplot(dados, aes(x=x, y=y)) + 
+    geom_hline(yintercept = 1/6, colour="red", linetype="dashed") +
+    geom_line(colour=mycol[1], size=1.05) +
+    xlab("Número de Lançamentos") + ylab("Proporção Acumulada de 6") + 
+    ggtitle("Simulação 3") + xlim(0, 100) + ylim(0, 1) + eixos
+ggplotly(g)
+```
+</center>
+
+
+## Simulação 2: lançamento de um dado 100 vezes {.smaller}
+
+<center>
+```{r, echo=FALSE, fig.height=5,message=FALSE,warning=FALSE}
+# plot(x=1:length(x2$Red), y=cum2, ylim=c(0, 1), type="l", 
+#      xlab="Número de Lançamentos", ylab="Proporção Acumulada de 6",
+#      cex.axis=1.3, cex.lab=1.3, lwd=2, col="blue", las=1)
+# abline(h=1/6, col="red", lwd=2, lty=2)
+
+dados <- data.frame(x=1:100, y=cum2)
+
+g <- ggplot(dados, aes(x=x, y=y)) + 
+    geom_hline(yintercept = 1/6, colour="red", linetype="dashed") +
+    geom_line(colour=mycol[2], size=1.05) +
+    xlab("Número de Lançamentos") + ylab("Proporção Acumulada de 6") + 
+    ggtitle("Simulação 2") + xlim(0, 100) + ylim(0, 1) + eixos
+ggplotly(g)
+```
+</center>
+
+
+## Simulação 1: lançamento de um dado 100 vezes {.smaller}
+
+<center>
+```{r, echo=FALSE, fig.height=5,message=FALSE,warning=FALSE}
+# plot(x=1:length(x1$Red), y=cum1, ylim=c(0, 1), type="l", 
+#      xlab="Número de Lançamentos", ylab="Proporção Acumulada de 6",
+#      cex.axis=1.3, cex.lab=1.3, lwd=2, col="blue", las=1)
+# abline(h=1/6,col="red", lwd=2, lty=2)
+
+
+dados <- data.frame(x=1:100, y=cum1)
+g <- ggplot(dados, aes(x=x, y=y)) + 
+    geom_hline(yintercept = 1/6, colour="red", linetype="dashed") +
+    geom_line(colour=mycol[3], size=1.05) +
+    xlab("Número de Lançamentos") + ylab("Proporção Acumulada de 6") + 
+    ggtitle("Simulação 1") + xlim(0, 100) + ylim(0, 1) + eixos
+ggplotly(g)
+```
+</center>
+
+
+## Simulação: lançamento de um dado 100 vezes {.smaller .build}
+
+> A cada simulação  (100 lançamentos e anotando o total de 6) obtivemos um resultado diferente: `r length(which(x1$Red==6))`, `r length(which(x2$Red==6))` e `r length(which(x$Red==6))`.
+
+> Se repetirmos as simulação 1000 vezes, temos uma idéia da distribuição de frequências da proporção de 6 em 100 lançamentos.
+
+<center>
+```{r, echo=FALSE, fig.height=3.5,message=FALSE,warning=FALSE}
+B <- 1000
+X <- 100
+# propSix <- matrix(NA, ncol=1, nrow=B)
+# for (i in 1:B){
+#     x <- dice(rolls=X, ndice=1)
+#     propSix[i] <- mean(x$Red==6)
+# }
+
+prop <- data.frame(six = replicate(B, mean(dice(rolls=X, ndice=1)$Red==6)))
+
+ggplot(prop, aes(x=six)) + 
+    geom_histogram(bins=11, fill=mycol[1], col="black", alpha=0.8) + 
+    geom_vline(xintercept = mean(prop$six), col="red", linetype="dashed") + 
+    xlab("Proporção Acumulada de 6 em 100 lançamentos") + 
+    ylab("Frequência") + eixos
+
+# hist(prop$six, xlab="Proporção Acumulada de 6 em 100 lançamentos",
+#      ylab="Frequência", main="", col="lightblue", 
+#      cex.axis=1.3, cex.lab=1.3, las=1)
+```
+</center>
+
+Média: `r round(mean(prop$six), 3)`. Mediana: `r round(median(prop$six), 3)`.
+
+
+## Simulação 4: lançamento de um dado 5000 vezes
+
+<center>
+```{r, echo=FALSE, fig.height=4,message=FALSE,warning=FALSE}
+set.seed(12347)
+x <- dice(rolls=5000, ndice=1)
+
+#a <- as.data.frame(table(x))
+
+#d <- data.frame(Freq=a$Freq)
+#d <- t(d)
+#colnames(d) <- c(" 1"," 2"," 3"," 4"," 5"," 6")
+#rownames(d) <- c("Freq")
+#kable(d)
+
+##### Propocao acumulada de 6
+cum4 <- cumsum(x$Red==6)/1:length(x$Red)
+
+# par(mar=c(5.1, 4.1, 1.1, 2.1))
+# plot(x=1:length(x$Red), y=cum4, ylim=c(0, 0.4), type="l",
+#      xlab="Número de Lançamentos", ylab="Proporção Acumulada de 6",
+#      cex.axis=1.3, cex.lab=1.3, col="blue", lwd=2)
+# abline(h=1/6, col="red", lty=2, lwd=2)
+
+dados <- data.frame(x=1:length(x$Red), y=cum4)
+
+g <- ggplot(dados, aes(x=x, y=y)) + 
+    geom_hline(yintercept = 1/6, colour="red", linetype="dashed") +
+    geom_line(colour=mycol[1], size=1.05) +
+    xlab("Número de Lançamentos") + ylab("Proporção Acumulada de 6") + 
+    ylim(0, 0.4) + eixos
+ggplotly(g)
+```
+</center>
+
+
+> Com poucos lançamentos, a proporção de 6 pode flutuar bastante, mas com o aumento do número de lançamentos, a proporção acumulada de 6 estabiliza em $1/6$.
+
+
+## Lei dos Grandes Números {.build}
+
+O resultado da simulação é um caso particular da [Lei dos Grandes Números](https://pt.wikipedia.org/wiki/Lei_dos_grandes_n%C3%BAmeros), resultado provado em 1689 pelo matemático suíço Jacob Bernoulli.
+  
+<center><img src="figuras/bernoulli.png" width=200></center> 
+
+> *Se um evento de probabilidade p é observado repetidamente em ocasiões independentes, a proporção da frequência observada deste evento em relação ao total número de repetições converge em direção a p à medida que o número de repetições se torna arbitrariamente grande.*
+
 
 
 
@@ -137,7 +414,7 @@ $$Z=\frac{\bar{X}_{n}-\mu}{\sigma / \sqrt{n}} \sim N(0,1)$$
 
 
 
-## Exemplo {.build}
+## Exemplo
 
 $X=$ resultado obtido no lançamento de um dado honesto.
 
@@ -147,15 +424,15 @@ $x$ | 1 | 2 | 3 | 4 | 5 | 6
 $p(x)=P(X=x)$ | $\frac{1}{6}$ | $\frac{1}{6}$ | $\frac{1}{6}$ | $\frac{1}{6}$ | $\frac{1}{6}$ | $\frac{1}{6}$
 
 
-> $E(X)=\frac{1}{6}\times(1+2+3+4+5+6)=\frac{21}{6}=3.5$
+$E(X)=\frac{1}{6}\times(1+2+3+4+5+6)=\frac{21}{6}=3.5$
 
-> $Var(X)=\frac{1}{6}[(1+4+9+16+25+36)-\frac{1}{6}\times(21)^{2}]=\frac{35}{2}=17.5$
+$Var(X)=\frac{1}{6}[(1+4+9+16+25+36)-\frac{1}{6}\times(21)^{2}]=\frac{35}{2}=17.5$
 
-> *  $X_i$: resultado do $i$-ésimo lançamento de um dado honesto.
+*  $X_i$: resultado do $i$-ésimo lançamento de um dado honesto.
 
-> *  $X_i$ tem distribuição uniforme discreta $\forall i$.
+*  $X_i$ tem distribuição uniforme discreta $\forall i$.
 
-> *  $\mu=E(X_i)=3.5 \qquad$ e $\qquad \sigma^2=Var(X_i)=17.5$, $\forall i$.
+*  $\mu=E(X_i)=3.5 \qquad$ e $\qquad \sigma^2=Var(X_i)=17.5$, $\forall i$.
 
 
 ## Exemplo {.build .smaller}
