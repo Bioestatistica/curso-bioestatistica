@@ -61,15 +61,15 @@ permalink: /aulas/
 
 
 ## Inferência para duas populações
-* Teste de hipótese para duas médias
-* Teste de hipótese para duas proporções
 * Intervalo de confiança para duas médias
 * Intervalo de confiança para duas proporções
+* Teste de hipótese para duas médias
+* Teste de hipótese para duas proporções
 
 [Parte13](slides/parte13/parte13.html)
 [Parte14](slides/parte14/parte14.html)
 
 
-## Análise de variância
+## Análise de variância (ANOVA)
 
 [Parte15](slides/parte15/parte15.html)
