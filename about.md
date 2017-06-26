@@ -19,7 +19,7 @@ permalink: /about/
 * Wassertheil-Smoller, S.; Smoller, J. (2015). [Biostatistics and Epidemiology](https://link.springer.com/book/10.1007%2F978-1-4939-2134-8).
 * Shahbaba, B. (2012). [Biostatistics with R](https://link.springer.com/book/10.1007%2F978-1-4614-1302-8)
 * Kleinbaum, D.G. ; Klein, M. (2012). [Survival Analysis - A Self-Learning Text](https://link.springer.com/book/10.1007%2F978-1-4419-6646-9).
-* [Artigos](artigos/)
+* [Li et al (2014)](artigos/Li_et_al-2014-Journal_of_Obstetrics_and_Gynaecology_Research.pdf)
 
 Para acessar livros digitais fora da Unicamp, você precisará do VPN. Veja instruções de instalação [aqui](http://www.ccuec.unicamp.br/ccuec/acesso_remoto_vpn).
 
