@@ -9,16 +9,16 @@ logo: ../logo_fcm_0.jpg
 
 # Intervalo de confiança para a média populacional
 
-## Revisão
+## Revisão {.build}
 
 * Vimos que podemos usar uma estatística para estimar um parâmetro de uma distribuição que temos interesse.
 
-* Por ex: podemos usar a proporção amostral ($\hat{p}$), obtida a partir de um amostra aleatória, se estamos interessados na proporção populacional ($p$). 
+> * Por ex: podemos usar a proporção amostral ($\hat{p}$), obtida a partir de um amostra aleatória, se estamos interessados na proporção populacional ($p$). 
 
-* Por ex: podemos usar a média amostral ($\bar{x}$), obtida a partir de um amostra aleatória, se estamos interessados na média populacional ($\mu$).
+> * Por ex: podemos usar a média amostral ($\bar{x}$), obtida a partir de um amostra aleatória, se estamos interessados na média populacional ($\mu$).
 
 
-* **Resultado:** Se $X$ tem $\mathbb E(X)=\mu$ e $Var(X)=\sigma^2$, então a distribuição da média amostral,  $\bar{X}_n$, tem 
+> * **Resultado:** Se $X$ tem $\mathbb E(X)=\mu$ e $Var(X)=\sigma^2$, então a distribuição da média amostral,  $\bar{X}_n$, tem 
 $$\mathbb E(\bar{X}_n)=\mu \quad \mbox{e} \quad Var(\bar{X}_n)=\frac{\sigma^2}{n}$$
 
 

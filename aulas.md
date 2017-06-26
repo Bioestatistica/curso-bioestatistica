@@ -57,16 +57,19 @@ permalink: /aulas/
 
 ## Análise de Sobrevivência
 
+[Parte12](slides/parte12/parte12.html)
+
+
 ## Inferência para duas populações
 * Teste de hipótese para duas médias
 * Teste de hipótese para duas proporções
 * Intervalo de confiança para duas médias
 * Intervalo de confiança para duas proporções
 
-[Parte19](slides/parte19/parte19.html)
-[Parte20](slides/parte20/parte20.html)
+[Parte13](slides/parte13/parte13.html)
+[Parte14](slides/parte14/parte14.html)
 
 
 ## Análise de variância
 
-[Parte24](slides/parte24/parte24.html)
+[Parte15](slides/parte15/parte15.html)
