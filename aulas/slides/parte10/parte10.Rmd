@@ -145,7 +145,7 @@ $$\chi^2=\sum_{i=1}^k \frac{(O_i-E_i)^2}{E_i} = \sum^{k}_{i=1}\frac{(n_i-np_{0i}
 
 Se $H_0$ é verdadeira: $\chi^2 \sim \chi^2_{k-1}$
 
-Em outras palavras, se $H_0$ é verdadeira, a v.a. $\chi^2$ segue uma distribuiÃ§Ã£o aproximadamente Qui-quadrado com $k-1$ graus de liberdade.
+Em outras palavras, se $H_0$ é verdadeira, a v.a. $\chi^2$ segue uma distribuição aproximadamente Qui-quadrado com $k-1$ graus de liberdade.
 
 **Condição**: Este resultado é válido para $n$ grande e para frequências esperadas maiores ou iguais a 5.
 
@@ -192,7 +192,7 @@ text(xobs + 4, 0.01, labels= bquote('P('* chi[k-1]^2 >= chi[obs]^2 *')'), pos = 
 
 ## Procedimento {.build}
 
-**Valor Crítico**: Para um nível de significÃ¢ncia $\alpha$, encontrar o valor crítico $\chi^2_{crit}$ na tabela Qui-quadrado tal que $P(\chi^2_{k-1} \geq \chi^2_{crit}) = \alpha.$
+**Valor Crítico**: Para um nível de significância $\alpha$, encontrar o valor crítico $\chi^2_{crit}$ na tabela Qui-quadrado tal que $P(\chi^2_{k-1} \geq \chi^2_{crit}) = \alpha.$
 
 <center>
 ```{r, echo=FALSE, fig.width=6.5, fig.height=3, message=FALSE}
@@ -217,7 +217,7 @@ polygon(X, Y, col = COL[1])
 ## arrows(xcrit, ymax, xcrit, ymax/2, 0.1, col = COL[1])
 ## text(xcrit, ymax, labels= bquote(chi[crit]^2), pos = 3, cex = 1.2, col = COL[1])
 
-text(xcrit + 5, 0.02, labels= expression('Ã¡rea = P('* chi[k-1]^2 >= chi[crit]^2 *') = '* alpha), pos = 3, cex = 1.2, col = COL[1])
+text(xcrit + 5, 0.02, labels= expression('Área = P('* chi[k-1]^2 >= chi[crit]^2 *') = '* alpha), pos = 3, cex = 1.2, col = COL[1])
 ```
 </center>
 
@@ -459,7 +459,7 @@ Portanto, concluímos que não há discrepância significativa entre o que foi obser
 <center><img src="figuras/mendel.jpg" width=500></center>
 
 
-## Exemplo: Ervilhas de Mendel {.build}
+## Exemplo: Ervilhas de Mendel 
 <center><img src="figuras/mendel1.png" width=300><img src="figuras/mendel2.png" width=500></center>
 *Figura: (Esquerda) Cruzamento de ervilhas puramente amarelas e puramente verdes e (Direta) cruzamento de ervilhas híbridas (Direita)*
 
@@ -819,24 +819,24 @@ Como $\chi^2_{obs}= `r round(a$statistic,3)` > `r chi_crit` = \chi^2_{crit}$ e o
 
 ## Teste de Homogeneidade {.build}
 
-Nas situaÃ§Ãµes em que utilizamos os testes de independÃªncia, o esquema de amostragem utizado foi baseado numa amostra aleatÃ³ria de tamanho $n$ que Ã© classificada com respeito a duas caracterÃ???sticas simultaneamente. 
+Nas situações em que utilizamos os testes de independência, o esquema de amostragem utilizado foi baseado numa amostra aleatória de tamanho $n$ que é classificada com respeito a duas características simultaneamente. 
 
-Nesse caso, as frequÃªncias marginais totais (totais por linhas e totais por colunas) sÃ£o variÃ¡veis aleatÃ³rias, pois a cada nova amostragem, nÃ£o temos como saber de antemÃ£o quais serÃ£o os valores dos totais por linhas/colunas.
+Nesse caso, as frequências marginais totais (totais por linhas e totais por colunas) são variáveis aleatórias, pois a cada nova amostragem, não temos como saber de antemão quais serão os valores dos totais por linhas/colunas.
 
-Se o esquema de amostragem for de dividir a populaÃ§Ã£o em duas subpopulaÃ§Ãµes de acordo com as categorias de uma caracterÃ???stica e selecionar uma amostra de um tamanho prÃ©-determinado para cada subpopulaÃ§Ã£o, entÃ£o esta serÃ¡ uma situaÃ§Ã£o de tabela de contingÃªncia com margens fixas. 
+Se o esquema de amostragem for de dividir a população em duas subpopulaÃções de acordo com as categorias de uma característica e selecionar uma amostra de um tamanho pré-determinado para cada subpopulação, então esta será uma situação de tabela de contingência com margens fixas. 
 
 ## Teste de Homogeneidade {.build}
-Por exemplo, no caso do problema de filiaÃ§Ã£o partidÃ¡ria, poderÃ???amos selecionar amostras aleatÃ³rias de tamanho $200$ entre afiliados do partido $A$ e $300$ dentre os afiliados do partido $B$ e se classificaria essas amostras de acordo com a atitude (favorÃ¡vel, indiferente ou contrÃ¡rio).
+Por exemplo, no caso do problema de filiação partidária, poderiamos selecionar amostras aleatórias de tamanho $200$ entre afiliados do partido $A$ e $300$ dentre os afiliados do partido $B$ e se classificaria essas amostras de acordo com a atitude (favorável, indiferente ou contrário).
 
-O interesse entÃ£o Ã© estudar as proporÃ§Ãµes nessas categorias para determinar se elas sÃ£o aproximadamente iguais para as diferentes subpopulaÃ§Ãµes. Ou seja, queremos testar se as subpopulaÃ§Ãµes sÃ£o homogÃªneas.
+O interesse então seria estudar as proporções nessas categorias para determinar se elas são aproximadamente iguais para as diferentes subpopulações. Ou seja, queremos testar se as subpopulações são homogêneas.
 
 
 ## Teste de Homogeneidade {.build .smaller}
 
 
-Suponha que amostras aleatÃ³rias independentes de tamanho $n_{10}, \ldots, n_{r0}$ sÃ£o selecionadas de $r$ subpopulaÃ§Ãµes $A_1, \ldots, A_r$ respectivamente.  Classificando cada amostra em uma das categorias $B_1, \ldots, B_c$, obtemos uma tabela de contigÃªncia $r \times c$ onde os totais das linhas sÃ£o tamanhos de amostras fixos. 
+Suponha que amostras aleatórias independentes de tamanho $n_{10}, \ldots, n_{r0}$ são selecionadas de $r$ subpopulações $A_1, \ldots, A_r$ respectivamente.  Classificando cada amostra em uma das categorias $B_1, \ldots, B_c$, obtemos uma tabela de contigência $r \times c$ onde os totais das linhas são tamanhos de amostras fixos. 
 
-Tabelas de contingÃªncia $r \times c$ com totais das linhas fixos:
+Tabelas de contingência $r \times c$ com totais das linhas fixos:
 
 |   | $B_1$| $B_2$|  $\ldots$ | $B_c$ | Total da linha |
 |:--|-----:|-----:|----------:|------:|---------------:|
@@ -849,11 +849,11 @@ Tabelas de contingÃªncia $r \times c$ com totais das linhas fixos:
 ## Teste de Homogeneidade {.build .smaller}
 
 
-As probabilidades das vÃ¡rias categorias de $B$ dentro de cada subpopulaÃ§Ã£o de $A$ tambÃ©m sÃ£o apresentadas a seguir, onde cada $w$ representa uma probabilidade condicional,
+As probabilidades das várias categorias de $B$ dentro de cada subpopulação de $A$ também são apresentadas a seguir, onde cada $w$ representa uma probabilidade condicional,
 
-$$w_{ij}=P(B_j| A_i)= \text{ probabilidade de } B_j \text{ dentro da populaÃ§Ã£o }  A_i.$$
+$$w_{ij}=P(B_j| A_i)= \text{ probabilidade de } B_j \text{ dentro da população }  A_i.$$
 
-Probabilidades das categorias de $B$ dentro de cada subpopulaÃ§Ã£o:
+Probabilidades das categorias de $B$ dentro de cada subpopulação:
 
 |   | $B_1$| $B_2$|  $\ldots$ | $B_c$ | Total da linha |
 |:--|-----:|-----:|----------:|------:|---------------:|
@@ -866,45 +866,42 @@ Probabilidades das categorias de $B$ dentro de cada subpopulaÃ§Ã£o:
 ## Teste de Homogeneidade {.build}
 
 
-A hipÃ³tese nula de iqualdade das categorias $B$ para as $r$ subpopulaÃ§Ãµes Ã©:
+A hipótese nula de igualdade das categorias $B$ para as $r$ subpopulações é:
 
 $$H_0: w_{1j}=w_{2j}= \cdots = w_{rj}, \mbox{ para todo } j=1,2, \ldots c.$$
 
 
-Sob $H_0$, a probabilidade comum da categoria $B_j$ pode ser estimada do conjunto de amostras notando que de um total de $n$ elementos amostrados, $n_{0j}$ possuem a caracterÃ???stica $B_j$, daÃ??? a probabilidade estimada fica
+Sob $H_0$, a probabilidade comum da categoria $B_j$ pode ser estimada do conjunto de amostras notando que de um total de $n$ elementos amostrados, $n_{0j}$ possuem a característica $B_j$, daí a probabilidade estimada fica
 
 $$\hat{w}_{1j}=\hat{w}_{2j}= \cdots =\hat{w}_{rj}= \frac{n_{0j}}{n}$$
 
 
-A frequÃªncia esperada estimada na componente $(i,j)$ sob $H_0$ Ã©:
+A frequência esperada estimada na componente $(i,j)$ sob $H_0$ é:
 
-$E_{ij}=$(NÃºmero de $A_i$ amostrados)$\times$(Probabilidade de $B_j$ dentro de $A_i$)$=n_{i0} \hat{w}_{ij}=\frac{n_{i0}n_{0j}}{n}.$
+$E_{ij}=$(Número de $A_i$ amostrados)$\times$(Probabilidade de $B_j$ dentro de $A_i$)$=n_{i0} \hat{w}_{ij}=\frac{n_{i0}n_{0j}}{n}.$
 
 
 ## Teste de Homogeneidade {.build}
 
-A **estatÃ???stica do teste** Ã© dada por:
+A **estatística do teste** é dada por:
 
 $$\chi^2= \sum_{r \times c \text{ componentes }} \frac{(n_{ij}-E_{ij})^2}{E_{ij}}$$
-que sob $H_0$ segue uma distribuiÃ§Ã£o $\chi^2$ com $(r-1)\times(c-1)$ graus de liberdade.
+que sob $H_0$ segue uma distribuição $\chi^2$ com $(r-1)\times(c-1)$ graus de liberdade.
 
-Pode-se observar que as fÃ³rmulas e os graus de liberdade dessa seÃ§Ã£o sÃ£o iguais ao da seÃ§Ã£o anterior, somente o mÃ©todo de amostragem e a formalizaÃ§Ã£o da hipÃ³tese nula sÃ£o diferentes.
+Pode-se observar que as fórmulas e os graus de liberdade dessa seção são iguais ao da seção anterior, somente o método de amostragem e a formalização da hipótese nula são diferentes.
 
 
 
-## Exemplo: Alcoolismo e profissÃµes {.build}
+## Exemplo: Alcoolismo e profissões {.build}
 
-Foi feita uma pesquisa para determinar a incidÃªncia de alcoolismo em diferentes grupos profissionais.   
-
-Separadamente, um amostra aleatÃ³ria entre religiosos, educadores, executivos e comerciantes foi coletada.  
-Os dados sÃ£o apresentados na tabela:
+Foi feita uma pesquisa para determinar a incidência de alcoolismo em diferentes grupos profissionais. Foram coletadas amostras aleatórias entre religiosos, educadores, executivos e comerciantes, respectivamente. A frequências observadas são apresentadas abaixo.
 
 ```{r,echo=FALSE}
 
 
-x = matrix(c(32,268,51,199,67,233,83,267),nrow=4,byrow=TRUE)
- rownames(x) = c("Religiosos","Educadores","Executivos","Comerciantes")
- colnames(x) = c("AlcoÃ³latras","NÃ£o AlcoÃ³latras") 
+x = matrix(c(32,268,51,199,67,233,83,267,233,967),nrow=5,byrow=TRUE)
+ rownames(x) = c("Religiosos","Educadores","Executivos","Comerciantes","Total")
+ colnames(x) = c("Alcoólatras","Não Alcoólatras") 
 
 n <- sum(x)
 
@@ -913,65 +910,57 @@ alpha <- 0.05
 chi_crit <- round(qchisq(1-alpha,df=a$parameter),2)
 ```
 
+
 ```{r,echo=FALSE}
 kable(x)
 ```
 
-## Exemplo: Alcoolismo e profissÃµes {.build}
+## Exemplo: Alcoolismo e profissões {.build}
 
-
-$$w_{ij}=P(B_j| A_i)= \text{ probabilidade de } B_j \text{ dentro da subpopulaÃ§Ã£o } A_i.$$
-
-$H_0: w_{1j}=w_{2j}= \cdots = w_{rj}$, para todo $j=1,2, \ldots c.$
-
-Tabela de contingÃªncia de alcoolismo vs profissÃ£o: frequÃªncia relativa por linha.
+Tabela de contingência de alcoolismo vs profissão: frequência relativa por linha.
 
 ```{r,echo=FALSE}
 kable(round(prop.table(x,1),2))
 ```
 
-## Exemplo: Alcoolismo e profissÃµes {.build}
+## Exemplo: Alcoolismo e profissões {.build}
 
-GrÃ¡fico de barras de alcoolismo vs profissÃ£o: frequÃªncia relativa por linha.
+Gráfico de barras de alcoolismo vs profissão: frequência relativa por linha.
 
 <center>
-```{r,echo=FALSE,fig.height=4.5,fig.width=6}
+```{r,echo=FALSE,fig.height=4.5,fig.width=7}
 par(mar=c(3, 3, 1, 1))
-barplot(t(prop.table(x,1)),xlab="OcupaÃ§Ã£o", main=" ", beside=TRUE,legend.text=TRUE,ylim=c(0,1.1),col=c("lightpink","lightblue"), las=1, cex.axis=1.3,cex.lab=1.3) 
+barplot(t(prop.table(x,1)),xlab="Ocupação", main=" ", beside=TRUE,legend.text=TRUE,ylim=c(0,1.1),col=c("orange","gray"), las=1, cex.axis=1.3,cex.lab=1.3) 
 ```
 </center>
 
 
-## Exemplo: Alcoolismo e profissÃµes {.build}
+## Exemplo: Alcoolismo e profissões {.build}
 
-A frequÃªncia esperada estimada na componente $(i,j)$ sob $H_0$ Ã©
+A frequência esperada estimada na componente $(i,j)$ sob $H_0$ é $E_{ij}=\frac{n_{i0}n_{0j}}{n}$
 
-$$E_{ij}=\frac{n_{i0}n_{0j}}{n}$$
-
-Tabela de frequÃªncias esperadas, segundo a hipÃ³tese nula de homogeneidade:
+Tabela de frequências esperadas, segundo a hipótese nula de homogeneidade:
 
 ```{r,echo=FALSE}
 e <- round(a$expected,2)
 kable(e)
 ```
 
+## Exemplo: Alcoolismo e profissões {.build}
 
 
-## Exemplo: Alcoolismo e profissÃµes {.build}
+Representando por $p_1, p_2, p_3$ e $p_4$ as proporções de alcoólatras na subpopulação de religiosos, educadores, executivos e comerciantes, respectivamente, queremos testar a hipótese:
 
+$$H_0:  p_1= p_2 = p_3 = p_4 \quad \mbox{vs} \quad H_a: \mbox{pelo menos uma proporção é diferente}$$ 
 
-Representando por $p_1, p_2, p_3$ e $p_4$ as proporÃ§Ãµes de alcoÃ³latras na subpopulaÃ§Ã£o de religiosos, educadores, executivos e comerciantes, respectivamente, queremos testar a hipÃ³tese:
-
-$$H_0:  p_1= p_2 = p_3 = p_4 \quad \mbox{vs} \quad H_a: \mbox{pelo menos uma proporÃ§Ã£o Ã© diferente}$$ 
-
-A estatÃ???stica observada Ã©:
+A estatística observada é:
 
 $$\chi^2_{obs}= \frac{(32-58.25)^2}{58.25}+ \cdots + \frac{(267-282.04)^2}{282.04}=20.59 \stackrel{H_0}{\sim} \chi^2_{`r a$parameter`}$$
 
 
-Usando o nÃ???vel de significÃ¢ncia $\alpha=`r alpha`$, o $\chi^2$ tabulado Ã© $`r round(chi_crit,2)`$ que Ã© menor do que o observado e portanto a hipÃ³tese nula de homogeneidade Ã© rejeitada.
+Usando o nível de significância $\alpha=`r alpha`$, o $\chi^2$ tabulado é $`r round(chi_crit,2)`$ que é menor do que o observado e portanto a hipótese nula de homogeneidade é rejeitada.
 
-Como a hipÃ³tese nula foi rejeitada verificamos que hÃ¡ indÃ???cios de que a proporÃ§Ã£o de alcoÃ³latras nas classes profissionais nÃ£o Ã© homogÃªnea. 
+Como a hipótese nula foi rejeitada verificamos que há indícios de que a proporção de alcoólatras nas classes profissionais não é homogênea. 
 
 
 ## Exemplo: Google {.build}
@@ -990,13 +979,13 @@ alpha <- 0.01
 chi_crit <- round(qchisq(1-alpha,df=a$parameter),2)
 ```
 
-O Google estÃ¡ constantemente elaborando experimentos para testar novos algoritmos de busca. Por exemplo, o Google pode estar interessado em testar 3 algoritmos usando uma amostra aleatÃ³ria para cada um: `r sum(x[,1])` buscas feitas com o algoritmo atual foram selecionadas ao acaso, `r sum(x[,2])` buscas feitas com o algoritmo teste 1 foram selecionadas ao acaso e `r sum(x[,3])` buscas feitas com o algoritmo teste 2 foram selecionadas ao acaso.
+O Google está constantemente elaborando experimentos para testar novos algoritmos de busca. Por exemplo, o Google pode estar interessado em testar 3 algoritmos usando uma amostra aleatória para cada um: `r sum(x[,1])` buscas feitas com o algoritmo atual foram selecionadas ao acaso, `r sum(x[,2])` buscas feitas com o algoritmo teste 1 foram selecionadas ao acaso e `r sum(x[,3])` buscas feitas com o algoritmo teste 2 foram selecionadas ao acaso.
 
-Como avaliar qual o melhor algoritmo? Ã‰ preciso definir alguma medida. 
+Como avaliar qual o melhor algoritmo? É preciso definir alguma medida. 
 
-No caso, o Google irÃ¡ avaliar se o usuÃ¡rio clicou em um dos links da busca e depois nÃ£o realizou uma nova tentativa de busca ou se ele depois realizou nova tentativa (indicando que a primeira busca nÃ£o foi bem sucedida).
+No caso, o Google irá avaliar se o usuário clicou em um dos links da busca e depois não realizou uma nova tentativa de busca ou se ele depois realizou nova tentativa (indicando que a primeira busca não foi bem sucedida).
 
-Objetivo: 3 algoritmos tÃªm a mesma performance, isto Ã©, a proporÃ§Ã£o de buscas que nÃ£o sÃ£o refeitas Ã© a mesma para os trÃªs algoritmos?
+**Pergunta:** Os três algoritmos têm a mesma performance, isto é, a proporção de buscas que não são refeitas é a mesma para os três algoritmos?
 
 ## Exemplo: Google
 
@@ -1006,36 +995,58 @@ Suponha que o Google tenha obtido os seguintes resultados:
 kable(x)
 ```
 
-## Exemplo: Google
-
-Tabela de frequÃªncias esperadas, segundo a hipÃ³tese nula de homogeneidade:
+Tabela de frequências esperadas, segundo a hipótese nula de homogeneidade:
 
 ```{r,echo=FALSE}
 e <- round(a$expected,2)
 kable(e)
 ```
 
-A estatÃ???stica $\chi^2$ tem o valor observado de 
+
+
+## Exemplo: Google
+
+Sejam $p_1$ a probabiliade de nova busca para o o algoritmo atual, $p_2$ para o teste 1 e $p_3$ para o teste 2.
+
+$$H_0 : p_1 = p_2 = p3 \mbox{ vs } H_a : há pelo menos uma diferença$$
+
+A estatística $\chi^2$ tem o valor observado de 
 
 $\chi^2_{obs}=\frac{(`r x[1,1]`-`r e[1,1]`)^2}{`r e[1,1]`}+\frac{(`r x[1,2]`-`r e[1,2]`)^2}{`r e[1,2]`}+\frac{(`r x[2,1]`-`r e[2,1]`)^2}{`r e[2,1]`}+\frac{(`r x[2,2]`-`r e[2,2]`)^2}{`r e[2,2]`}=`r round(a$statistic,2)` \stackrel{H_0}{\sim} \chi^2_{`r a$parameter`}$
 
-Usando o nÃ???vel de significÃ¢ncia $\alpha=`r alpha`$, o $\chi^2$ tabulado Ã© $`r round(chi_crit,2)`$ que Ã© maior do que o observado e portanto a hipÃ³tese nula de homogeneidade nÃ£o Ã© rejeitada.
+Usando o nível de significância $\alpha=`r alpha`$, o $\chi^2$ tabulado é $`r round(chi_crit,2)`$ que é maior do que o observado e portanto a hipótese nula de homogeneidade não é rejeitada.
 
 
 ## Exemplo: Google
 
 <center>
 ```{r,echo=FALSE,fig.height=5,fig.width=6}
-barplot(prop.table(x,2),xlab="Algoritmo", main=" ", beside=TRUE,legend.text=TRUE,ylim=c(0,1),col=c("lightblue","lightpink"), las=1, cex.axis=1.3, cex.lab=1.3, cex.names=1.3)
+barplot(prop.table(x,2),xlab="Algoritmo", main=" ", beside=TRUE,legend.text=TRUE,ylim=c(0,1),col=c("orange","gray"), las=1, cex.axis=1.3, cex.lab=1.3, cex.names=1.3)
 ```
 </center>
+
+
+# Teste exato de Fisher
+
+## Teste exato de Fisher
+
+
+O teste exato de Fisher testa diferenças entre duas pooulações independentes (G1 e G2), em relação a uma variável qualquer que só admita duas alternativas como resposta: Sim/Não, Positivo/Negativo, ou +/-. Isso leva à construção de uma tabela de contingência 2 x 2. 
+
+O teste é basicamente um $\chi^2$ (qui-quadrado), porém o teste de Fisher é particularmente adequado para pequenas amostras (com 20 dados ou menos), caso em que o teste do $\chi^2$ estaria contra-indicado. 
+
+O teste exado de Fisher se caracteriza em fornecer diretamente o valor de p, sem uso de uma estatística intermediária.
+    
+Em compensação quando o número de dados da amostra é grande, o teste de Fisher é que não deve ser usado, porque envolve o cálculo de fatoriais, o que pode conduzir a números excessivamente elevados. Nesses casos, a opção deve ser pelo teste do $\chi^2$.
+
+
 
 
 
 ## Leituras
 
-* [Ross](http://www.sciencedirect.com/science/article/pii/B9780123743886000132): capÃ???tulo 13. 
-* [OpenIntro](https://www.openintro.org/stat/textbook.php): seÃ§Ã£o 6.4
+* [Ross](http://www.sciencedirect.com/science/article/pii/B9780123743886000132): capítulo 13. 
+* [OpenIntro](https://www.openintro.org/stat/textbook.php): seção 6.4
 
 
 
