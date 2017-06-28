@@ -167,7 +167,7 @@
 
 <p><strong>Objetivo:</strong></p>
 
-<p>Verificar se a característica estudada nesta população segue o equilíbrio de Hardy-Weiberg (modelo proposto).</p>
+<p>Verificar se a característica estudada nesta população segue o equilíbrio de Hardy-Weinberg (modelo proposto).</p>
 
 </article></slide><slide class=''><hgroup><h2>Exemplo</h2></hgroup><article  id="exemplo-1" class="build">
 
@@ -1535,7 +1535,7 @@ Da mesma forma, \(p_{0j}=P(B_j)\) é estimada por
 
 <p>Sejam \(p_1\) a probabiliade de nova busca para o o algoritmo atual, \(p_2\) para o teste 1 e \(p_3\) para o teste 2.</p>
 
-<p>\[H_0 : p_1 = p_2 = p3 \mbox{ vs } H_a : há pelo menos uma diferença\]</p>
+<p>\[H_0 : p_1 = p_2 = p3 \mbox{ vs } H_a : \mbox{há pelo menos uma diferença}\]</p>
 
 <p>A estatística \(\chi^2\) tem o valor observado de</p>
 
@@ -1555,9 +1555,13 @@ Da mesma forma, \(p_{0j}=P(B_j)\) é estimada por
 
 </article></slide><slide class=''><hgroup><h2>Teste exato de Fisher</h2></hgroup><article  id="teste-exato-de-fisher-1">
 
-<p>O teste exato de Fisher serve para testar a hipótese de que duas variáveis, apresentadas em uma tabela 2x2, estão associadas.</p>
+<p>O teste exato de Fisher testa diferenças entre duas pooulações independentes (G1 e G2), em relação a uma variável qualquer que só admita duas alternativas como resposta: Sim/Não, Positivo/Negativo, ou +/-. Isso leva à construção de uma tabela de contingência 2 x 2.</p>
 
-<p>É indicado quando o tamanho das duas amostras independentes é pequeno e consiste em determinar a probabilidade exata de ocorrência de uma frequência observada, ou de valores mais extremos.</p>
+<p>O teste é basicamente um \(\chi^2\) (qui-quadrado), porém o teste de Fisher é particularmente adequado para pequenas amostras (com 20 dados ou menos), caso em que o teste do \(\chi^2\) estaria contra-indicado.</p>
+
+<p>O teste exado de Fisher se caracteriza em fornecer diretamente o valor de p, sem uso de uma estatística intermediária.</p>
+
+<p>Em compensação quando o número de dados da amostra é grande, o teste de Fisher é que não deve ser usado, porque envolve o cálculo de fatoriais, o que pode conduzir a números excessivamente elevados. Nesses casos, a opção deve ser pelo teste do \(\chi^2\).</p>
 
 </article></slide><slide class=''><hgroup><h2>Leituras</h2></hgroup><article  id="leituras-1">
 

@@ -1,0 +1,141 @@
+---
+title: "Mestrado em Hemoterapia: Bioestatística"
+subtitle: Parte 11
+output:
+  ioslides_presentation:
+    widescreen: yes
+logo: ../logo_fcm_0.jpg
+---
+# Análise de Sobrevivência
+
+## O que é análise de sobrevivência? {.build}
+
+</center>
+É uma coleção de métodos estatísticos utilizados para analisar dados em que a variável resposta de interesse consiste **no tempo até a ocorrência de um dado evento**.
+
+O interesse pode estar em caracterizar o tempo até a ocorrência de um evento ou estudar **o risco de ocorrência de um evento por unidade de tempo**.
+
+
+##  Algumas perguntas passíiveis de resposta neste tipo de abordagem: {.build}
+
+Qual o efeito de um determinado anticancerígeno sobre o tempo de sobrevivência?
+
+Quais os fatores que podem estar associados ao tempo de duração da amamentação?
+
+Quais os fatores preditivos para reinternação hospitalar, considerando o tempo entre internações?
+
+Qual o efeito da unidade assistencial na sobrevivêencia após um infarto agudo do miocárdio?
+
+## Introdução {.build}
+
+**Tempo**: é o tempo em dias, semanas, anos, meses... do acompanhamento de um individuo a partir de um ponto inicial pré estabelecido até a ocorrência de um evento de interesse.
+
+**Evento**: é alguma experiencia de interesse que pode acontecer com os individuos em estudo. Tais como o diagnostico de uma doença, recidiva de uma doença, a morte do paciente, retornar ao trabalho depois um procedimento cirurgíco e etc.
+
+Em análise de sobrevivência é usual se referir ao tempo como **tempo de sobrevivência** e  ao evento como **falha**.
+
+## Exemplo : Carciogênesis
+
+Dados de tempo desde a partir da inserção de carciogen DMBA até a mortalidade por cancer vaginal em ratos. Dois grupos foram obtidos de acordo com o regime do pre-tratamento.
+
+**Grupo** | Tempo observado
+----------|----------------
+1  | 143, 164, 188, 188, 190, 192, 206, 209, 213, 216, 220, 227, 230, 234, 246, 265, 304, 216\*, 244\* 
+2 | 142, 156, 163, 198, 205, 232, 232, 233, 233, 233, 233  239, 240, 261, 280, 280, 296, 296, 323, 204\*, 344\* 
+Fonte: Kalbfleish and Prentice (2002) página 1
+
+
+## Dados incompletos {.build}
+
+Uma característica muito comum em dados de sobrevivência é a
+presença de **observações incompletas** que podem ocorrer devido a
+**censura** ou **trucamento**.
+
+A **censura**, que é o caso mais típico, pode ser classificada como:
+censura a direita, censura a esquerda e censura intervalar.
+
+## Censura à direita {.build}
+
+A situação mais frequente de observações incompletas em dados de
+sobrevivência é a **censura a direita**. Ela consiste de situações em
+que o tempo de ocorrência do evento não é observado, mas é sabido
+ser maior que um dado tempo t registrado.
+
+A censura a direita pode ser classificada como
+
+* **Censura do tipo I :** quando o estudo será terminado após um
+período pré estabelecido de tempo;
+
+* **Censura do tipo II :** quando o estudo será terminado após ter
+ocorrido o evento de interesse em um número pré estabelecido
+de indivíduos;
+
+* **Censura aleatória :** uma observação é retirada do estudo sem
+ter ocorrido a falha.
+
+## Outros tipos de dados incompletos {.build}
+>**Censura a Esquerda:** ocorre quando o tempo registrado é maior do
+que o tempo de falha, ou seja, o evento de interesse já aconteceu
+quando o indivíduo foi observado.
+
+>**Censura intervalar:** ocorre quando é conhecido somente que o
+evento de interesse ocorreu em um certo intervalo de tempo.
+
+>**Truncamento a esqueda** ou **entrada tardia:** é caracterizado por uma
+condição que exclui certos indivíduos do estudo. Os indivíduos só
+são considerados no estudo depois de observado um evento intermediário.
+
+## Notação
+
+* $T$ é a variável aleatória que representa o **tempo de sobrevivência** do indivíduo.
+
+* $\delta$ é a **indicadora de falha**, isto é, recebe o valor 1 se o individuo falhou e 0 se cendurado.
+
+* $S(t)$ é chamada de **função de sobrevivência**.
+
+* $\lambda(t)$ é chamada de **função de risco**.
+
+## Função de Sobrevivência $S(t)$
+
+A função de sobrevivência $S(t)$ dá a probabilidade de um indivíduo sobreviver mais tempo que um dado tempo $t$.
+
+Isto é, dá a probabilidade que a variável aleatória da $T$ exceder um tempo $t$ específico.
+
+$$S(t) = P(T > t)$$
+
+É uma função não crescente, no tempo $t = 0$, $S(t) = S(0) = 1$ e no tempo $t = \infty$, $S(t) = S(\infty) = 1$. 
+
+## Função de Sobrevivência $S(t)$
+
+<center><img src="figuras/FuncaoSobrevivencia.jpg" width=500></center>
+
+## Função de risco $\lambda(t)$
+
+A função de risco é dada pela seguinte fórmula
+
+$$\lambda(t) = \lim_{\Delta t \rightarrow t} \frac{P(t \leq T < \Delta t \,\vert\, T \geq t )}{\Delta t}$$
+Representa a **taxa de falha ou velocidade instantânea da ocorrência dos eventos por unidade de tempo**
+
+Note que, em contraste com a função de sobrevivência, que foca em *não falhar*, a função de risco foca na falha, isto é, na ocorrência do evento de interesse.
+
+A função de sobrevivência pode ser escrita como
+
+$$S(t) = \exp \left[ - \int_0^t \lambda(u)du \right] $$
+
+## Estimador de Kaplan-Meier
+
+## Teste de logrank
+
+## Modelo de Cox
+
+## Outros problemas
+
+Slides produzidos pelos professores:
+
+* Samara Kiihl
+
+* Tatiana Benaglia
+
+* Benilton Carvalho
+
+* Rafael Maia

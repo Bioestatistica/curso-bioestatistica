@@ -68,7 +68,7 @@ $$ $$
 <center>
 **Objetivo:** 
 
-Verificar se a característica estudada nesta população segue o equilíbrio de Hardy-Weiberg (modelo proposto).
+Verificar se a característica estudada nesta população segue o equilíbrio de Hardy-Weinberg (modelo proposto).
 
 ## Exemplo {.build}
 
@@ -1008,7 +1008,7 @@ kable(e)
 
 Sejam $p_1$ a probabiliade de nova busca para o o algoritmo atual, $p_2$ para o teste 1 e $p_3$ para o teste 2.
 
-$$H_0 : p_1 = p_2 = p3 \mbox{ vs } H_a : há pelo menos uma diferença$$
+$$H_0 : p_1 = p_2 = p3 \mbox{ vs } H_a : \mbox{há pelo menos uma diferença}$$
 
 A estatística $\chi^2$ tem o valor observado de 
 
