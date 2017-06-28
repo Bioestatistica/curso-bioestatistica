@@ -88,7 +88,7 @@ Podemos considerar também proporções condicionais (frequências relativas):
 
 A proporção condicional escolhida depende do estudo que pretendemos fazer.
 
-## Frequências Relativas {.build}
+## Frequências Relativas
 
 Distribuição das frequências relativas ao total da amostra.
 
@@ -156,7 +156,7 @@ ggplotly(g)
 Observando o gráfico e a tabela de proporções parece haver evidências de associação entre a presença de endometrioma e o tipo de adenomiose.
 
 
-## Frequências relativas ao total das linhas {.build .smaller}
+## Frequências relativas ao total das linhas { .smaller}
 
 Distribuição das frequências relativas ao total de cada linha.
 
@@ -208,7 +208,7 @@ ggplotly(g)
 
 
 
-## Exemplo: Pesticidas{.smaller .build}
+## Exemplo: Pesticidas{.smaller}
 > Uma [pesquisa](http://www.tandfonline.com/doi/abs/10.1080/02652030110113799#.VbOlP-hVhBA) foi feita para investigar a presença de pesticidas em alimentos orgânicos e convencionais.
 
 ```{r, echo=FALSE}
@@ -224,23 +224,23 @@ colnames(y) <- c("Pesticida Presente", "Pesticida Ausente", "Total")
 kable(y)
 ``` 
 
-> Qual a proporção de alimentos com pesticida?
+Qual a proporção de alimentos com pesticida?
 
-> $19514/26698=`r round(19514/26698, 3)`$
+$19514/26698=`r round(19514/26698, 3)`$
 
-> Qual a proporção de alimentos com pesticidas dentre os orgânicos?
+Qual a proporção de alimentos com pesticidas dentre os orgânicos?
 
-> $29/127=`r round(29/127, 3)`$
+$29/127=`r round(29/127, 3)`$
 
-> Qual a proporção de alimentos com pesticidas dentre os convencionais?
+Qual a proporção de alimentos com pesticidas dentre os convencionais?
 
-> $19485/26571=`r round(19485/26571, 3)`$
+$19485/26571=`r round(19485/26571, 3)`$
 
-## Proporção Condicional {.build}
+## Proporção Condicional
 
 **Proporção condicional**: condicionalmente à informação de uma variável, observamos a proporção da outra variável.
 
-> - Qual a proporção de pesticidas entre alimentos orgânicos?
+- Qual a proporção de pesticidas entre alimentos orgânicos?
 
 - Qual a proporção de pesticidas entre alimentos convencionais?
 
@@ -283,24 +283,24 @@ Observando o gráfico e a tabela de proporções condicionais parece haver evid�
 
 
 
-## Exemplo: Bebidas alcoólicas {.build}
+## Exemplo: Bebidas alcoólicas
 
 A Escola de Saúde Pública da Harvard fez uma pesquisa com 200 cursos de graduação em 2001.
 
-> A pesquisa pergunta aos alunos sobre hábitos relacionados à bebida. 
+A pesquisa pergunta aos alunos sobre hábitos relacionados à bebida. 
 
 <div class="columns-2">
 
-> * 4 drinks seguidos, entre mulheres, é classificado como bebida em excesso.
+* 4 drinks seguidos, entre mulheres, é classificado como bebida em excesso.
 
-> * 5 drinks seguidos, entre homens, é classificado como bebida em excesso.
+* 5 drinks seguidos, entre homens, é classificado como bebida em excesso.
 
-> <center><img src="figuras/drinks.jpeg" width=350></center>
+<center><img src="figuras/drinks.jpeg" width=350></center>
 
 </div>
 
 
-## Exemplo: Bebidas alcoólicas {.build}
+## Exemplo: Bebidas alcoólicas
 
 ```{r, echo=FALSE}
 x <- matrix(c(1908, 2017, 2854, 4125), nrow=2, byrow=TRUE)
@@ -451,35 +451,35 @@ ggplotly(g)
 Nesse caso, a dependência entre $X$ e $Y$ parece ser linear negativa.
 
 
-## Coeficiente de Correlação {.build}
+## Coeficiente de Correlação 
 
-> * **Objetivo:** obter uma medida que permita quantificar a dependência que pode existir entre duas variáveis (positiva, negativa, muita ou pouca).
+* **Objetivo:** obter uma medida que permita quantificar a dependência que pode existir entre duas variáveis (positiva, negativa, muita ou pouca).
 
-> * Dado $n$ pares de observações $(x_{1},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})$: 
+* Dado $n$ pares de observações $(x_{1},y_{1}),(x_{2},y_{2}),...,(x_{n},y_{n})$: 
 $$Corr(X,Y)=\frac{1}{n-1}\sum_{i=1}^{n}\left(\frac{x_{i}-\bar{x}}{s_x}\right)\left(\frac{y_{i}-\bar{y}}{s_y}\right)$$
 onde $s_x$ é o desvio padrão de $X$ e $s_y$ é o desvio padrão de $Y$.
 
 * Essa medida leva em consideração todos os desvios $(x_{i}-\bar{x})$ e $(y_{i}-\bar{y})$ padronizados da forma $z_{x_i}=\frac{x_{i}-\bar{x}}{s_x}$ e $z_{y_i}=\frac{y_{i}-\bar{y}}{s_y}$.
 
-> * Interpretação: $z_{x_i}$ indica o número de desvios-padrão que a observação $x_i$ está afastada da média de X.
+* Interpretação: $z_{x_i}$ indica o número de desvios-padrão que a observação $x_i$ está afastada da média de X.
 
 
-## Propriedades {.build}
+## Propriedades 
 
-> * $-1 \leq Corr(X, Y) \leq 1$
+* $-1 \leq Corr(X, Y) \leq 1$
 
-> * $Corr(X, Y)$ próxima de 1: $X$ e $Y$ estão positivamente associadas e o tipo de associação entre as variáveis é linear.
+* $Corr(X, Y)$ próxima de 1: $X$ e $Y$ estão positivamente associadas e o tipo de associação entre as variáveis é linear.
 
-> * $Corr(X, Y)$ próxima de -1: $X$ e $Y$ estão negativamente associadas e o tipo de associação entre as variáveis é linear.
+* $Corr(X, Y)$ próxima de -1: $X$ e $Y$ estão negativamente associadas e o tipo de associação entre as variáveis é linear.
 
-> Se $z_{x}$ e $z_y$ têm o mesmo sinal, estamos somando um termo positivo na expressão da correlação. 
+Se $z_{x}$ e $z_y$ têm o mesmo sinal, estamos somando um termo positivo na expressão da correlação. 
 
->  Se $z_{x}$ e $z_y$ têm sinais opostos, estamos somando um termo negativo na expressão da correlação. 
+Se $z_{x}$ e $z_y$ têm sinais opostos, estamos somando um termo negativo na expressão da correlação. 
 
->  Correlação é a média dos produtos de $z_x$ e $z_y$.
+Correlação é a média dos produtos de $z_x$ e $z_y$.
 
 
-## Exemplo: Tempo de serviço e total de clientes {.build}
+## Exemplo: Tempo de serviço e total de clientes 
 
 Agente | Anos de Serviço ($X$) | Nº de Clientes ($Y$)
 -------|-----------------------|--------------------------
@@ -490,12 +490,12 @@ D | 6 | 60
 E | 8 | 72 
 Total | 25 | 300 
 
-> Anos de Serviço ($X$): $\quad \bar{x}=5 \quad \mbox{e} \quad s_x=2.24$
+Anos de Serviço ($X$): $\quad \bar{x}=5 \quad \mbox{e} \quad s_x=2.24$
 
-> Nº de Clientes ($Y$): $\quad \bar{y}=60 \quad \mbox{e} \quad s_y=8.94$
+Nº de Clientes ($Y$): $\quad \bar{y}=60 \quad \mbox{e} \quad s_y=8.94$
 
 
-## Exemplo: Tempo de serviço e total de clientes {.build}
+## Exemplo: Tempo de serviço e total de clientes 
 
 Agente | $X$ | $Y$ | $z_x=\frac{x_{i}-\bar{x}}{s_x}$ | $z_y=\frac{y_{i}-\bar{y}}{s_y}$ | $z_x\times z_y$
 -------|-----|-----|----------------------|----------------------|-------------
@@ -508,7 +508,7 @@ E | 8 | 72  | 1.34 | 1.34 | 1.8
 $$Corr(X, Y)=\frac{1}{n-1}\sum_{i=1}^{n}z_{x_i}z_{y_i}=\frac{3.8}{5-1}=0.95$$
 
 
-## Exemplo: Fitbit {.build}
+## Exemplo: Fitbit
 
 Número de passos diários coletados para uma pessoa usando um [Fitbit](http://en.wikipedia.org/wiki/Fitbit) durante 297 dias.
 
@@ -528,16 +528,16 @@ abline(v=mean(fitbit$steps), col="red", lty=2, lwd=2)
 ```
 </center>
 
-> Qual é maior? Média ou mediana?
+Qual é maior? Média ou mediana?
 
-> Média é `r round(mean(fitbit$steps),0)` e mediana é `r round(median(fitbit$steps),0)`.
+Média é `r round(mean(fitbit$steps),0)` e mediana é `r round(median(fitbit$steps),0)`.
 
 
-## Exemplo: Fitbit  {.build}
+## Exemplo: Fitbit 
 
-> Além do total de passos, Fitbit também registra o tempo gasto em cada tipo de atividade.
+Além do total de passos, Fitbit também registra o tempo gasto em cada tipo de atividade.
 
-> Há relação entre o total de passos e o tempo gasto em atividade intensa?
+Há relação entre o total de passos e o tempo gasto em atividade intensa?
 
 <center>
 ```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE}
@@ -552,12 +552,12 @@ ggplotly(g)
 ```
 </center>
 
-> Correlação: `r round(cor(x=fitbit$steps, y=fitbit$minutesVeryActive), 2)`
+Correlação: `r round(cor(x=fitbit$steps, y=fitbit$minutesVeryActive), 2)`
 
 
-## Exemplo: Fitbit {.build}
+## Exemplo: Fitbit 
 
-> Há relação entre o total de passos e o tempo (em minutos) de sedentarismo?
+Há relação entre o total de passos e o tempo (em minutos) de sedentarismo?
 
 <center>
 ```{r, echo=FALSE, fig.height=4, fig.width=6,warning=FALSE}
@@ -575,14 +575,14 @@ ggplotly(g)
 ```
 </center>
 
-> Correlação: `r round(cor(x=fitbit$steps[fitbit$minutesSedentary > 1000], y=fitbit$minutesSedentary[fitbit$minutesSedentary > 1000]), 2)`
+Correlação: `r round(cor(x=fitbit$steps[fitbit$minutesSedentary > 1000], y=fitbit$minutesSedentary[fitbit$minutesSedentary > 1000]), 2)`
 
 
-## Exemplo: Fitbit {.build}
+## Exemplo: Fitbit
 
 Baseado na altura, peso e gênero, o Fitbit estima o comprimento de cada passo.
 
-> Há relação entre o total de passos e distância percorrida?
+Há relação entre o total de passos e distância percorrida?
 
 <center>
 ```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE}
@@ -597,7 +597,7 @@ ggplotly(g)
 ```
 </center>
 
-> Correlação: `r round(cor(x=fitbit$steps, y=fitbit$distance), 2)`
+Correlação: `r round(cor(x=fitbit$steps, y=fitbit$distance), 2)`
 
 
 
@@ -649,6 +649,19 @@ Analfabetismo: % de analfabetos na população de 18 anos ou mais.
 
 
 # Associação entre qualitativa e quantitativa
+
+
+## Exemplo
+
+<center>
+<img src="figuras/A.png" width=500>
+</center>
+
+
+<center>
+<img src="figuras/O.png" width=550>
+</center>
+
 
 ## Exemplo: Acidentes de carro em NY {.smaller}
 **Variável quantitativa:** número de acidentes de carro diários

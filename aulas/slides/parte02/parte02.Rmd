@@ -9,29 +9,29 @@ logo: ../logo_fcm_0.jpg
 
 # Estatísticas Sumárias: resumindo dados
 
-## Introdução{.build}
+## Introdução
 
 Vimos anteriormente como usar gráficos e tabelas para resumir os dados.
 
 Podemos também usar **estatísticas**: quantidades numéricas calculadas a partir dos dados.
 
-> Por exemplo, podemos estar interessados em encontrar qual seria um valor "típico"  do conjunto de dados.
+Por exemplo, podemos estar interessados em encontrar qual seria um valor "típico"  do conjunto de dados.
 
-> Podemos então usar uma estatística que descreva o centro da distribuição dos dados.
+Podemos então usar uma estatística que descreva o centro da distribuição dos dados.
 
-> **Objetivo**: resumir os dados, através de valores que representem o conjunto de dados em relação à alguma característica (posição, dispersão).
+**Objetivo**: resumir os dados, através de valores que representem o conjunto de dados em relação à alguma característica (posição, dispersão).
 
 
 
 # Medidas de Posição Central
 
-## Média Aritmética{.build}
+## Média Aritmética
 
-> Se $x_1, x_2, \ldots, x_n$ são as $n$ observações, a média é:
+Se $x_1, x_2, \ldots, x_n$ são as $n$ observações, a média é:
 
 $$\bar{x}=\frac{1}{n}\sum_{i=1}^nx_i\,.$$
 
-> A média pode ser interpretada como o ponto de equilíbrio de uma distribuição.
+A média pode ser interpretada como o ponto de equilíbrio de uma distribuição.
 
 <center><img src="figuras/balanco.png" width=400></center>
 
@@ -82,20 +82,20 @@ abline(v=media, col="red", lwd=2)
 </center>
 
 
-## Mediana{.build}
+## Mediana
 
 A mediana é o valor que deixa 50% das observações abaixo dele e 50% acima.
 
-> Determinando a mediana:
+Determinando a mediana:
 
-> * Ordene as $n$ observações.
+* Ordene as $n$ observações.
 
-> * Se $n$ é ímpar, a mediana é o valor do meio, na sequência ordenada.
+* Se $n$ é ímpar, a mediana é o valor do meio, na sequência ordenada.
 
-> * Se $n$ é par, a mediana é a média aritmética das duas observações  que caem no meio da sequência ordenada.
+* Se $n$ é par, a mediana é a média aritmética das duas observações  que caem no meio da sequência ordenada.
 
 
-## Exemplo: IMC {.build .smaller}
+## Exemplo: IMC { .smaller}
 
 IMC de 40 pacientes (ordem crescente):
 ```{r,echo=FALSE}
@@ -128,12 +128,12 @@ A mediana é a média entre a 20ª e a 21ª observações ordenadas ($n$ é par)
 Se descartássemos o maior valor, $43.269$, teríamos $39$ observações e aí a mediana seria a 20ª observação ordenada:
 $$\mbox{mediana} = `r round(median(tmp[-40]),3)`$$
 
-## Moda {.build .smaller}
+## Moda {.smaller}
 
 
 A moda é o valor mais frequente.
 
-> Tabela de frequências para a pressão sistólica dos `r length(dados$sysbp)`  pacientes:
+Tabela de frequências para a pressão sistólica dos `r length(dados$sysbp)`  pacientes:
 
 ```{r, echo=FALSE}
 tabela <- as.data.frame(table(dados$sysbp))
@@ -142,7 +142,7 @@ tmp <- cbind(tabela[1:6,],tabela[7:12,],tabela[13:18,])
 kable(tmp)
 ```
 
-> Portanto a moda da pressão sistólica é 140.
+Portanto a moda da pressão sistólica é 140.
 
 
 
@@ -161,24 +161,24 @@ Qual medida de posição você usaria para apresentar a diferença entre homens 
 Fonte: [http://www.census.gov/prod/2002pubs/p70-80.pdf](http://www.census.gov/prod/2002pubs/p70-80.pdf)
 
 
-## Exemplo: número de casamentos{.build}
+## Exemplo: número de casamentos
 
 A moda entre os homens é:
 
-> $0$.
+$0$.
 
 A moda entre as mulheres é:
 
-> $0$. 
+$0$. 
 
-> Para as mulheres, a amostra ordenada é:
+Para as mulheres, a amostra ordenada é:
 $$\underbrace{0\,0\,0\,\ldots0}_{\mbox{5861 0's}}\quad \underbrace{1\,1\,1\,\ldots1}_{\mbox{2773 1's}} \quad \underbrace{2\,2\,2\,\ldots2}_{\mbox{105 2's}}$$
 
-> Como $n=8739$ é ímpar, a observaçãoo central está na posição $(1+8739)/2=4370$. A observação 4370 é 0, portanto a mediana é 0 para as mulheres.  Similarmente, para os homens, a mediana é 0.
+Como $n=8739$ é ímpar, a observaçãoo central está na posição $(1+8739)/2=4370$. A observação 4370 é 0, portanto a mediana é 0 para as mulheres.  Similarmente, para os homens, a mediana é 0.
 
 
 
-## Exemplo: número de casamentos{.build}
+## Exemplo: número de casamentos
 
 Média entre as mulheres:
 
@@ -189,7 +189,7 @@ Média entre os homens: $\bar{x}=0.19$.
 
 Para dados discretos com poucos valores diferentes, a mediana ignora muita informação.
 
-## Exemplo: número de casamentos{.build}
+## Exemplo: número de casamentos
 
 No entanto, como neste caso temos apenas os valores 0, 1 e 2, podemos apresentar os dados usando gráficos de barra.
 
@@ -229,7 +229,7 @@ print(g)
 
 ```
 
-## Mediana é resistente a observações discrepantes{.build}
+## Mediana é resistente a observações discrepantes
 
 Considere os três conjuntos de dados abaixo:
 
@@ -239,22 +239,22 @@ $$B: 8,9,10,11,100$$
 
 $$C: 8,9,10,11,1000$$
 
->
+
 Média de $A$: 10.
 Mediana de $A$: 10.
 
-> 
+
 Média de $B$: 27.6.
 Mediana de $B$: 10.
 
->
+
 Média de $C$: 207.6.
 Mediana de $C$: 10.
 
 
 
 
-## Média, mediana e a distribuição dos dados{.build}
+## Média, mediana e a distribuição dos dados
 
 A figura a seguir mostra gráficos para três conjuntos de dados: A, B e C.
 ```{r,echo=FALSE}
@@ -271,30 +271,30 @@ stripchart(B,method="stack",offset=1,at=0,ylim=c(0,5),cex=1.7,cex.axis=2,xlab="B
 stripchart(C,method="stack",offset=1,at=0,ylim=c(0,11),cex=1.7,cex.axis=2,xlab="C",cex.lab=4,pch=15)
 ```
 
-## Média, mediana e a distribuição dos dados{.build}
+## Média, mediana e a distribuição dos dados
 
 
-> Para quais conjuntos de dados, você esperaria que a média e a mediana tivessem o mesmo valor?
+Para quais conjuntos de dados, você esperaria que a média e a mediana tivessem o mesmo valor?
 
-> Para quais conjuntos de dados, você esperaria que a média e a mediana tivessem valores diferentes? 
+Para quais conjuntos de dados, você esperaria que a média e a mediana tivessem valores diferentes? 
 
-> Qual valor seria maior: a média ou a mediana?
+Qual valor seria maior: a média ou a mediana?
 
-> Gráfico A: média é `r round(mean(A),2)`, mediana é `r round(median(A),2)`.
+Gráfico A: média é `r round(mean(A),2)`, mediana é `r round(median(A),2)`.
 
-> Gráfico B: média é `r round(mean(B),2)`, mediana é `r round(median(B),2)`.
+Gráfico B: média é `r round(mean(B),2)`, mediana é `r round(median(B),2)`.
 
-> Gráfico C: média é `r round(mean(C),2)`, mediana é `r round(median(C),2)`.
+Gráfico C: média é `r round(mean(C),2)`, mediana é `r round(median(C),2)`.
 
-## Assimetria (Caso Unimodal) {.build}
+## Assimetria (Caso Unimodal) 
 
 <center><img src="figuras/assimetria.png" width=800></center>
 
-> Se os dados são simétricos, a média coincide com a mediana e a moda.
+Se os dados são simétricos, a média coincide com a mediana e a moda.
 
-> Assimetria à direita (positiva): Média > Mediana > Moda
+Assimetria à direita (positiva): Média > Mediana > Moda
 
-> Assimetria à esquerda (negativa): Média < Mediana < Moda
+Assimetria à esquerda (negativa): Média < Mediana < Moda
 
 
 # Medidas de Dispersão
@@ -324,19 +324,19 @@ Média da idade entre pacientes do Tratamento A: `r round(mean(den),2)`. Média 
 
 Mediana da idade entre pacientes do Tratamento A: `r round(median(den),2)`. Mediana da idade entre pacientes do Tratamento B: `r round(median(usa),2)`. 
 
-## Amplitude {.build}
+## Amplitude 
 
 Uma medida de dispersão é **amplitude**: a diferença entre o maior e o menor valor observado na amostra.
 
-> No Tratamento A, as idades variam de `r round(min(den),0)` a `r round(max(den),0)`.
+No Tratamento A, as idades variam de `r round(min(den),0)` a `r round(max(den),0)`.
 
-> Amplitude das idades no Tratamento A: $`r round(max(den),0)`-`r round(min(den),0)`=`r round(max(den),0)-round(min(den),0)`$.
+Amplitude das idades no Tratamento A: $`r round(max(den),0)`-`r round(min(den),0)`=`r round(max(den),0)-round(min(den),0)`$.
 
-> No Tratamento B, variam de `r round(min(usa),0)` a `r round(max(usa),0)`.
+No Tratamento B, variam de `r round(min(usa),0)` a `r round(max(usa),0)`.
 
-> Amplitude das idades no Tratamento B: $`r round(max(usa),0)`-`r round(min(usa),0)` = `r round(max(usa),0)-round(min(usa),0)`$.
+Amplitude das idades no Tratamento B: $`r round(max(usa),0)`-`r round(min(usa),0)` = `r round(max(usa),0)-round(min(usa),0)`$.
 
-> Problema com a amplitude: utiliza apenas duas observações (a máxima e a mínima).
+Problema com a amplitude: utiliza apenas duas observações (a máxima e a mínima).
 
 ## Medidas de dispersão
 
@@ -346,82 +346,82 @@ No entanto, claramente temos que as idades dos pacientes do Tratamento $B$ são 
 
 Que medida podemos usar para considerar essa característica dos dados?
 
-## Medidas de dispersão {.build }
+## Medidas de dispersão
 
 Quão afastadas de uma determinada medida de posição estão as observações?
 
-> * **Desvio** de uma observação $x_i$ da média $\bar{x}$ é a diferença entre a observação e a média dos dados: $(x_i-\bar{x})$.
+* **Desvio** de uma observação $x_i$ da média $\bar{x}$ é a diferença entre a observação e a média dos dados: $(x_i-\bar{x})$.
 
-> * O desvio é negativo quando a observação tem valor menor do que a média.
+* O desvio é negativo quando a observação tem valor menor do que a média.
 
-> * O desvio é positivo quando a observação tem valor maior do que a média.
+* O desvio é positivo quando a observação tem valor maior do que a média.
 
-> * Estamos interessados nos desvios de todos os pontos $x_i$'s, então poderia-se propor a seguinte medida de dispersão: $\sum_{i=1}^n(x_i-\bar{x})$.
+* Estamos interessados nos desvios de todos os pontos $x_i$'s, então poderia-se propor a seguinte medida de dispersão: $\sum_{i=1}^n(x_i-\bar{x})$.
 
-> * Qual o problema? 
+* Qual o problema? 
 
-> * A média representa o ponto de balanço dos dados, então os desvios irão se contrabalancear, ou seja: $\sum_{i=1}^n(x_i-\bar{x})=0$.
+* A média representa o ponto de balanço dos dados, então os desvios irão se contrabalancear, ou seja: $\sum_{i=1}^n(x_i-\bar{x})=0$.
 
 
-## Medidas de dispersão {.build}
+## Medidas de dispersão 
 
-> Além do mais, uma medida de dispersão onde os desvios positivos e negativos se cancelam, não seria útil.
+Além do mais, uma medida de dispersão onde os desvios positivos e negativos se cancelam, não seria útil.
 
-> Queremos que se leve em conta cada desvio, independente do sinal.
+Queremos que se leve em conta cada desvio, independente do sinal.
 
-> Alternativas:
+Alternativas:
 
-> $\displaystyle \sum_{i=1}^n\mid x_i-\bar{x}\mid$
+$\displaystyle \sum_{i=1}^n\mid x_i-\bar{x}\mid$
 
-> $\displaystyle \sum_{i=1}^n(x_i-\bar{x})^2$
+$\displaystyle \sum_{i=1}^n(x_i-\bar{x})^2$
 
 Ambas alternativas evitam que desvios iguais em módulo, mas com sinais opostos, se anulem.
 
 
-## Variância e Desvio-padrão {.build}
+## Variância e Desvio-padrão
 
-> A média dos desvios ao quadrado é denominada **variância**:
+A média dos desvios ao quadrado é denominada **variância**:
 $$s^2=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2$$
 
-> **Desvio padrão** é a raiz da variância:
+**Desvio padrão** é a raiz da variância:
 
 $$s=\sqrt{\frac{1}{n-1} \sum_{i=1}^n(x_i-\bar{x})^2}$$
 
-> Interpretação: distância típica entre uma observação e a média dos dados.
+Interpretação: distância típica entre uma observação e a média dos dados.
 
-> Quanto maior $s$, maior a dispersão dos dados.
+Quanto maior $s$, maior a dispersão dos dados.
 
 
 ## Exemplo{.build}
 
 Conjunto de dados $A: \{1,2,5,6,6\}$.
 
-> $x_i$: $\quad 1 \quad 2 \quad 5 \quad 6 \quad 6$
+$x_i$: $\quad 1 \quad 2 \quad 5 \quad 6 \quad 6$
 
-> $\bar{x}$: $\quad 4$
+$\bar{x}$: $\quad 4$
 
-> $x_i-\bar{x}$:  $\quad -3\quad -2\quad 1 \quad 2 \quad 2$
+$x_i-\bar{x}$:  $\quad -3\quad -2\quad 1 \quad 2 \quad 2$
 
-> $(x_i-\bar{x})^2$:  $\quad 9 \quad 4 \quad 1 \quad 4 \quad 4$
+$(x_i-\bar{x})^2$:  $\quad 9 \quad 4 \quad 1 \quad 4 \quad 4$
 
-> $$s^2=\frac{9+4+1+4+4}{5-1}=5.5$$
+$$s^2=\frac{9+4+1+4+4}{5-1}=5.5$$
 
-## Exemplo{.build}
+## Exemplo
 
 Conjunto de dados $B: \{-40,0,5,20,35\}$.
 
-> $x_i$: $\quad -40 \quad 0 \quad 5 \quad 20 \quad 35$
+$x_i$: $\quad -40 \quad 0 \quad 5 \quad 20 \quad 35$
 
-> $\bar{x}$: $\quad 4$
+$\bar{x}$: $\quad 4$
 
-> $x_i-\bar{x}$:  $\quad -44\quad -4\quad 1 \quad 16 \quad 31$
+$x_i-\bar{x}$:  $\quad -44\quad -4\quad 1 \quad 16 \quad 31$
 
-> $(x_i-\bar{x})^2$:  $\quad 1936 \quad 16 \quad 1 \quad 256 \quad 961$
+$(x_i-\bar{x})^2$:  $\quad 1936 \quad 16 \quad 1 \quad 256 \quad 961$
 
-> $$s^2=\frac{1936+16+1+256+961}{5-1}=792.5$$
+$$s^2=\frac{1936+16+1+256+961}{5-1}=792.5$$
 
 
-## Exemplo: "Qual o número ideal de filhos?"{.build}
+## Exemplo: "Qual o número ideal de filhos?"
 
 ```{r,echo=FALSE,fig.width=10,fig.height=4}
 ### Ex 13 pag 58 Agresti
@@ -432,24 +432,25 @@ stripchart(homens,method="stack",offset=1,at=0.1,ylim=c(0,5),cex=1.7,cex.axis=2,
 stripchart(mulheres,method="stack",offset=1,at=0.1,ylim=c(0,5),cex=1.7,cex.axis=2,xlab="Mulheres",cex.lab=2,pch=15)
 ```
 
-> Média: 2 (para ambos os sexos).
+Média: 2 (para ambos os sexos).
 
-> Amplitude: 4 (para ambos os sexos).
+Amplitude: 4 (para ambos os sexos).
 
-## {.build}
+## Exemplo: "Qual o número ideal de filhos?" {.smaller}
+
 ```{r,echo=FALSE,fig.width=7,fig.height=3}
 par(mfrow=c(1,2), mar=c(5.1,4.1,1.1,2.1))
 stripchart(homens,method="stack",offset=1,at=0.1,ylim=c(0,5),cex=1.7,cex.axis=2,xlab="Homens",cex.lab=2,pch=15)
 stripchart(mulheres,method="stack",offset=1,at=0.1,ylim=c(0,5),cex=1.7,cex.axis=2,xlab="Mulheres",cex.lab=2,pch=15)
 ```
 
-> * Para homens: desvio típico da média parece estar em torno de 2.
+* Para homens: desvio típico da média parece estar em torno de 2.
  
-> * Para mulheres: desvio típico da média é menor do que o dos homens, pois a grande maioria das observações coincide com a própria média.
+* Para mulheres: desvio típico da média é menor do que o dos homens, pois a grande maioria das observações coincide com a própria média.
 
-> * Desvio-padrão entre homens: $s=\sqrt{\frac{1}{n-1} \sum_{i=1}^n(x_i-\bar{x})^2}=`r round(sd(homens),2)`\,.$
+* Desvio-padrão entre homens: $s=\sqrt{\frac{1}{n-1} \sum_{i=1}^n(x_i-\bar{x})^2}=`r round(sd(homens),2)`$.
 
-> * Desvio-padrão entre mulheres: $s=`r round(sd(mulheres),2)`$.
+* Desvio-padrão entre mulheres: $s=`r round(sd(mulheres),2)`$.
 
 
 ## Exemplo

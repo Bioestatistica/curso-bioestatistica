@@ -9,7 +9,7 @@ logo: ../logo_fcm_0.jpg
 
 
 
-## Dispersão dos Dados {.build}
+## Dispersão dos Dados
 
 Considere dois conjuntos de dados: 
  
@@ -17,20 +17,20 @@ Considere dois conjuntos de dados:
  
  $B = \{10000,10010,10020\}$,  $\overline{x}_B = 10010$, $s_B= 10$. 
  
-> Ambos têm o mesmo desvio padrão. 
+Ambos têm o mesmo desvio padrão. 
 
-> Se compararmos as escalas de cada conjunto de dados, poderíamos dizer que o segundo conjunto tem menor dispersão.
+Se compararmos as escalas de cada conjunto de dados, poderíamos dizer que o segundo conjunto tem menor dispersão.
 
 
-> Por exemplo, a maior observação do conjunto $B$, 10020, é 0.2\% maior do que  a menor observação, 10000.
+Por exemplo, a maior observação do conjunto $B$, 10020, é 0.2\% maior do que  a menor observação, 10000.
 
-> A maior observação do conjunto $A$, 30, é  3 vezes maior do que a menor observação, 10.
+A maior observação do conjunto $A$, 30, é  3 vezes maior do que a menor observação, 10.
 
-## Exemplo {.build}
+## Exemplo {.smaller}
 Considere notas de 2 provas:
 
-> * Prova 1: 0 a 100. Média da turma: 70. Desvio padrão 1.
-> * Prova 2: 0 a 10. Média da turma: 7. Desvio padrão 1.
+* Prova 1: 0 a 100. Média da turma: 70. Desvio padrão 1.
+* Prova 2: 0 a 10. Média da turma: 7. Desvio padrão 1.
 
 ```{r, echo=FALSE, fig.height=3, fig.width=8}
 set.seed(3)
@@ -60,59 +60,58 @@ ggplot(data=provas, aes(notas, ..density..)) +
 ```
 
 
-> Neste caso, como as escalas são diferentes, não podemos tirar conclusões usando apenas o desvio padrão.
+Neste caso, como as escalas são diferentes, não podemos tirar conclusões usando apenas o desvio padrão.
 
-## Coeficiente de Variação{.build}
+## Coeficiente de Variação
 $$\mbox{Coeficiente de Variação (CV)}= \frac{s}{\bar{x}}$$
 
-> **Exemplo:** 
+**Exemplo:** 
 $A = \{10, 20, 30\}$,  $\overline{x}_A = 20$, $s_A= 10$.
 
 $B = \{10000, 10010, 10020\}$,  $\overline{x}_B = 10010$, $s_B= 10$. 
 
-> $CV_A = \frac{s_A}{\overline{x}_A} = 0.5$ e $CV_B = \frac{s_B}{\overline{x}_B} \approx 0.0009$.
+$CV_A = \frac{s_A}{\overline{x}_A} = 0.5$ e $CV_B = \frac{s_B}{\overline{x}_B} \approx 0.0009$.
 
-> **Exemplo:** 
+**Exemplo:** 
 Prova 1: 0 a 100. Média da turma: 70. Desvio padrão 1.
 
 Prova 2: 0 a 10. Média da turma: 7. Desvio padrão 1.
   
-> $CV_1 = \frac{s_1}{\overline{x}_1} = 0.014$ e $CV_2 = \frac{s_2}{\overline{x}_2} \approx 0.14$.
+$CV_1 = \frac{s_1}{\overline{x}_1} = 0.014$ e $CV_2 = \frac{s_2}{\overline{x}_2} \approx 0.14$.
 
-## Usando medidas de posição para descrever dispersão {.build}
+## Usando medidas de posição para descrever dispersão
 
-> Média e mediana: medidas de posição **central**.
+Média e mediana: medidas de posição **central**.
 
-> Amplitude e desvio padrão: medidas de dispersão.
+Amplitude e desvio padrão: medidas de dispersão.
 
-> Há outros tipos de medida de posição para descrever a distribuição dos dados: **quartis** e **percentis**.
+Há outros tipos de medida de posição para descrever a distribuição dos dados: **quartis** e **percentis**.
 
-> **Quartis** dividem os dados em 4 partes iguais: primeiro quartil ($Q_1$), segundo quartil ($Q_2$) e o terceiro quartil ($Q_3$).
+**Quartis** dividem os dados em 4 partes iguais: primeiro quartil ($Q_1$), segundo quartil ($Q_2$) e o terceiro quartil ($Q_3$).
 
-> O **p-ésimo percentil** é o valor tal que uma porcentagem **p** dos dados ficam abaixo dele.
+O **p-ésimo percentil** é o valor tal que uma porcentagem **p** dos dados ficam abaixo dele.
 
-## Quartis {.build}
+## Quartis
 
 <center>
 ![quart](figuras/quartiles.png)
 </center>
 
-> Para obter os quartis:
+Para obter os quartis:
 
-> * Ordene os dados em ordem crescente.
-> * Encontre a mediana: $Q_2$=mediana.
-> * Considere o subconjunto de dados abaixo da mediana. $Q_1$ é a mediana deste subconjunto de dados.
+* Ordene os dados em ordem crescente.
+* Encontre a mediana: $Q_2$=mediana.
+* Considere o subconjunto de dados abaixo da mediana. $Q_1$ é a mediana deste subconjunto de dados.
+* Considere o subconjunto de dados acima da mediana. $Q_3$ é a mediana deste subconjunto de dados.
 
-> * Considere o subconjunto de dados acima da mediana. $Q_3$ é a mediana deste subconjunto de dados.
 
-
-## Exemplo: Quantidade de sódio (mg) em 20 cereais matinais{.build}
+## Exemplo: Quantidade de sódio (mg) em 20 cereais matinais
 
  0, 70, 125, 125, 140, 150, 170, 170, 180, **200**
  
 **200**, 210, 210, 220, 220, 230, 250, 260, 290, 290
  
-> Para calcular $Q1$: calcula-se a mediana considerando apenas as 10 primeiras observações ordenadas: 0, 70, 125, 125, $\underbrace{140, 150}_{Q_1=145}$, 170, 170, 180, **200**
+Para calcular $Q1$: calcula-se a mediana considerando apenas as 10 primeiras observações ordenadas: 0, 70, 125, 125, $\underbrace{140, 150}_{Q_1=145}$, 170, 170, 180, **200**
 
  Para calcular $Q3$: calcula-se a mediana considerando apenas as 10 últimas observações ordenadas:
  **200**, 210, 210, 220, $\underbrace{220, 230}_{Q_3=225}$, 250, 260, 290, 290
@@ -139,13 +138,13 @@ axis(side=1, at=c(q1,q2,q3), labels=c(paste0("Q1=", q1),
 A mediana $Q_2$ é 14. 
 A distância entre $Q_1$ e $Q_2$ é `r q2-q1`, enquanto que a distância entre $Q_2$ e $Q_3$ é `r q3-q2`, indicando que a distribuição é assimétrica à direita.
  
-## Usando quartis para medir dispersão {.build}
+## Usando quartis para medir dispersão
 
-> A vantagem do uso de quartis sobre o desvio padrão ou a amplitude, é que os quartis são mais resistentes a dados extremos.
+A vantagem do uso de quartis sobre o desvio padrão ou a amplitude, é que os quartis são mais resistentes a dados extremos.
  
-> **Intervalo interquartílico (IQ)** = $Q_3-Q_1$.
+**Intervalo interquartílico (IQ)** = $Q_3-Q_1$.
 
-> Representa 50\% dos dados localizados na parte central da distribuição.
+Representa 50\% dos dados localizados na parte central da distribuição.
 
 ```{r,echo=FALSE,fig.height=3.5}
 dens <- density(asymDir)
@@ -177,7 +176,7 @@ Q_2= \begin{cases}
   \end{cases}
 $$
 
-## Quartis e simetria da distribuição {.build}
+## Quartis e simetria da distribuição 
 
 <center>
 ![quart](figuras/quartiles.png)
@@ -185,29 +184,29 @@ $$
 
 Para uma distribuição simétrica ou aproximadamente simétrica:
 
-> * $Q_2-x_{(1)}\approx x_{(n)}-Q_2$
+* $Q_2-x_{(1)}\approx x_{(n)}-Q_2$
 
-> * $Q_2-Q_1\approx Q_3-Q_2$
+* $Q_2-Q_1\approx Q_3-Q_2$
 
-> * $Q_1-x_{(1)} \approx x_{(n)}-Q_3$
+* $Q_1-x_{(1)} \approx x_{(n)}-Q_3$
 
-> * distâncias entre a mediana e $Q_1$, $Q_3$ menores do que as distâncias entre os extremos e $Q_1$, $Q_3$.
+* distâncias entre a mediana e $Q_1$, $Q_3$ menores do que as distâncias entre os extremos e $Q_1$, $Q_3$.
 
-## Dados discrepantes (*outliers*) {.build}
+## Dados discrepantes (*outliers*) 
 
 Importante: examinar os dados para verificar se há observações discrepantes.
 
-> * Média e desvio padrão são muito afetados por observações discrepantes.
+* Média e desvio padrão são muito afetados por observações discrepantes.
 
-> * Após detectar a observação discrepante, verificar se não é um erro de digitação ou um caso especial da sua amostra.
+* Após detectar a observação discrepante, verificar se não é um erro de digitação ou um caso especial da sua amostra.
 
-> * Com poucos dados, podemos detectar um dados discrepante facilmente, apenas observando a sequência ordenada.
+* Com poucos dados, podemos detectar um dados discrepante facilmente, apenas observando a sequência ordenada.
 
-> * Podemos usar o IQ como um critério mais geral de detecção de dados discrepantes.
+* Podemos usar o IQ como um critério mais geral de detecção de dados discrepantes.
 
-## Dados discrepantes (*outliers*) {.build}
+## Dados discrepantes (*outliers*) 
 
-> Uma observação é um potencial *outlier* se está abaixo de $Q_1-1.5\times IQ$ ou se está acima de $Q_3+1.5 \times IQ$.
+Uma observação é um potencial *outlier* se está abaixo de $Q_1-1.5\times IQ$ ou se está acima de $Q_3+1.5 \times IQ$.
 
 ```{r,echo=FALSE,fig.height=3,fig.width=10}
 par(mfrow=c(1, 4))
@@ -254,11 +253,11 @@ abline(v=LS, col="red", lty=2, lwd=3)
 axis(side=1, at=c(LS), labels=c("Q3 + 1.5 IQ"), cex.axis=1.5, cex.lab=1.5)
 ```
 
-> Dizemos *potencial outlier*, pois se a distribuição tem cauda longa (à direita ou à esquerda), algumas observações irão cair no critério, apesar de não serem outliers.
+Dizemos *potencial outlier*, pois se a distribuição tem cauda longa (à direita ou à esquerda), algumas observações irão cair no critério, apesar de não serem outliers.
 
-## Boxplot {.build}
+## Boxplot
 
-> O esquema dos 5 números forma a base do gráfico denominado **boxplot**.
+O esquema dos 5 números forma a base do gráfico denominado **boxplot**.
  
 
 **Primeiro passo:** construir uma caixa que vai do primeiro ao terceiro quartil.
@@ -300,26 +299,25 @@ IQ <- IQR(estados, type=2) # IQ
 
 <center><img src="figuras/estados.png" width=350></center>
 
-> 27 estados, $n$ é ímpar, mediana é $x_{\left(\frac{n+1}{2}\right)}= x_{\left(\frac{27+1}{2}\right)}=x_{(14)}=3098$ (ES).
+27 estados, $n$ é ímpar, mediana é $x_{\left(\frac{n+1}{2}\right)}= x_{\left(\frac{27+1}{2}\right)}=x_{(14)}=3098$ (ES).
 
-> A metade inferior dos dados: 13 observações. A mediana deste subconjunto é $Q_1=x_{(7)}=
+A metade inferior dos dados: 13 observações. A mediana deste subconjunto é $Q_1=x_{(7)}=
 2052$ (DF).
 
+A metade superior dos dados: 13 observações. A mediana deste subconjunto é $Q_3=x_{(21)}=7919$ (PE).
 
-> A metade superior dos dados: 13 observações. A mediana deste subconjunto é $Q_3=x_{(21)}=7919$ (PE).
+## Exemplo: População dos estados brasileiros
 
-## Exemplo: População dos estados brasileiros{.build}
-
-> $IQ=Q_3-Q_1=7919-2052=5867$
+$IQ=Q_3-Q_1=7919-2052=5867$
 
 
-> $Q_1-1.5\times IQ=-6748.5$
+$Q_1-1.5\times IQ=-6748.5$
 
-> $Q_3+1.5\times IQ=16720$
+$Q_3+1.5\times IQ=16720$
 
-> Temos outliers?
+Temos outliers?
 
->
+
 <center>
 ```{r, echo=FALSE, fig.width=4, fig.height=3.2}
 par(mar=c(2, 4, 2, 1))
@@ -327,7 +325,7 @@ boxplot(estados, main="População (em 1000 habitantes)", ylab="População", ty
 ```
 </center>
 
-## Exemplo: Quantidade de sódio (mg) em 20 cereais matinais{.build}
+## Exemplo: Quantidade de sódio (mg) em 20 cereais matinais
 
  0, 70, 125, 125, $\underbrace{140, 150}_{Q_1=145}$, 170, 170, 180, **200**
  
@@ -345,7 +343,7 @@ cereais <- c(0, 70, 125, 125, 140, 150, 170, 170, 180, 200,
              200, 210, 210, 220, 220, 230, 250, 260, 290, 290)
 ```
 
-## Exemplo: Sódio em cereais matinais {.build .smaller}
+## Exemplo: Sódio em cereais matinais {.smaller}
 
 <center>
 ```{r, echo=FALSE, fig.width=6, fig.height=2.5}
@@ -359,17 +357,17 @@ boxplot(cereais, horizontal=TRUE, outline=TRUE, ylim=c(-1,330),
 ```
 </center>
 
-> Outlier: observação menor do que 25 ou maior do que 345. 
+Outlier: observação menor do que 25 ou maior do que 345. 
 
-> As linhas pontilhadas denotam o mínimo/máximo dos dados que estão na região entre $Q_1-1.5\times IQ$ e $Q_3+1.5\times IQ$.
+As linhas pontilhadas denotam o mínimo/máximo dos dados que estão na região entre $Q_1-1.5\times IQ$ e $Q_3+1.5\times IQ$.
 
-> A observação máxima dos dados, 290, está no intervalo, então a linha do lado direito vai até 290.
+A observação máxima dos dados, 290, está no intervalo, então a linha do lado direito vai até 290.
 
-> A observação mínima dos dados, 0, está fora do intervalo (outlier=0). 
+A observação mínima dos dados, 0, está fora do intervalo (outlier=0). 
 
-> Desconsiderando o outlier, o valor mínimo dos dados é 70, que está no intervalo. Portanto, a linha do lado direito vai até 70.
+Desconsiderando o outlier, o valor mínimo dos dados é 70, que está no intervalo. Portanto, a linha do lado direito vai até 70.
 
-## Exemplo: Sódio em cereais matinais {.build .smaller}
+## Exemplo: Sódio em cereais matinais {.smaller}
 
 ```{r, echo=FALSE, fig.width=6, fig.height=5}
 par(mfrow=c(2, 1))
@@ -383,9 +381,9 @@ hist(cereais, xlim=c(-1, 330), breaks=seq(0, 320, by=40),
 
 ## Boxplot x Histograma {.build}
 
-> Boxplot não substitui o histograma e vice-versa. 
+Boxplot não substitui o histograma e vice-versa. 
 
-> Por exemplo, se a distribuição é bimodal, não observamos isso pelo boxplot.
+Por exemplo, se a distribuição é bimodal, não observamos isso pelo boxplot.
 
 
 <center>
