@@ -14,6 +14,17 @@ logo: ../logo_fcm_0.jpg
 * **Resultado:** Se $X$ tem $\mathbb E(X)=\mu$ e $Var(X)=\sigma^2$, então a distribuição da média amostral,  $\bar{X}_n$, tem 
 $$\mathbb E(\bar{X}_n)=\mu \quad \mbox{e} \quad Var(\bar{X}_n)=\frac{\sigma^2}{n}$$
 
+## Introdução
+
+* Vimos que podemos utilizar uma estatística, como $\bar{X}$, para estimar um parâmetro populacional, como a média populacional $\mu$.
+
+* Após coletarmos uma amostra aleatória calculamos $\bar{x}$, que é a nossa estimativa para $\mu$. Chamamos esta estimativa de **estimativa pontual**.
+
+* Uma estimativa pontual fornece apenas um único valor plausível para o parâmetro. E sabemos que ela pode ser diferente para cada amostra obtida: distribuição amostral.
+
+* O ideal é que se reporte não só a estimativa, mas também a sua imprecisão.
+
+* Duas maneiras: fornecer a estimativa juntamente com o seu **erro-padrão** ou fornecer um intervalo de valores plausíveis para o parâmetro de interesse (**intervalo de confiança**).
 
 
 ## Distribuição da Média Amostral 
