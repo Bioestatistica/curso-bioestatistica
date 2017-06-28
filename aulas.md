@@ -53,11 +53,10 @@ permalink: /aulas/
 ## Testes de Aderência, Independência e Homogeneidade
 
 [Parte10](slides/parte10/parte10.html)
-[Parte11](slides/parte11/parte11.html)
 
 ## Análise de Sobrevivência
 
-[Parte12](slides/parte12/parte12.html)
+[Parte11](slides/parte11/parte11.html)
 
 
 ## Inferência para duas populações
