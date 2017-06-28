@@ -142,7 +142,7 @@ Se um dado "honesto" é lançado diversas vezes, esperamos que o 6 ocorra $1/6$ 
 Você obtém assim a distribuição de frequências do 6 em 100 lançamentos do dado.
 
 
-## Simulação 1: lançamento de um dado 100 vezes {.smaller .build}
+## Simulação 1: lançamento de um dado 100 vezes {.smaller}
 
 <center>
 ```{r, echo=FALSE, message=FALSE, fig.height=4}
@@ -307,7 +307,7 @@ ggplotly(g)
 </center>
 
 
-## Simulação: lançamento de um dado 100 vezes {.smaller .build}
+## Simulação: lançamento de um dado 100 vezes {.smaller }
 
 > A cada simulação  (100 lançamentos e anotando o total de 6) obtivemos um resultado diferente: `r length(which(x1$Red==6))`, `r length(which(x2$Red==6))` e `r length(which(x$Red==6))`.
 
@@ -379,7 +379,7 @@ ggplotly(g)
 > Com poucos lançamentos, a proporção de 6 pode flutuar bastante, mas com o aumento do número de lançamentos, a proporção acumulada de 6 estabiliza em $1/6$.
 
 
-## Lei dos Grandes Números {.build}
+## Lei dos Grandes Números 
 
 O resultado da simulação é um caso particular da [Lei dos Grandes Números](https://pt.wikipedia.org/wiki/Lei_dos_grandes_n%C3%BAmeros), resultado provado em 1689 pelo matemático suíço Jacob Bernoulli.
   
@@ -393,7 +393,7 @@ O resultado da simulação é um caso particular da [Lei dos Grandes Números](h
 # Teorema Central do Limite
 
 
-## Teorema Central do Limite (TCL) {.build}
+## Teorema Central do Limite (TCL) 
 
 **Resultado** 
 
@@ -435,7 +435,7 @@ $Var(X)=\frac{1}{6}[(1+4+9+16+25+36)-\frac{1}{6}\times(21)^{2}]=\frac{35}{2}=17.
 *  $\mu=E(X_i)=3.5 \qquad$ e $\qquad \sigma^2=Var(X_i)=17.5$, $\forall i$.
 
 
-## Exemplo {.build .smaller}
+## Exemplo { .smaller}
 
 > Se temos uma amostra aleatória simples de tamanho $n$: $X_1,X_2,\ldots, X_n$, pelo TLC sabemos que a distribuição amostral de $\bar{X}_n$ é aproximadamente Normal$\left( 3.5, \frac{17.5}{n} \right)$.
 
@@ -527,3 +527,5 @@ Slides produzidos pelos professores:
 * Tatiana Benaglia
 
 * Benilton Carvalho
+
+* Rafael Maia
