@@ -106,19 +106,7 @@
           </hgroup>
   </slide>
 
-<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Análise de Variância (ANOVA)</h2></hgroup><article  id="analise-de-variancia-anova">
-
-</article></slide><slide class=''><hgroup><h2>Introdução</h2></hgroup><article  id="introducao" class="build">
-
-<p>Já vimos anteriormente como testar se existe diferença entre duas médias \(\mu_1\) e \(\mu_2\) de duas populações independentes. Ou seja:</p>
-
-<p>\[H_0: \mu_1=\mu_2 \quad \mbox{vs} \quad  H_1: \mu_1 \neq \mu_2\]</p>
-
-<p>Considerando o caso das variâncias iguais e desconhecidas, usamos \(S_p^2\) como estimador da variância \(\sigma^2\) e temos a estatística do teste: \[T= \frac{\bar{X} - \bar{Y}}{ \sqrt{S_p^2 ( \frac{1}{n} + \frac{1}{m}} )} \stackrel{H_0}{\sim} t_{n+m-2}.\]</p>
-
-<p>Mas e se quiséssemos comparar as médias de 3 ou mais populações (grupos)?</p>
-
-</article></slide><slide class=''><hgroup><h2>Exemplo: Tratamento para Anorexia</h2></hgroup><article  id="exemplo-tratamento-para-anorexia" class="build">
+<!-- Definindo duas colunas para os slides. A da esquerda com 70% de largura e a da direita com 30% -->
 
 <style>
 .column-left{
@@ -133,6 +121,20 @@
 }
 </style>
 
+<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Análise de Variância (ANOVA)</h2></hgroup><article  id="analise-de-variancia-anova">
+
+</article></slide><slide class=''><hgroup><h2>Introdução</h2></hgroup><article  id="introducao" class="build">
+
+<p>Já vimos anteriormente como testar se existe diferença entre duas médias \(\mu_1\) e \(\mu_2\) de duas populações independentes. Ou seja:</p>
+
+<p>\[H_0: \mu_1=\mu_2 \quad \mbox{vs} \quad  H_1: \mu_1 \neq \mu_2\]</p>
+
+<p>Considerando o caso das variâncias iguais e desconhecidas, usamos \(S_p^2\) como estimador da variância \(\sigma^2\) e temos a estatística do teste: \[T= \frac{\bar{X} - \bar{Y}}{ \sqrt{S_p^2 ( \frac{1}{n} + \frac{1}{m}} )} \stackrel{H_0}{\sim} t_{n+m-2}.\]</p>
+
+<p>Mas e se quiséssemos comparar as médias de 3 ou mais populações (grupos)?</p>
+
+</article></slide><slide class=''><hgroup><h2>Exemplo: Tratamento para Anorexia</h2></hgroup><article  id="exemplo-tratamento-para-anorexia" class="build">
+
 <p>Foi conduzido um experimento para comparar três terapias no tratamento de anorexia em meninas adolescentes para ajudá-las a ganhar peso. As terapias foram: controle, cognitiva comportamental e de família.</p>
 
 <div class="column-right">
@@ -144,15 +146,15 @@
 
 <p>A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de <strong>Análise de Variância (ANOVA)</strong>.</p>
 
-</article></slide><slide class=''><hgroup><h2>Análise de Variância</h2></hgroup><article  id="analise-de-variancia" class="build">
+<!-- ## Análise de Variância {.build} -->
 
-<p><strong>Exemplo:</strong> O Departamento de Estatística oferece o curso ME414 todo semestre para várias turmas. Suponha que queremos saber se existe diferença significativa no desempenho na P1 entre as turmas A, B, C e I.</p>
+<!-- **Exemplo:** O Departamento de Estatística oferece o curso ME414 todo semestre para várias turmas. Suponha que queremos saber se existe diferença significativa no desempenho na P1 entre as turmas A, B, C e I. -->
 
-<p>Poderíamos comparar as médias duas a duas, certo?</p>
+<!-- Poderíamos comparar as médias duas a duas, certo? -->
 
-<p>No entanto, isso não é muito viável quando temos muitos grupos.</p>
+<!-- No entanto, isso não é muito viável quando temos muitos grupos. -->
 
-<p>A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de <strong>Análise de Variância (ANOVA)</strong>.</p>
+<!-- A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de **Análise de Variância (ANOVA)**. -->
 
 </article></slide><slide class=''><hgroup><h2>Análise de Variância - ANOVA</h2></hgroup><article  id="analise-de-variancia---anova" class="build">
 

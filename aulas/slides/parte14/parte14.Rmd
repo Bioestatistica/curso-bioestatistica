@@ -7,6 +7,20 @@ output:
 logo: ../logo_fcm_0.jpg
 ---
 
+<!-- Definindo duas colunas para os slides. A da esquerda com 70% de largura e a da direita com 30% -->
+<style>
+.column-left{
+  float: left;
+  width: 70%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 30%;
+  text-align: right;
+}
+</style>
+
 
 # Análise de Variância (ANOVA)
 
@@ -23,18 +37,6 @@ Mas e se quiséssemos comparar as médias de 3 ou mais populações (grupos)?
 
 
 ## Exemplo: Tratamento para Anorexia {.build}
-<style>
-.column-left{
-  float: left;
-  width: 70%;
-  text-align: left;
-}
-.column-right{
-  float: right;
-  width: 30%;
-  text-align: right;
-}
-</style>
 
 Foi conduzido um experimento para comparar três terapias no tratamento de anorexia em meninas adolescentes para ajudá-las a ganhar peso. As terapias foram: controle, cognitiva comportamental e de família.
 
@@ -49,15 +51,15 @@ No entanto, isso não é muito viável (e nem a forma mais eficiente) quando tem
 A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de **Análise de Variância (ANOVA)**.
 
 
-## Análise de Variância {.build}
+<!-- ## Análise de Variância {.build} -->
 
-**Exemplo:** O Departamento de Estatística oferece o curso ME414 todo semestre para várias turmas. Suponha que queremos saber se existe diferença significativa no desempenho na P1 entre as turmas A, B, C e I.
+<!-- **Exemplo:** O Departamento de Estatística oferece o curso ME414 todo semestre para várias turmas. Suponha que queremos saber se existe diferença significativa no desempenho na P1 entre as turmas A, B, C e I. -->
 
-Poderíamos comparar as médias duas a duas, certo?
+<!-- Poderíamos comparar as médias duas a duas, certo? -->
 
-No entanto, isso não é muito viável quando temos muitos grupos.
+<!-- No entanto, isso não é muito viável quando temos muitos grupos. -->
 
-A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de **Análise de Variância (ANOVA)**.
+<!-- A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de **Análise de Variância (ANOVA)**. -->
 
 
 ## Análise de Variância - ANOVA  {.build}
