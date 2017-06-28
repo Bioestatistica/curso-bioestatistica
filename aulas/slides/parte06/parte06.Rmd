@@ -11,11 +11,6 @@ logo: ../logo_fcm_0.jpg
 
 ## Introdução
 
-* **Resultado:** Se $X$ tem $\mathbb E(X)=\mu$ e $Var(X)=\sigma^2$, então a distribuição da média amostral,  $\bar{X}_n$, tem 
-$$\mathbb E(\bar{X}_n)=\mu \quad \mbox{e} \quad Var(\bar{X}_n)=\frac{\sigma^2}{n}$$
-
-## Introdução
-
 * Vimos que podemos utilizar uma estatística, como $\bar{X}$, para estimar um parâmetro populacional, como a média populacional $\mu$.
 
 * Após coletarmos uma amostra aleatória calculamos $\bar{x}$, que é a nossa estimativa para $\mu$. Chamamos esta estimativa de **estimativa pontual**.
@@ -25,6 +20,24 @@ $$\mathbb E(\bar{X}_n)=\mu \quad \mbox{e} \quad Var(\bar{X}_n)=\frac{\sigma^2}{n
 * O ideal é que se reporte não só a estimativa, mas também a sua imprecisão.
 
 * Duas maneiras: fornecer a estimativa juntamente com o seu **erro-padrão** ou fornecer um intervalo de valores plausíveis para o parâmetro de interesse (**intervalo de confiança**).
+
+
+## Introdução 
+
+Suponha que queremos estimar o parâmetro populacional $\theta$ através de um intervalo.
+
+Um intervalo de confiança (IC) para $\theta$ é sempre da forma:
+
+$$ \mbox{estimativa} \pm \mbox{margem de erro}$$
+
+$$\hat \theta \pm \mbox{margem de erro}$$
+
+Sendo:
+
+* $\hat \theta$ uma estimativa pontual de $\theta$
+
+* **margem de erro:** quantidade que depende da distribuição amostral do estimador pontual de $\theta$, do grau de confiança pré-estabelecido e do erro padrão da estimativa
+
 
 
 ## Distribuição da Média Amostral 

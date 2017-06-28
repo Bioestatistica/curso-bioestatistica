@@ -21,7 +21,7 @@ logo: ../logo_fcm_0.jpg
 
 * Duas maneiras: fornecer a estimativa juntamente com o seu **erro-padrão** ou fornecer um intervalo de valores plausíveis para o parâmetro de interesse (**intervalo de confiança**).
 
-## Introdução {.build}
+## Introdução 
 
 Suponha que queremos estimar o parâmetro populacional $\theta$ através de um intervalo.
 
@@ -33,24 +33,24 @@ $$\hat \theta \pm \mbox{margem de erro}$$
 
 Sendo:
 
-> * $\hat \theta$ uma estimativa pontual de $\theta$
+* $\hat \theta$ uma estimativa pontual de $\theta$
 
-> * **margem de erro:** quantidade que depende da distribuição amostral do estimador pontual de $\theta$, do grau de confiança pré-estabelecido e do erro padrão da estimativa
+* **margem de erro:** quantidade que depende da distribuição amostral do estimador pontual de $\theta$, do grau de confiança pré-estabelecido e do erro padrão da estimativa
 
 
-## Intervalo de Confiança como Estimativa de p {.build}
+## Intervalo de Confiança como Estimativa de p 
 
 * Seja $X_i \sim Bernoulli(p)$, $i=1, \ldots, n$. 
 
-> * Se $n$ suficientemente grande, $$S_n=\sum_{i=1}^nX_i\approx N\left(np,np(1-p)\right)$$ 
+* Então $E(X_i)=p$ e $Var(X_i)=p(1-p)$
 
-> * E então $Z=\frac{S_n-np}{\sqrt{np(1-p)}}\approx N(0,1)$ 
+* Se $n$ suficientemente grande, $$\hat{p}=\frac{1}{n}\sum_{i=1}^nX_i\approx N\left(p,\frac{p(1-p)}{n}\right)$$ 
 
-> * Seja $1-\alpha$ o grau de confiança do intervalo
+* Seja $1-\alpha$ o grau de confiança do intervalo
 
-> * Geralmente usamos $\alpha=0.05$, então o grau de confiança é $95\%$.
+* Geralmente usamos $\alpha=0.05$, então o grau de confiança é $95\%$.
 
-> * Queremos encontrar um intervalo tal que a probabilidade do intervalo conter o verdadeiro valor de $p$ seja $(1-\alpha)\times 100 \%$
+* Queremos encontrar um intervalo tal que a probabilidade do intervalo conter o verdadeiro valor de $p$ seja $(1-\alpha)\times 100 \%$
 
 ## Intervalo de Confiança como Estimativa de p
 $$ \begin{aligned}
@@ -65,7 +65,7 @@ $$
 $$\hat{p}=\frac{S_n}{n}=\bar{X}_n$$
 
 
-## Intervalo de Confiança como Estimativa de p {.build}
+## Intervalo de Confiança como Estimativa de p 
 
 Note que $p$ é desconhecido, mas a variância depende da função de $p(1-p)$, dada no seguinte gráfico: 
 
@@ -80,7 +80,7 @@ curve(x*(1-x), 0, maxp, xlab = "p", ylab = "p(1-p)", type = "l", bty="l", las=1,
 A função $p(1-p)$ atinge o valor máximo quando $p=1/2$, ou seja, $p(1-p) \leq \frac{1}{4}$.
 
 
-## Intervalo de Confiança como Estimativa de p {.build}
+## Intervalo de Confiança como Estimativa de p 
 
 Vimos que $p(1-p)\leq \frac{1}{4}$, então erro-padrão é maximizado por: 
 
@@ -88,7 +88,7 @@ $$\sqrt{\frac{p(1-p)}{n}}\leq \sqrt{\frac{1}{4n}} \quad \Longleftrightarrow \qua
 
 Portanto, $0.95 \leq P\left(\hat{p}-1.96\sqrt{\frac{1}{4n}}\leq p \leq \hat{p}+1.96\sqrt{\frac{1}{4n}}\right)$. 
  
-> Caso geral (conservador): Um IC de $100(1-\alpha)\%$ para $p$ é dado por
+Caso geral (conservador): Um IC de $100(1-\alpha)\%$ para $p$ é dado por
 
 <center>
 $IC(p, 1-\alpha) = \left[\hat{p}-z_{\alpha/2}\sqrt{\frac{1}{4n}};\hat{p}+z_{\alpha/2}\sqrt{\frac{1}{4n}}\right]$
@@ -97,6 +97,15 @@ $IC(p, 1-\alpha) = \left[\hat{p}-z_{\alpha/2}\sqrt{\frac{1}{4n}};\hat{p}+z_{\alp
 Veja que tivemos que escolher as quantidades $z_{\alpha/2}$ tal que:
 
 $$P(-z_{\alpha/2}<Z<z_{\alpha/2})=1-\alpha$$
+
+## Intervalo de Confiança como Estimativa de p 
+
+
+E se usarmos a estimativa $\hat{p}$ para também estimar o erro-padrão $\sqrt{\frac{p(1-p)}{n}}$?
+
+Podemos construir o seguinte $IC$ de  $100(1-\alpha)\%$
+
+$$IC(p, 1-\alpha)= \left[\hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}};\hat{p}+z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$$
 
 
 ## Como encontrar $z_{\alpha/2}$
@@ -179,27 +188,8 @@ text(-2.5, yMax / 2, labels= expression('área '* alpha/2),
 ```
 </center>
 
-## Como encontrar $z_{\alpha/2}$
 
-* Seja $Z\sim N(0,1)$. O percentil $z_{\alpha/2}$  é tal que $1-\alpha = P\left(-z_{\alpha/2}\leq Z\leq z_{\alpha/2}\right)$ 
-
-* Como determinar $z_{\alpha/2}$?
-
-$$
-\begin{aligned}
-1-\alpha = P\left(-z_{\alpha/2}\leq Z\leq z_{\alpha/2}\right) & =  P(Z \leq z_{\alpha/2}) - P(Z \leq -z_{\alpha/2})  \\ 
-& = P(Z \leq z_{\alpha/2}) - P(Z \geq z_{\alpha/2}) \\
-& = P(Z \leq z_{\alpha/2}) - \left[1-P(Z \leq z_{\alpha/2})\right]  \\
-& = 2P(Z \leq z_{\alpha/2}) - 1 \\
-& =  2\Phi(z_{\alpha/2}) - 1 
-\end{aligned}
-$$
-
-Portanto, $1-\frac{\alpha}{2} = \Phi(z_{\alpha/2}) \quad  \Rightarrow \quad \Phi^{-1}\left(1- \frac{\alpha}{2}\right) = z_{\alpha/2}$
-
-Procure na tabela o valor de $z$ tal que a probabilidade acumulada até o valor de $z$, isto é $P(Z\leq z)=\Phi(z)$, seja $1-\alpha/2$.
-
-## Exemplo {.build}
+## Exemplo
 
 Encontrar $z_{0.05}$ tal que $0.90 = P\left(-z_{0.05}\leq Z\leq z_{0.05}\right)$.
 
@@ -207,7 +197,45 @@ Encontrar $z_{0.05}$ tal que $0.90 = P\left(-z_{0.05}\leq Z\leq z_{0.05}\right)$
 
 <center>Pela tabela, $z_{0.05} = 1.64$</center>
 
-## Exemplo {.build}
+
+## Exemplo
+
+
+<center>
+<img src="figuras/A.png" width=700>
+</center>
+
+
+<center>
+<img src="figuras/P.png" width=700>
+</center>
+
+## Exemplo
+
+$p$: proporção de mulheres com adenomiose na população estudada.
+
+Podemos construir o seguinte $IC$ de  $100(1-\alpha)\%$ para $p$.
+
+$$IC(p, 1-\alpha)= \left[\hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}};\hat{p}+z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$$
+
+```{r,echo=FALSE}
+phat=734/1697
+n=1697
+se = sqrt(phat*(1-phat)/n)
+LI=phat-1.96*se
+LS=phat+1.96*se
+```
+No exemplo: $n = 1697$, $\hat{p}=\frac{734}{1697}=`r round(734/1697,3)`$.
+
+Erro-padrão: $\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}=\sqrt{\frac{`r round(734/1697,3)`\times(1-`r round(734/1697,3)`)}{1697}}$
+
+$95\%$ de confiança, $\alpha=0.05$, $z_{\alpha/2}=1.96$.
+
+$$IC(p, 95)=[`r round(LI,3)`\,;\,`r round(LS,3)`]$$
+
+
+
+## Exemplo
 
 Numa pesquisa de mercado, $n=400$ pessoas foram entrevistadas (usando amostra aleatória) sobre preferência do produto da marca A,  e $60\%$ destas pessoas preferiam a marca A. 
 
@@ -223,17 +251,17 @@ IC(p, 0.95) &= \left[0.6 - 1.96\frac{1}{\sqrt{1600}};0.6 + 1.96\frac{1}{\sqrt{16
 \end{aligned}
 $$
 
-## Exemplo {.build}
+## Exemplo 
 
 Suponha que em $n=400$ entrevistados, tivéssemos obtido $k=80$ respostas de pessoas que preferem a marca A.  
 
 Vamos obter um intervalo de confiança para $p$, com grau de confiança de $90\%$:
 
->  + $\hat{p}=\frac{80}{400}=0.2$ 
+  + $\hat{p}=\frac{80}{400}=0.2$ 
 
->  + $1-\alpha=0.90$. Então $\alpha=0.10$ e $\alpha/2=0.05$
+  + $1-\alpha=0.90$. Então $\alpha=0.10$ e $\alpha/2=0.05$
 
->  + $z_{\alpha/2}=z_{0.05}=1.64$ 
+  + $z_{\alpha/2}=z_{0.05}=1.64$ 
 
 $$
 \begin{aligned}
@@ -242,15 +270,15 @@ IC_1(p, 0.90) &= \left[0.2 - 1.64\frac{1}{\sqrt{1600}};0.2 + 1.64\frac{1}{\sqrt{
 \end{aligned}
 $$ 
 
-## Exemplo {.build}
+## Exemplo 
 
 E se usarmos a estimativa $\hat{p}$ para também estimar o erro-padrão $\sqrt{\frac{p(1-p)}{n}}$?
 
-> Podemos construir o seguinte $IC$ de  $100(1-\alpha)\%$
+ Podemos construir o seguinte $IC$ de  $100(1-\alpha)\%$
 
 $$IC(p, 1-\alpha)= \left[\hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}};\hat{p}+z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$$
 
-> * No exemplo anterior, 
+ * No exemplo anterior, 
 
 $$
 \begin{aligned}
@@ -259,7 +287,7 @@ IC_2(p, 0.90) &= \left[0.2 - 1.64\sqrt{\frac{(0.2)(0.8)}{400}}; 0.2 + 1.64 \sqrt
 \end{aligned}
 $$ 
 
-## Exemplo {.build}
+## Exemplo 
 O intervalo que utiliza $\hat{p}$ também para estimar o erro-padrão tem menor amplitude do que o intervalo que utiliza o fato de $p(1-p) \leq \frac{1}{4}$. Por isso esse último é chamado de **conservador**. 
 
 Veja as amplitudes dos $IC$'s que encontramos no exemplo anterior:
@@ -269,7 +297,7 @@ Veja as amplitudes dos $IC$'s que encontramos no exemplo anterior:
 * $IC_2(p, 0.90) = [0.167;0.233] \quad \Rightarrow \quad A_2=0.233-0.167=0.066$
 
 
-## Intervalo de Confiança para p {.build}
+## Intervalo de Confiança para p 
 
 Em resumo, os intervalos de $100 (1-\alpha)\%$ de confiança para $p$ podem então ser de duas formas: 
 
@@ -282,7 +310,7 @@ $$IC_2(p, 1-\alpha)=\left[\hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}
 Veja que nos dois casos, os $IC$'s são da forma $\hat p \pm \mbox{margem de erro}$
 
 
-## Resumo {.build}
+## Resumo 
 
 * Coletamos uma amostra aleatória $X_1, X_2, \ldots, X_n$ de uma população com distribuição de Bernoulli com probabilidade de sucesso igual a $p$, portanto com média $p$ e a variância $p(1-p)$ e usamos $\bar{X}_n=\hat{p}$ para estimar $p$.
 
@@ -292,7 +320,7 @@ Veja que nos dois casos, os $IC$'s são da forma $\hat p \pm \mbox{margem de err
 $$P(-z_{\alpha/2}<Z<z_{\alpha/2})=1-\alpha$$
 
 
-## Intervalo de Confiança para $p$ {.build}
+## Intervalo de Confiança para $p$ 
 
 Então, um intervalo de $100(1-\alpha)\%$ de confiança para $p$:
 
@@ -304,15 +332,15 @@ $$IC(p, 1-\alpha) = \left[ \hat{p} -z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{
 ou, pelo método conservador,
 $$IC(p, 1-\alpha) = \left[ \hat{p} -z_{\alpha/2}\sqrt{\frac{1}{4n}}\,;\,  \hat{p} +z_{\alpha/2}\sqrt{\frac{1}{4n}}\right]$$
 
-## Exemplo: Universitários Não Fumantes {.build}
+## Exemplo: Universitários Não Fumantes
 
 De uma amostra aleatória de 100 alunos de uma universidade, 82 afirmaram ser não fumantes. 
 
 Construa um intervalo de confiança de 99\% para a proporção de não fumantes entre todos os alunos da universidade.
 
-> $\hat{p}=0.82, n=100, \alpha=0.01,$ e $z_{0.005}=2.58$
+ $\hat{p}=0.82, n=100, \alpha=0.01,$ e $z_{0.005}=2.58$
 
-> $$
+ $$
 \begin{aligned}
 IC_1(p, 0.99) &= \left[\hat{p} - z_{0.005}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}; \hat{p} + z_{0.005}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right] \\
 &= \left[ 0.82 -2.58\sqrt{\frac{(0.82)(0.18)}{100}} ; 0.82 + 2.58\sqrt{\frac{(0.82)(0.18)}{100}}\right] \\
@@ -320,7 +348,7 @@ IC_1(p, 0.99) &= \left[\hat{p} - z_{0.005}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}; \
 \end{aligned}
 $$
 
-## Exemplo: Universitários Não Fumantes {.build}
+## Exemplo: Universitários Não Fumantes 
 
 Podemos também calcular o $IC$ de 99\% pelo método conversador:
 $$
@@ -336,35 +364,8 @@ $$
 E pelo método conservador, com um grau de confiança de 99\%, estimamos que a proporção de não fumantes entre os alunos está entre 69\% e 95\%.
 
 
-## Exemplo: A esposa deve sacrificar a carreira? {.build}
 
-Pesquisa do GSS. Você concorda ou não com a seguinte frase: "é mais importante para um esposa ajudar a carreira do marido do que ter uma carreira própria."  
-
-A última vez que esta pergunta foi incluída no GSS foi em 1998 onde 1823 pessoas responderam e 19\% concordaram. 
-
-> * Calcule e interprete o $IC$ de 95\% para a proporção na população que concorda com a frase. 
-
-> * Encontre e interprete a margem de erro do $IC$ de 95\%. 
-
-
-## Exemplo: A esposa deve sacrificar a carreira? {.build}
-
-Calcule e interprete o $IC$ de 95\% para a proporção na população que concorda com a frase. 
-
-> $\hat{p}=0.19, n=1823, \alpha=0.05,$ e $z_{0.025}=1.96$
-
-Então,
-
-$$
-\begin{aligned}
-IC(p, 0.95) &= \left[\hat{p}-1.96 \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} ; \hat{p}+1.96 \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right] \\
-&= \left[0.19-1.96 \sqrt{\frac{0.19(1-0.19)}{1823}}; 0.19+1.96 \sqrt{\frac{0.19(1-0.19)}{1823}}\right] \\
-&= [0.17; 0.21]
-\end{aligned}
-$$
-
-
-## Interpretação do Intervalo de Confiança {.build}
+## Interpretação do Intervalo de Confiança
 
 **Interpretação:** Se várias amostras forem retiradas da população e calcularmos um $IC$ de 95\% para cada amostra, cerca de 95\% desses intervalos irão conter a verdadeira proporção na população, $p$. 
 
@@ -383,22 +384,6 @@ Por que incorreto? $p$ é uma constante, não é variável aleatória. Ou $p$ es
 ## 
 
 <center><img src="figuras/ICint.jpg" width=600></center>
-
-
-## Exemplo (continuação) {.build}
-
-Um $IC$ de 95\% para $p$ é: $[0.17; 0.21]$  
-
-> A margem de erro (metade do comprimento do IC) é:
-
-$$ME=1.96\sqrt{\frac{0.19(1-0.19)}{1823}}=0.02$$ 
-
-$$P(|\hat{p}-p|<0.02)=0.95$$ 
-
-> **Interpretação:** Com probabilidade 0.95, o erro ao usar a proporção amostral para estimar a proporção populacional não excede 0.02.
-
-> Curiosidade: em 1977 a pergunta foi feita pela primeira vez no GSS. $\hat{p}=0.57$ e $IC$ de 95\% foi $[0.55; 0.59]$.
-
 
 
 ## Você pagaria mais para um produto em favor ao meio-ambiente? {.build}
@@ -429,7 +414,7 @@ $$
 **Interpretação:** Com grau de confiança de 95\%, estimamos que a proporção populacional que concorda em pagar mais está entre 0.42 e 0.48. A estimativa pontual, 0.45, tem margem de erro de 3\%.
 
 
-## Exemplo (continuação) {.build}
+## Exemplo (continuação) 
 
 E se estivéssemos interessados na proporção que não pagaria mais? 
 
@@ -446,38 +431,11 @@ $$
 
 **Interpretação:** Com grau de confiança de 95\%, estimamos que a proporção populacional que não pagaria mais está entre 0.52 e 0.58. A estimativa pontual, 0.55, tem margem de erro de 3\%.
 
-## Exemplo: Se a esposa quer ter um filho, mas o marido não, é justo que ele se recuse a ter um filho? {.build}
 
-GSS: 598 responderam, 366 acham justo.  Encontre um $IC$ de 99\%. 
-
-Estimativa: $\hat{p}=366/598=0.61$
-
-Desvio padrão da estimativa (erro padrão): $\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}=0.02$ 
-
-$$\begin{aligned}
-IC(p, 0.99) &= \left[0.61-2.58\times0.02\,;\,0.55+2.58\times0.02\right]= \left[0.56\,;\,0.66\right]
-\end{aligned}
-$$ 
-
-Com grau de confiança igual a 99\%, estimamos que a proporção populacional que concorda está entre 0.56 e 0.66.  A estimativa pontual, 0.61, tem margem de erro de 5\%. 
-
-## Exemplo (continuação) {.build}
-
-E o $IC$ de 95\%? 
-
-$$\begin{aligned}
-IC(p, 0.95) &= \left[0.61 - 1.96\times0.02\,;\,0.55 + 1.96 \times 0.02\right] \\ 
-&= \left[0.57\,;\,0.65\right]
-\end{aligned}
-$$ 
-
-Com grau de confiança igual a 95\%, estimamos que a proporção populacional que concorda está entre 0.57 e 0.65.  A estimativa pontual, 0.61, tem margem de erro de 4\%.
-
-Com maior grau de confiança, temos uma margem de erro um pouco maior.
 
 # Tamanho da amostra para estimar $p$
 
-##Exemplo {.build}
+## Exemplo 
 
 A Datafolha quer fazer uma pesquisa de boca-de-urna para predizer o resultado de uma eleição com apenas dois candidatos.  
 
@@ -485,16 +443,16 @@ Seleciona então uma a.a. de eleitores e pergunta em quem cada um votou. Para es
 
 * O grau de confiança  é 95\% e $IC(p, 0.95) = \hat{p} \pm 1.96\times EP(\hat{p})$
 
-> * Erro padrão de $\hat{p}$ é $EP(\hat p) = \sqrt{p(1-p)/n}$
+ * Erro padrão de $\hat{p}$ é $EP(\hat p) = \sqrt{p(1-p)/n}$
 
-> * Margem de erro:  $1.96 \times EP(\hat{p})=1.96\sqrt{p(1-p)/n}$
+ * Margem de erro:  $1.96 \times EP(\hat{p})=1.96\sqrt{p(1-p)/n}$
 
-> * Margem de erro desejada é 0.04. Então, o tamanho amostral necessário $n$ é:
+ * Margem de erro desejada é 0.04. Então, o tamanho amostral necessário $n$ é:
 
-> $$1.96\sqrt{\frac{p(1-p)}{n}}=0.04 \quad \Rightarrow \quad n=\frac{1.96^2p(1-p)}{0.04^2}$$
+ $$1.96\sqrt{\frac{p(1-p)}{n}}=0.04 \quad \Rightarrow \quad n=\frac{1.96^2p(1-p)}{0.04^2}$$
 
 
-## Exemplo {.build}
+## Exemplo 
 
 Problema  é que não conhecemos $p$.
 
@@ -502,21 +460,21 @@ Assim como para encontrar os $IC$'s, podemos usar o método conservador ou entã
 
 **Método Conservador:**
 
-> * Lembre que $p(1-p)/n$ é a variância da  estimativa $\hat{p}$ e já vimos anteriormente que $p(1-p)\leq 1/4$. 
+ * Lembre que $p(1-p)/n$ é a variância da  estimativa $\hat{p}$ e já vimos anteriormente que $p(1-p)\leq 1/4$. 
 
-> * Então, $$n=\frac{1.96^2\times (1/4)}{0.04^2}=600$$
+ * Então, $$n=\frac{1.96^2\times (1/4)}{0.04^2}=600$$
 
 
-##Exemplo {.build}
+##Exemplo
 
 **Outra alternativa**
 
 * O Datafolha fez uma pesquisa na semana passada e o resultado foi 58\% votariam no candidato $A$ e 42\% no $B$.  
 
-> * Podemos usar então estas estimativas: 
+ * Podemos usar então estas estimativas: 
 $$n=\frac{1.96^2\hat{p}(1-\hat{p})}{0.04^2}=\frac{1.96^2(0.58)(0.42)}{0.04^2}=585$$
 
-> * Uma a.a. de tamanho 585 deverá resultar numa margem de erro de 4\% para um IC de 95\% para a proporção da população que vota no candidato $A$.
+ * Uma a.a. de tamanho 585 deverá resultar numa margem de erro de 4\% para um IC de 95\% para a proporção da população que vota no candidato $A$.
 
 
 
@@ -545,42 +503,6 @@ $$n=\left(\frac{z_{\alpha/2}}{2m}\right)^2$$
 
 
 
-## Intervalo de Confiança para proporções
-
-**Exercício**
-
-Suponha que estejamos interessados em estimar a porcentagem de consumidores de um certo produto. Se a amostra de tamanho 300 forneceu 100 indivíduos que consomem o dado produto, determine:
-
-* a) O intervalo de confiança de $p$, com i.c. de $95\%$; interprete o resultado.
-
-* b) O tamanho da amostra para que o erro da estimativa não exceda 0.02 unidades com probabilidade de $95\%$; interprete o resultado.
-
-
-*Fonte: Morettin \& Bussab*, Estatística Básica $5^a$ edição, pág 309.
-
-
-## Intervalo de Confiança para proporções
-
-* a) O intervalo de confiança de $95\%$ é dado por: $$ \mbox{IC}(p;0.95) = 0.333 \pm 1.96 \sqrt{\frac{0.333 \cdot 0.667}{300}} = 0.333 \pm 0.053$$ Ou simplesmente $(0.280 ; 0.387)$. 
-
-**Interpretação:** Se pudéssemos construir um grande número de intervalos aleatórios para $p$, todos baseados em amostras de tamanho n, $95\%$ deles conteriam o parâmetro $p$.
-
-## Intervalo de Confiança para proporções
-
-* b) Utilizando a estimativa da amostra observada ($\hat{p}=0.333$), temos que $n$ é dado por $$ n= \left( \frac{1.96}{0.02} \right)^2 \times 0.333 \times 0.667 \cong 2134.$$ Contudo, frequentemente devemos determinar o tamanho da amostra antes de realizar qualquer experimento, isto é, sem nenhuma informação prévia de $p$. Se esse for o caso, devemos considerar o caso em que a variância da amostra é a pior possível.
-
-
-## Intervalo de Confiança para proporções
-
-* b) Utilizando o valor máximo de $p(1-p)$, isto é, $1/4$, obtemos $$ n= \left( \frac{1.96}{0.02} \right)^2 \times \frac{1}{4} \! \cong 2401 $$
-
-
-**Interpretação:** Utilizando o tamanho amostral encontrado, teremos uma probabilidade de $95\%$ de que a proporção amostral não difira do verdadeiro valor de $p$ em menos que $2\%$. 
-
-
-Note que a prática de obter amostras pequenas para examinar $p$, e aí determinar o tamanho amostral sem utilizar o "pior caso", é no que consiste a idéia de *amostras piloto*.
-
-
 ## Leituras
 
 <center><img src="figuras/esquilo.png" width=350></center>
@@ -599,5 +521,7 @@ Slides produzidos pelos professores:
 * Tatiana Benaglia
 
 * Benilton Carvalho
+
+* Rafael Maia
 
 
