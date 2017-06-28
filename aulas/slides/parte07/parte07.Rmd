@@ -235,80 +235,6 @@ $$IC(p, 95)=[`r round(LI,3)`\,;\,`r round(LS,3)`]$$
 
 
 
-## Exemplo
-
-Numa pesquisa de mercado, $n=400$ pessoas foram entrevistadas (usando amostra aleatória) sobre preferência do produto da marca A,  e $60\%$ destas pessoas preferiam a marca A. 
-
-Encontre um $IC$ de $95\%$ para a proporção de pessoas que preferem a marca A.
-
-Pelo resultado da pesquisa, $\hat{p}=0.6$.
-
-Logo, o $IC$ com grau de confiança $1-\alpha=0.95$ é dado por: 
-
-$$\begin{aligned}
-IC(p, 0.95) &= \left[0.6 - 1.96\frac{1}{\sqrt{1600}};0.6 + 1.96\frac{1}{\sqrt{1600}}\right] \\
-&=\left[0.551;0.649\right]
-\end{aligned}
-$$
-
-## Exemplo 
-
-Suponha que em $n=400$ entrevistados, tivéssemos obtido $k=80$ respostas de pessoas que preferem a marca A.  
-
-Vamos obter um intervalo de confiança para $p$, com grau de confiança de $90\%$:
-
-  + $\hat{p}=\frac{80}{400}=0.2$ 
-
-  + $1-\alpha=0.90$. Então $\alpha=0.10$ e $\alpha/2=0.05$
-
-  + $z_{\alpha/2}=z_{0.05}=1.64$ 
-
-$$
-\begin{aligned}
-IC_1(p, 0.90) &= \left[0.2 - 1.64\frac{1}{\sqrt{1600}};0.2 + 1.64\frac{1}{\sqrt{1600}}\right] \\
-&=[0.159; 0.241]
-\end{aligned}
-$$ 
-
-## Exemplo 
-
-E se usarmos a estimativa $\hat{p}$ para também estimar o erro-padrão $\sqrt{\frac{p(1-p)}{n}}$?
-
- Podemos construir o seguinte $IC$ de  $100(1-\alpha)\%$
-
-$$IC(p, 1-\alpha)= \left[\hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}};\hat{p}+z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$$
-
- * No exemplo anterior, 
-
-$$
-\begin{aligned}
-IC_2(p, 0.90) &= \left[0.2 - 1.64\sqrt{\frac{(0.2)(0.8)}{400}}; 0.2 + 1.64 \sqrt{\frac{(0.2)(0.8)}{400}} \right] \\
-&=[0.167; 0.233]
-\end{aligned}
-$$ 
-
-## Exemplo 
-O intervalo que utiliza $\hat{p}$ também para estimar o erro-padrão tem menor amplitude do que o intervalo que utiliza o fato de $p(1-p) \leq \frac{1}{4}$. Por isso esse último é chamado de **conservador**. 
-
-Veja as amplitudes dos $IC$'s que encontramos no exemplo anterior:
-
-* $IC_1(p, 0.90) = [0.159;0.241] \quad \Rightarrow \quad A_1=0.241-0.159=0.082$ 
-
-* $IC_2(p, 0.90) = [0.167;0.233] \quad \Rightarrow \quad A_2=0.233-0.167=0.066$
-
-
-## Intervalo de Confiança para p 
-
-Em resumo, os intervalos de $100 (1-\alpha)\%$ de confiança para $p$ podem então ser de duas formas: 
-
-1) Método Conservador
-$$IC_1(p, 1-\alpha)=\left[\hat{p}-z_{\alpha/2}\sqrt{\frac{1}{4n}};\hat{p}+z_{\alpha/2}\sqrt{\frac{1}{4n}}\right]$$ 
-
-2) Usando $\hat p$ para estimar o erro-padrão
-$$IC_2(p, 1-\alpha)=\left[\hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}};\hat{p}+z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$$
-
-Veja que nos dois casos, os $IC$'s são da forma $\hat p \pm \mbox{margem de erro}$
-
 
 ## Resumo 
 
@@ -373,7 +299,7 @@ E pelo método conservador, com um grau de confiança de 99\%, estimamos que a p
 
 Por que incorreto? $p$ é uma constante, não é variável aleatória. Ou $p$ está no intervalo ou não está. O intervalo é que é aleatório.
 
-## Interpretação do Intervalo de Confiança {.build}
+## Interpretação do Intervalo de Confiança 
 
 <center><img src="figuras/ICproporcao.png" width=800></center>
 
@@ -385,69 +311,21 @@ Por que incorreto? $p$ é uma constante, não é variável aleatória. Ou $p$ es
 
 <center><img src="figuras/ICint.jpg" width=600></center>
 
-
-## Você pagaria mais para um produto em favor ao meio-ambiente? {.build}
-
-**Exemplo:** Na teoria, muita gente se considera "*eco-friendly*".  Mas e na prática?  
-
-Em 2000, GSS perguntou: "Você estaria disposto a pagar mais pela gasolina para proteger o ambiente?"
-
-Entre $n=1154$ participantes, 518 responderam que sim. 
-
-* Encontre IC 95\% para a proporção da população que concorda.
-
-* Interprete.
-
-## Exemplo (continuação) {.build}
-
-Estimativa: $\hat{p}=518/1154=0.45$
-
-Desvio padrão da estimativa (erro padrão): $\sqrt{\frac{0.45(1-0.45)}{1154}}=0.015$ 
-
-$$\begin{aligned}
-IC(p, 0.95) &= \left[0.45-1.96 \sqrt{\frac{(0.45)(0.55)}{1154}}; 0.45+1.96 \sqrt{\frac{(0.45)(0.55)}{1154}}\right] \\
-&= \left[0.45-1.96\times0.015; 0.45+1.96\times0.015\right] \\ 
-&= [0.42; 0.48]
-\end{aligned}
-$$ 
-
-**Interpretação:** Com grau de confiança de 95\%, estimamos que a proporção populacional que concorda em pagar mais está entre 0.42 e 0.48. A estimativa pontual, 0.45, tem margem de erro de 3\%.
-
-
-## Exemplo (continuação) 
-
-E se estivéssemos interessados na proporção que não pagaria mais? 
-
-Estimativa: $\hat{p}=1-518/1154=0.55$ 
-
-Desvio padrão da estimativa (erro padrão): $\sqrt{\frac{0.55(1-0.55)}{1184}}=0.015$ 
-
-$$\begin{aligned}
-IC(p, 0.95) &= \left[0.55-1.96 \sqrt{\frac{(0.55)(0.45)}{1154}}; 0.55+1.96 \sqrt{\frac{(0.55)(0.45)}{1154}}\right] \\
-&= \left[0.55-1.96\times0.015; 0.55+1.96\times0.015\right] \\ 
-&= [0.52; 0.58]
-\end{aligned}
-$$ 
-
-**Interpretação:** Com grau de confiança de 95\%, estimamos que a proporção populacional que não pagaria mais está entre 0.52 e 0.58. A estimativa pontual, 0.55, tem margem de erro de 3\%.
-
-
-
 # Tamanho da amostra para estimar $p$
 
-## Exemplo 
+## Exemplo {.smaller}
 
 A Datafolha quer fazer uma pesquisa de boca-de-urna para predizer o resultado de uma eleição com apenas dois candidatos.  
 
-Seleciona então uma a.a. de eleitores e pergunta em quem cada um votou. Para esta pesquisa, o Datafolha quer uma margem de erro de 4\%. Qual o tamanho de amostra necessário?
+Irá então selecionar uma a.a. de eleitores e perguntar em quem votou. Para esta pesquisa, o Datafolha quer uma margem de erro de 4\%. Qual o tamanho de amostra necessário?
 
 * O grau de confiança  é 95\% e $IC(p, 0.95) = \hat{p} \pm 1.96\times EP(\hat{p})$
 
- * Erro padrão de $\hat{p}$ é $EP(\hat p) = \sqrt{p(1-p)/n}$
+* Erro padrão de $\hat{p}$ é $EP(\hat p) = \sqrt{p(1-p)/n}$
 
- * Margem de erro:  $1.96 \times EP(\hat{p})=1.96\sqrt{p(1-p)/n}$
+* Margem de erro:  $1.96 \times EP(\hat{p})=1.96\sqrt{p(1-p)/n}$
 
- * Margem de erro desejada é 0.04. Então, o tamanho amostral necessário $n$ é:
+* Margem de erro desejada é 0.04. Então, o tamanho amostral necessário $n$ é:
 
  $$1.96\sqrt{\frac{p(1-p)}{n}}=0.04 \quad \Rightarrow \quad n=\frac{1.96^2p(1-p)}{0.04^2}$$
 
@@ -475,31 +353,6 @@ Assim como para encontrar os $IC$'s, podemos usar o método conservador ou entã
 $$n=\frac{1.96^2\hat{p}(1-\hat{p})}{0.04^2}=\frac{1.96^2(0.58)(0.42)}{0.04^2}=585$$
 
  * Uma a.a. de tamanho 585 deverá resultar numa margem de erro de 4\% para um IC de 95\% para a proporção da população que vota no candidato $A$.
-
-
-
-
-## Exemplo {.build}
-
-Uma firma de propaganda está interessada em estimar a proporção de domicílios que estão assistindo a final do campeonato brasileiro de futebol. Para isso, está planejando ligar para os domicílios selecionados aleatoriamente a partir de uma lista. Qual o tamanho da amostra necessário se a firma quer 90\% de confiança de que a estimativa obtida tenha uma margem de erro igual a 0.02?
-
-
-## Exemplo - Solução {.build}
-
-$$IC(p, 1-\alpha) = \left[ \hat{p} -z_{\alpha/2}\sqrt{\frac{1}{4n}}\,;\,  \hat{p} +z_{\alpha/2}\sqrt{\frac{1}{4n}}\right]$$
-
-> Margem de erro 0.02:$\quad z_{\alpha/2}\sqrt{\frac{1}{4n}}=0.02$ 
-
-> Como eles querem 90\% de confiança, $\alpha=0.10$ e $z_{0.05}=1.645$
-
-> $$1.645\sqrt{1/4n}=0.02 \quad \Longleftrightarrow \quad 1/4n=(0.02/1.645)^2 \quad \Rightarrow \quad n=1691.3$$
-
-> Tamanho amostral: 1692.
-
-> Em geral, para uma margem de erro $m$:
-$$n=\left(\frac{z_{\alpha/2}}{2m}\right)^2$$
-
-
 
 
 

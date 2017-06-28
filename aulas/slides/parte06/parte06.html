@@ -395,7 +395,7 @@ IC(\mu, 0.95) &amp;= \left[ \bar{x} - t_{24, 0.025} \frac{s}{\sqrt{n}};\,\bar{x}
 
 <p>Com grau de confiança igual a 95%, estimamos que a média populacional de horas de TV está entre 1.46 e 1.58 horas.</p>
 
-</article></slide><slide class=''><hgroup><h2>Exemplo - Leite materno</h2></hgroup><article  id="exemplo---leite-materno" class="build">
+</article></slide><slide class=''><hgroup><h2>Exemplo - Leite materno</h2></hgroup><article  id="exemplo---leite-materno">
 
 <p>O Ministério da Saúde está preocupado com quantidade de um certo componente tóxico no leite materno.</p>
 
@@ -440,44 +440,23 @@ IC(\mu, 0.90) &amp;= \left[ 74.6 - 1.645 \frac{11.3}{9};\,  74.6 + 1.645\frac{11
 
 </article></slide><slide class=''><hgroup><h2>Exemplo: precisão e tamanho amostral</h2></hgroup><article  id="exemplo-precisao-e-tamanho-amostral">
 
-<p>Qual deve ser o tamanho de uma amostra cuja população da qual ela será sorteada possui um desvio-padrão igual a 10, para que a diferença da média amostral para a média da população, em valor absoluto, seja menor que 1, com coeficiente de confiança igual a:</p>
+<p>Qual deve ser o tamanho de uma amostra cuja população da qual ela será sorteada possui um desvio-padrão igual a 10, para que a diferença da média amostral para a média da população, em valor absoluto, seja menor que 1, com coeficiente de confiança igual a 95%.</p>
 
-<ul>
-<li><p>\(95\%\)</p></li>
-<li><p>\(99\%\)</p></li>
-</ul>
-
-<p><em>Fonte: Morettin &amp; Bussab</em>, Estatística Básica \(5^a\) edição, pág 308.</p>
-
-</article></slide><slide class=''><hgroup><h2>Exemplo: precisão e tamanho amostral</h2></hgroup><article  id="exemplo-precisao-e-tamanho-amostral-1">
+</article></slide><slide class=''><hgroup><h2>Exemplo: precisão e tamanho amostral</h2></hgroup><article  id="exemplo-precisao-e-tamanho-amostral-1" class="smaller">
 
 <p>Pelo TCL: \(\bar{X}_n \sim N(\mu, 10^2/n)\)</p>
 
-<blockquote>
 <p>Queremos \(P(|\bar{X}-\mu|&lt;1) = 0.95\)</p>
-</blockquote>
 
-<blockquote>
 <p>\[P(-1&lt;\bar{X}-\mu&lt;1) = 0.95\]</p>
-</blockquote>
 
-<blockquote>
 <p>\[P\left(-\frac{1}{10/\sqrt{n}}&lt;\frac{\bar{X}-\mu}{10/\sqrt{n}}&lt;\frac{1}{10/\sqrt{n}}\right) = 0.95\]</p>
-</blockquote>
 
-<blockquote>
 <p>O que é equivalente a \[P \left( -\sqrt{n}/10 &lt; Z &lt; \sqrt{n}/10 \right)=0.95\]</p>
-</blockquote>
 
-<blockquote>
 <p>Como \(P(-1.96 &lt; Z &lt; 1.96) = 0.95\), então \[\frac{\sqrt{n}}{10} = 1.96 \quad \Rightarrow  \quad n \approx 385\]</p>
-</blockquote>
 
 </article></slide><slide class=''><hgroup><h2>Exemplo: precisão e tamanho amostral</h2></hgroup><article  id="exemplo-precisao-e-tamanho-amostral-2">
-
-<p>De modo análogo, para um grau de confiança de \(99\%\), temos que \[P(-2.58 &lt; Z &lt; 2.58) = 0.99\]</p>
-
-<p>Então, \[\sqrt{n}/10 = 2.58 \quad \Rightarrow  \quad n \approx 665\]</p>
 
 <p>Em geral, como já dissemos anteriormente, para uma margem de erro \(m\): \[n=\left(\frac{z_{\alpha/2}}{m}\right)^2 \sigma^2\]</p>
 
@@ -492,7 +471,6 @@ IC(\mu, 0.90) &amp;= \left[ 74.6 - 1.645 \frac{11.3}{9};\,  74.6 + 1.645\frac{11
 <ul>
 <li><a href='http://www.sciencedirect.com/science/article/pii/B9780123743886000089' title=''>Ross</a>: capítulo 8.</li>
 <li><a href='https://www.openintro.org/stat/textbook.php' title=''>OpenIntro</a>: seção 4.2.</li>
-<li>Magalhães: capítulo 7.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
