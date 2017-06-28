@@ -65,10 +65,10 @@ permalink: /aulas/
 * Teste de hipótese para duas médias
 * Teste de hipótese para duas proporções
 
+[Parte12](slides/parte12/parte12.html)
 [Parte13](slides/parte13/parte13.html)
-[Parte14](slides/parte14/parte14.html)
 
 
 ## Análise de variância (ANOVA)
 
-[Parte15](slides/parte15/parte15.html)
+[Parte14](slides/parte14/parte14.html)
