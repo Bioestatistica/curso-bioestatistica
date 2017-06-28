@@ -22,6 +22,33 @@ $$T= \frac{\bar{X} - \bar{Y}}{ \sqrt{S_p^2 ( \frac{1}{n} + \frac{1}{m}} )} \stac
 Mas e se quiséssemos comparar as médias de 3 ou mais populações (grupos)?
 
 
+## Exemplo: Tratamento para Anorexia {.build}
+<style>
+.column-left{
+  float: left;
+  width: 70%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 30%;
+  text-align: right;
+}
+</style>
+
+Foi conduzido um experimento para comparar três terapias no tratamento de anorexia em meninas adolescentes para ajudá-las a ganhar peso. As terapias foram: controle, cognitiva comportamental e de família.
+
+<div class="column-right">
+<img src="figuras/anorexia.jpg" height=350>
+</div>
+
+Poderíamos comparar o ganho médio de peso comparando as terapias duas a duas, certo?
+
+No entanto, isso não é muito viável (e nem a forma mais eficiente) quando temos muitos grupos.
+
+A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de **Análise de Variância (ANOVA)**.
+
+
 ## Análise de Variância {.build}
 
 **Exemplo:** O Departamento de Estatística oferece o curso ME414 todo semestre para várias turmas. Suponha que queremos saber se existe diferença significativa no desempenho na P1 entre as turmas A, B, C e I.
@@ -78,6 +105,11 @@ Ou seja, escrevendo como uma equação:
 $$\mbox{Variação Total = Variação Entre Grupos + Variação Dentro dos Grupos}$$
 
 Iremos ver agora como medir cada uma dessas variações.
+
+
+## Decomposição da Variação Total
+
+<center><img src="figuras/SomaQuadradosCerveja.png" height=480></center>
 
 
 ## Estrutura dos Dados {.build}
