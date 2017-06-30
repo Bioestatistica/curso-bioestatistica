@@ -405,78 +405,19 @@ p_1-p_2 &lt; 0 &amp; \mbox{(unilateral à esquerda)}
 </tr>
 </table>
 
-</article></slide><slide class=''><hgroup><h2>Exemplo: decisão sobre gastos</h2></hgroup><article  id="exemplo-decisao-sobre-gastos" class="build">
+</article></slide><slide class=''><hgroup><h2>Exemplo: Ensaio Clínico</h2></hgroup><article  id="exemplo-ensaio-clinico" class="build">
 
-<p>O dinheiro que não é gasto hoje pode ser gasto depois.</p>
+<p>Um ensaio clínico é realizado para avaliar um novo tipo de tratamento contra uma doença e comparar os resultados com aqueles obtidos usando o tratamento tradicional.</p>
 
-<blockquote>
-<p>Será que ao relembrar o aluno deste fato faz com que tome a decisão sobre uma compra de maneira diferente?</p>
-</blockquote>
+<p>Dos 50 pacientes tratados com o tratamento novo, 36 se curaram e dos 45 tratados com o antigo 29 se curaram.</p>
 
-<blockquote>
-<p>O cético pode pensar que relembrar não irá influenciar na decisão.</p>
-</blockquote>
+<p>Seja \(p_1\) a proporção de curados com o tratamento novo e \(p_2\) a proporção de curados com o tratamento antigo na população.</p>
 
-<blockquote>
-<p>Podemos utilizar um teste de hipótese:</p>
-</blockquote>
+<p>Espera-se que o novo tratamento seja diferente do tradicional. Teste essa hipótese.</p>
 
-<ul>
-<li><p>\(H_0\): Relembrar o aluno de que ele pode poupar para comprar algo especial depois não irá influenciar na decisão de gasto do aluno.</p></li>
-<li><p>\(H_1\): Relembrar o aluno de que ele pode poupar para comprar algo especial depois irá aumentar a chance dele não gastar em algo no presente.</p></li>
-</ul>
+</article></slide><slide class=''><hgroup><h2>Exemplo: Ensaio Clínico</h2></hgroup><article  id="exemplo-ensaio-clinico-1" class="build">
 
-</article></slide><slide class=''><hgroup><h2>Exemplo: decisão sobre gastos</h2></hgroup><article  id="exemplo-decisao-sobre-gastos-1" class="build smaller">
-
-<p>Alunos de ME414 do segundo semestres de 2015 foram recrutados para um estudo e cada um recebeu a seguinte informação através do Google Forms:</p>
-
-<p><em>Imagine que você estivesse poupando para comprar algo especial. Em uma visita ao shopping você encontra um DVD da sua série/filme favorita que estava na sua &quot;lista de desejos&quot; há tempos. O DVD está em promoção, custando R$ 20,00. O que você faria?</em></p>
-
-<p>56 alunos (grupo 1) selecionados ao acaso receberam a seguinte opção de resposta:</p>
-
-<ul>
-<li>Compraria o DVD.</li>
-<li>Não compraria o DVD.</li>
-</ul>
-
-<p>54 alunos (grupo 2) selecionados ao acaso receberam a seguinte opção de resposta:</p>
-
-<ul>
-<li>Compraria o DVD.</li>
-<li>Não compraria o DVD. Pouparia os R$ 20,00 para algo especial.</li>
-</ul>
-
-<p>Obs: estudo adaptado do artigo <em><a href='http://faculty.som.yale.edu/ravidhar/documents/OpportunityCostNeglect.pdf' title=''>Frederick S, Novemsky N, Wang J, Dhar R, Nowlis S. 2009. Opportunity Cost Neglect. Journal of Consumer Research 36: 553-561.</a></em></p>
-
-</article></slide><slide class=''><hgroup><h2>Exemplo: decisão sobre gastos</h2></hgroup><article  id="exemplo-decisao-sobre-gastos-2" class="build">
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left"></th>
-<th align="right">Compraria</th>
-<th align="right">Não compraria</th>
-</tr>
-<tr class="odd">
-<td align="left">grupo1</td>
-<td align="right">31</td>
-<td align="right">25</td>
-</tr>
-<tr class="even">
-<td align="left">grupo2</td>
-<td align="right">29</td>
-<td align="right">25</td>
-</tr>
-</table>
-
-<p>Entre os alunos do grupo 1, a proporção que decide não comprar foi 0.45.</p>
-
-<p>Entre os alunos do grupo 2, a proporção que decide não comprar foi 0.46.</p>
-
-<blockquote>
-<p>Temos evidências contra a hipótese nula, ou seja, relembrar o aluno não influencia na decisão?</p>
-</blockquote>
-
-</article></slide><slide class=''><hgroup><h2>Exemplo: decisão sobre gastos</h2></hgroup><article  id="exemplo-decisao-sobre-gastos-3" class="build">
+</article></slide><slide class=''><hgroup><h2>Exemplo: Ensaio Clínico</h2></hgroup><article  id="exemplo-ensaio-clinico-2" class="build">
 
 <p>Para realizar o teste de hipótese, devemos fazer algumas suposições.</p>
 
@@ -484,49 +425,28 @@ p_1-p_2 &lt; 0 &amp; \mbox{(unilateral à esquerda)}
 <p>Considere duas populações: \(X\) e \(Y\) tal que:</p>
 </blockquote>
 
-<ul class = 'build'>
-<li>\(X_i\sim b(p_1)\) indica se o i-ésimo aluno do <strong>grupo 1</strong> decide não comprar o DVD e \(p_1\) é a probabilidade de decidir por não comprar.</li>
-</ul>
-
-<ul class = 'build'>
-<li>\(Y_i\sim b(p_2)\) indica se o i-ésimo aluno do <strong>grupo 2</strong> decide não comprar o DVD e \(p_2\) é a probabilidade de decidir por não comprar.</li>
-</ul>
-
-<blockquote>
-<p>Queremos testar:</p>
-</blockquote>
-
 <ul>
-<li>\(H_0\): \(p_1=p_2 \qquad\) vs \(\qquad H_1\): \(p_1 &lt; p_2\)</li>
+<li><p>\(X_i\sim b(p_1)\) indica se o i-ésimo paciente do <strong>tratamento novo</strong> foi curado e \(p_1\) é a probabilidade de ser curado por esse tratamento.</p></li>
+<li><p>\(Y_i\sim b(p_2)\) indica se o i-ésimo paciente do <strong>tratamento tradicional</strong> foi curado e \(p_2\) é a probabilidade de ser curado por esse tratamento.</p></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Exemplo: decisão sobre gastos</h2></hgroup><article  id="exemplo-decisao-sobre-gastos-4" class="build smaller">
+<p>Testar se \(H_0: p_1=p_2 \mbox{ vs } H_1: p_1 \neq p_2,\) é equivalente a testar: \[H_0: p_1-p_2=0 \qquad  \mbox{vs} \qquad H_1: p_1 - p_2 \neq 0.\]</p>
 
-<p>Seja \(\hat{p}_1\) a proporção que decide não comprar entre os alunos \(n_1\) <strong>amostrados do grupo 1</strong>.</p>
+</article></slide><slide class=''><hgroup><h2>Exemplo: Ensaio Clínico</h2></hgroup><article  id="exemplo-ensaio-clinico-3" class="build">
 
-<p>Seja \(\hat{p}_2\) a proporção que decide não comprar entre os \(n_2\) alunos <strong>amostrados do grupo 2</strong>.</p>
-
-<blockquote>
-<p>Relembrando o TLC:</p>
-</blockquote>
-
-<p>\[\hat p_1 \sim N\left(p_1,\frac{ p_1(1 - p_1)}{n_1} \right) \quad \mbox{e} \quad  \hat p_2 \sim N\left(p_2,\frac{ p_2(1 -  p_2)}{n_2} \right)\]</p>
+<p>A proporção de curados pelos tratamentos novo e antigo na amostra são: \[\hat{p}_1 = \frac{36}{50}=0.72 \quad \mbox{e} \quad \hat p_2 = \frac{29}{45}=0.64 \]</p>
 
 <p><strong>Condições:</strong> Todas as quantidades \(n_1\hat p_1, \; n_1(1- \hat p_1), \; n_2\hat p_2 \; \mbox{ e } \; n_2(1- \hat p_2)\) devem ser pelo menos igual a 10 para que a aproximação pela normal seja válida.</p>
 
-<p>Então, para \(H_0\): \(p_1=p_2\) usamos a estatística do teste a seguir: \[Z = \frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1 - \hat p) \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} \sim N(0, 1)\]</p>
+<p>Vamos calcular a proporção de curados na amostra toda: \[\hat p = \frac{36 + 29}{50 + 45} = 0.68\]</p>
 
-<p>em que \(\hat p\) é a proporção que decide não comprar entre os \(n_1 + n_2\) alunos amostrados.</p>
+</article></slide><slide class=''><hgroup><h2>Exemplo: Ensaio Clínico</h2></hgroup><article  id="exemplo-ensaio-clinico-4" class="build">
 
-</article></slide><slide class=''><hgroup><h2>Exemplo: decisão sobre gastos</h2></hgroup><article  id="exemplo-decisao-sobre-gastos-5" class="build">
+<p>Então, a estatística do teste é calculada como: \[z_{obs} = \frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1 - \hat p) \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{0.72 - 0.64}{\sqrt{0.68(1 - 0.68) \left(\frac{1}{50} + \frac{1}{45}\right)}} = 0.83\]</p>
 
-<p>Testar: \[H_0: p_1=p_2 \qquad  \mbox{vs} \qquad H_1: p_1 &lt; p_2,\] é equivalente a testar: \[H_0: p_1-p_2=0 \qquad  \mbox{vs} \qquad H_1: p_1 - p_2&lt;0.\]</p>
+<p><strong>Valor-de-p</strong>: \(P(|Z| \geq |z_{obs}|) = 2P(Z \geq 0.83) = 0.4066.\)</p>
 
-<p>Estatística do teste: \[z_{obs} = \frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1 - \hat p) \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{25/56-25/54}{\sqrt{5/11(1-5/11) \left(\frac{1}{56} + \frac{1}{54}\right)}} = -0.17\]</p>
-
-<p><strong>Valor crítico</strong>: Para \(\alpha=0.05\), \(z_{0.025}= -1.64\)</p>
-
-<p><strong>Conclusão:</strong> como \(z_{obs} &gt; -1.64\) não temos evidências para rejeitar \(H_0\).</p>
+<p><strong>Conclusão:</strong> Como o p-valor é maior que =0.01, não temos evidência na amostra para concluir que os tratamento diferem quanto a proporção de cura.</p>
 
 </article></slide><slide class=''><hgroup><h2>Leituras</h2></hgroup><article  id="leituras">
 

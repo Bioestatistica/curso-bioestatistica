@@ -345,163 +345,74 @@ $p_1-p_2<0$| rejeitar se $z_{obs}\leq -z_{\alpha}$ | $P(Z\leq z_{obs})$
 $p_1-p_2>0$| rejeitar se $z_{obs}\geq z_{\alpha}$ | $P(Z\geq z_{obs})$
 
 
-## Exemplo: decisão sobre gastos {.build}
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
-# adaptado de de Introductory Statistics with Randomization and Simulation - 1st Edition - Section 2.2  pag 65
+## Exemplo: Ensaio Clínico {.build}
+Um ensaio clínico é realizado para avaliar um novo tipo de tratamento contra uma doença e comparar os resultados com aqueles obtidos usando o tratamento tradicional. 
 
-tmp <- read.csv("./dados/alunos_info.csv",na.strings = "-",stringsAsFactors = FALSE)
-dados <- tmp[tmp$P1>=5,]
-dados <- dados[complete.cases(dados),]
+Dos 50 pacientes tratados com o tratamento novo, 36 se curaram e dos 45 tratados com o antigo 29 se curaram. 
 
-set.seed(22015)
-totalAmo <- sample(dados$email,200,replace=FALSE)
-grupo1 <- totalAmo[1:100] # recebeu versao 1 do questionario: http://goo.gl/forms/ahkrlNgKqO
-grupo2 <- totalAmo[101:200] # recebeu versao 2 do questionario: http://goo.gl/forms/HdUyJN4jIJ
+Seja $p_1$ a proporção de curados com o tratamento novo e $p_2$ a proporção de curados com o tratamento antigo na população.
 
-write.csv(grupo1,file="./dados/emails_versao1.csv")
-write.csv(grupo2,file="./dados/emails_versao2.csv")
-```
-
-  
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
-# baixando as respostas do Google Forms
-library(downloader)
-download("https://docs.google.com/spreadsheets/d/1wkRl4U7omcjsKkqLavNLT5OomhCnNxVeV6OV_97fLuY/pub?gid=467476492&single=true&output=csv","./dados/resposta_grupo1.csv")
-
-download("https://docs.google.com/spreadsheets/d/1RcUPMxfTUcPAONeW9wyhTKiKEaKs1sIl_phD5PLnrSM/pub?gid=1172315374&single=true&output=csv","./dados/resposta_grupo2.csv")
-
-library(data.table)
-resp1 <- fread("./dados/resposta_grupo1.csv")
-
-resp2 <- fread("./dados/resposta_grupo2.csv")
+Espera-se que o novo tratamento seja diferente do tradicional. Teste essa hipótese.
 
 
-tmp1 <- c(resp1$`O que você faria?`, resp2$`O que você faria?`)
-tmp2 <- c(rep("grupo1", dim(resp1)[1]), rep("grupo2", dim(resp2)[1]))
+## Exemplo: Ensaio Clínico {.build}
+```{r, echo=FALSE}
+x1 <- 36
+n1 <- 50
+p1 <- round(x1/n1, 2)
 
-dadosTodos <- data.frame(Grupo=tmp2, Resposta=tmp1, stringsAsFactors=FALSE)
+x2 <- 29
+n2 <- 45
+p2 <- round(x2/n2, 2)
 
-dadosTodos$RespostaBinaria <- ifelse(dadosTodos$Resposta=="Compraria o DVD.", "Compraria", "Não compraria")
-          
-d <- as.data.frame(table(dadosTodos$Grupo, dadosTodos$RespostaBinaria))
-
-x1 <- d$Freq[d$Var1=="grupo1" & d$Var2=="Não compraria"]
-n1 <- sum(d$Freq[d$Var1=="grupo1"])
-p1 <- x1/n1
-
-x2 <- d$Freq[d$Var1=="grupo2" & d$Var2=="Não compraria"]
-n2 <- sum(d$Freq[d$Var1=="grupo2"])
-p2 <- x2/n2
-
-p <- (x1+x2)/(n1+n2)
-
-alpha <- .05 
+alpha <- .01
 z.alfa2 <- round(qnorm(1-alpha/2), 2)
 
 est <- p1-p2
-se.est <- sqrt(p*(1-p)*(1/n1 + 1/n2))
+se.est <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
+ic <- round(est + c(-1, 1)*z.alfa2*se.est, 3)
 
-zobs <- round(est/se.est,2)
+p <- round((x1 + x2)/(n1 + n2), 2) 
+se <- sqrt(p*(1-p)*(1/n1 + 1/n2))
+zobs <- round(est/se, 2)
 
-valorp <- round(pnorm(zobs,lower.tail = TRUE), 4)
-
-zc <- round(qnorm(alpha,lower.tail=TRUE), 2)
-library(MASS)
+alpha <- .01
+z.alfa2 <- round(qnorm(1-alpha/2), 2)
+valorp <- 2*round(pnorm(abs(zobs), lower.tail=FALSE), 4)
 ```
 
-O dinheiro que não é gasto hoje pode ser gasto depois.
-
-
-> Será que ao relembrar o aluno deste fato faz com que tome a decisão sobre uma compra de maneira diferente?
-
-> O cético pode pensar que relembrar não irá influenciar na decisão.
-
-> Podemos utilizar um teste de hipótese: 
-
-* $H_0$: Relembrar o aluno de que ele pode poupar para comprar algo especial depois não irá influenciar na decisão de gasto do aluno. 
-
-* $H_1$: Relembrar o aluno de que ele pode poupar para comprar algo especial depois irá aumentar a chance dele não gastar em algo no presente. 
-
-
-## Exemplo: decisão sobre gastos {.build .smaller}
-
-Alunos de ME414 do segundo semestres de 2015 foram recrutados para um estudo e cada um recebeu a seguinte informação através do Google Forms:
-
-*Imagine que você estivesse poupando para comprar algo especial. Em uma visita ao shopping você encontra um DVD da sua série/filme favorita que estava na sua "lista de desejos" há tempos. O DVD está em promoção, custando R$ 20,00. O que você faria?*
-
-`r n1` alunos  (grupo 1) selecionados ao acaso receberam a seguinte opção de resposta:
-
-* Compraria o DVD.
-* Não compraria o DVD.
-
-
-`r n2` alunos (grupo 2) selecionados ao acaso receberam a seguinte opção de resposta:
-
-* Compraria o DVD.
-* Não compraria o DVD. Pouparia os R$ 20,00 para algo especial.
-
-Obs: estudo adaptado do artigo *[Frederick S, Novemsky N, Wang J, Dhar R, Nowlis S. 2009. Opportunity Cost Neglect. Journal of Consumer Research 36: 553-561.](http://faculty.som.yale.edu/ravidhar/documents/OpportunityCostNeglect.pdf)*
-
-## Exemplo: decisão sobre gastos {.build}
-
-
-```{r,echo=FALSE}
-library(knitr)
-kable(table(dadosTodos$Grupo, dadosTodos$RespostaBinaria))
-```
-
-Entre os alunos do grupo 1, a proporção que decide não comprar foi `r round(p1,2)`.
-
-Entre os alunos do grupo 2, a proporção que decide não comprar foi `r round(p2,2)`.
-
-> Temos evidências contra a hipótese nula, ou seja, relembrar o aluno não influencia na decisão?
-
-
-## Exemplo: decisão sobre gastos {.build}
+## Exemplo: Ensaio Clínico {.build}
 
 Para realizar o teste de hipótese, devemos fazer algumas suposições.
 
 > Considere duas populações: $X$ e $Y$ tal que: 
 
-> * $X_i\sim b(p_1)$ indica se o i-ésimo aluno do **grupo 1** decide não comprar o DVD e $p_1$ é a probabilidade de decidir por não comprar.
+* $X_i\sim b(p_1)$ indica se o i-ésimo paciente do **tratamento novo** foi curado e $p_1$ é a probabilidade de ser curado por esse tratamento.
 
-> * $Y_i\sim b(p_2)$ indica se o i-ésimo aluno do **grupo 2** decide não comprar o DVD e $p_2$ é a probabilidade de decidir por não comprar.
+* $Y_i\sim b(p_2)$ indica se o i-ésimo paciente do **tratamento tradicional** foi curado e $p_2$ é a probabilidade de ser curado por esse tratamento.
 
-> Queremos testar: 
+Testar se $H_0: p_1=p_2 \mbox{ vs } H_1: p_1 \neq p_2,$ é equivalente a testar: 
+$$H_0: p_1-p_2=0 \qquad  \mbox{vs} \qquad H_1: p_1 - p_2 \neq 0.$$
 
-* $H_0$: $p_1=p_2 \qquad$ vs  $\qquad H_1$: $p_1 < p_2$
 
+## Exemplo: Ensaio Clínico {.build}
 
-## Exemplo: decisão sobre gastos {.build .smaller}
-
-Seja $\hat{p}_1$ a proporção que decide não comprar entre os alunos $n_1$ **amostrados do grupo 1**.
-
-Seja $\hat{p}_2$ a proporção que decide não comprar entre os $n_2$ alunos **amostrados do grupo 2**.
-
-> Relembrando o TLC:
-
-$$\hat p_1 \sim N\left(p_1,\frac{ p_1(1 - p_1)}{n_1} \right) \quad \mbox{e} \quad  \hat p_2 \sim N\left(p_2,\frac{ p_2(1 -  p_2)}{n_2} \right)$$
+A proporção de curados pelos tratamentos novo e antigo na amostra são:
+$$\hat{p}_1 = \frac{36}{50}=`r p1` \quad \mbox{e} \quad \hat p_2 = \frac{29}{45}=`r p2` $$
 
 **Condições:** Todas as quantidades $n_1\hat p_1, \; n_1(1- \hat p_1), \; n_2\hat p_2 \; \mbox{ e } \; n_2(1- \hat p_2)$ devem ser pelo menos igual a 10 para que a aproximação pela normal seja válida.
 
-Então, para $H_0$: $p_1=p_2$ usamos a estatística do teste a seguir:
-$$Z = \frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1 - \hat p) \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} \sim N(0, 1)$$
+Vamos calcular a proporção de curados na amostra toda:
+$$\hat p = \frac{`r x1` + `r x2`}{`r n1` + `r n2`} = `r p`$$  
 
-em que $\hat p$  é a proporção que decide não comprar entre os $n_1 + n_2$ alunos amostrados.
+## Exemplo: Ensaio Clínico {.build}
 
+Então, a estatística do teste é calculada como:
+$$z_{obs} = \frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1 - \hat p) \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{`r p1` - `r p2`}{\sqrt{`r p`(1 - `r p`) \left(\frac{1}{`r n1`} + \frac{1}{`r n2`}\right)}} = `r zobs`$$
 
-## Exemplo: decisão sobre gastos {.build}
-Testar:
-$$H_0: p_1=p_2 \qquad  \mbox{vs} \qquad H_1: p_1 < p_2,$$
-é equivalente a testar: 
-$$H_0: p_1-p_2=0 \qquad  \mbox{vs} \qquad H_1: p_1 - p_2<0.$$
+**Valor-de-p**: $P(|Z| \geq |z_{obs}|) = 2P(Z \geq `r zobs`) = `r valorp`.$
 
-Estatística do teste:
-$$z_{obs} = \frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1 - \hat p) \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{`r as.character(fractions(p1))`-`r as.character(fractions(p2))`}{\sqrt{`r as.character(fractions(p))`(1-`r as.character(fractions(p))`) \left(\frac{1}{`r n1`} + \frac{1}{`r n2`}\right)}} = `r zobs`$$
-
-**Valor crítico**: Para $\alpha=`r alpha`$, $z_{0.025}= `r zc`$
-
-**Conclusão:** como $z_{obs} > `r zc`$ não temos evidências para rejeitar $H_0$.
+**Conclusão:** Como o p-valor é maior que \alpha=`r alpha`, não temos evidência na amostra para concluir que os tratamento diferem quanto a proporção de cura.
 
 
 ## Leituras
