@@ -7,7 +7,67 @@ output:
 logo: ../logo_fcm_0.jpg
 ---
 
+# Inferência Estatística
+
+## Inferência Estatística - Conceitos Básicos
+
+Alguns conceitos básicos que foram vistos ontem:
+
+**População**: todos os elementos ou resultados de um problema que está sendo estudado.
+
+**Amostra:** qualquer subconjunto da população que contém os elementos que podem ser observados e é onde as quantidades de interesse podem ser medidas.
+
+**Parâmetros**: Característica numérica (desconhecida) da distribuição dos elementos da população.
+
+**Estimador/Estatística**: Função da amostra, construída com a finalidade de representar, ou estimar um parâmetro de interesse na população. 
+
+**Estimativa**: Valor numérico que um estimador assume para uma dada amostra.
+
+
+## Inferência Estatística 
+
+<center><img src="figuras/inferencia.PNG" width=600></center>
+
+**Intervalo de Confiança**: Fornece um conjunto de valores plausíveis para um parâmetro populacional ou uma função de parâmetros populacionais.
+
+
+**Teste de Hipóteses**: Regra de decisão que permite avaliar se os dados obtidos em uma amostra suportam uma hipótese de status quo a respeito do parâmetro de interesse. 
+
+
+## Inferência para duas populações {.build}
+
+Hoje vamos focar em inferência para duas ou mais populações.
+
+**Exemplos:** 
+
+1) Diferença no IMC para pessoas hipertensas e não-hipertensas.
+
+2) Contagem de hemáceas para um grupo de pacientes e um grupo controle.
+
+3) Pressão arterial de pessoas sedentárias versus pessoas fisicamente ativas.
+
+4) Proporção de pacientes que melhoraram para dois tratamentos diferentes.
+
+
+
 # Inferência para duas populações: intervalo de confiança para duas médias
+
+## Intervalo de confiança para duas médias {.build}
+
+De maneira geral, suponha que queremos estimar o parâmetro populacional $\theta$ através de um intervalo.
+
+Um intervalo de confiança (IC) para $\theta$ é sempre da forma:
+
+$$ \mbox{estimativa} \pm \mbox{margem de erro}$$
+
+$$\hat{\theta} \pm \mbox{margem de erro}$$
+
+Sendo:
+
+* $\hat \theta$ uma estimativa pontual de $\theta$
+
+* **margem de erro:** quantidade que depende da distribuição amostral do estimador pontual de $\theta$, do grau de confiança pré-estabelecido e do erro padrão da estimativa
+
 
 ## Intervalo de confiança para duas médias {.build .smaller}
 
@@ -39,16 +99,7 @@ Assumindo que as duas amostras $X_1, \ldots, X_n$ e $Y_1, \ldots, Y_m$ são inde
 
 $$ \bar{X} - \bar{Y} \sim N\left(\mu_1 - \mu_2, \frac{\sigma_1^{2}}{n} + \frac{\sigma_2^{2}}{m}  \right)$$
 
-E daí,
-$$Z= \frac{(\bar{X} - \bar{Y}) - (\mu_1 - \mu_2)}{\displaystyle \sqrt{\frac{\sigma_1^{2}}{n} + \frac{\sigma_2^{2}}{m}}} \sim N(0, 1)$$
-
-## Intervalo de confiança para duas médias {.build}
-
-Do resultando anterior, similar com o que fizemos para uma média, podemos construir um IC de $100(1-\alpha)\%$ para $\mu_1 - \mu_2$ da seguinte forma:
-
-$$P(-z_{\alpha/2} \leq Z \leq z_{\alpha/2}) = P \left( -z_{\alpha/2} \leq \frac{(\bar{X} - \bar{Y}) - (\mu_1 - \mu_2)}{\displaystyle \sqrt{\frac{\sigma_1^{2}}{n} + \frac{\sigma_2^{2}}{m}}} \leq z_{\alpha/2}\right) = 1-\alpha$$
-
-Portanto, um IC de $100(1-\alpha)\%$ para $\mu_1 - \mu_2$ é dado por:
+Um IC de $100(1-\alpha)\%$ para $\mu_1 - \mu_2$ é dado por:
 $$IC(\mu_1 - \mu_2, 1-\alpha) = (\bar{X} - \bar{Y}) \pm z_{\alpha/2} \sqrt{\frac{\sigma_1^{2}}{n} + \frac{\sigma_2^{2}}{m}}$$
 
 
@@ -100,12 +151,12 @@ Procure na tabela o valor de $z$ tal que a probabilidade acumulada até o valor 
 ## Intervalo de confiança para duas médias {.build}
 **Caso 2: Variâncias iguais e conhecidas**
 
-Considere o caso particular em que as variâncias são conhecidas e idênticas, isto é, $\sigma_1^2 = \sigma_2^2 = \sigma^2$.
+Considere o caso em que as variâncias são conhecidas e idênticas, isto é, $\sigma_1^2 = \sigma_2^2 = \sigma^2$.
 
 Então,
-$$Z= \frac{(\bar{X} - \bar{Y}) - (\mu_1 - \mu_2)}{\displaystyle \sqrt{\sigma^2 \left(\frac{1}{n} + \frac{1}{m}\right) }} \sim N(0, 1)$$
+$$ \bar{X} - \bar{Y} \sim N\left(\mu_1 - \mu_2, \sigma^2 \left(\frac{1}{n} + \frac{1}{m}\right)  \right)$$
 
-E um IC de $100(1-\alpha)\%$ para $\mu_1 - \mu_2$ é dado por:
+Um IC de $100(1-\alpha)\%$ para $\mu_1 - \mu_2$ é dado por:
 $$IC(\mu_1 - \mu_2, 1-\alpha) = (\bar{X} - \bar{Y}) \pm z_{\alpha/2} \sqrt{\sigma^2 \left(\frac{1}{n} + \frac{1}{m} \right)}$$
 
 ## Intervalo de Confiança para duas médias {.build}
@@ -173,6 +224,16 @@ text(-2.5, yMax / 2, labels= expression('área '* alpha/2),
 Nesse caso, $\nu=n+m-2$ e os valores da distribuição $t$ encontram-se tabelados.
 
 
+## Intervalo de Confiança para duas médias {.build}
+**Caso 4: Variâncias diferentes e desconhecidas**
+
+Como aqui as variâncias são diferentes e desconhecidas, $\sigma_1^2 \neq \sigma_2^2$, usamos como estimativas as variâncias amostrais de cada população.
+
+E um IC de $100(1-\alpha)\%$ para $\mu_1 - \mu_2$ é dado por:
+$$IC(\mu_1 - \mu_2, 1-\alpha) = (\bar{X} - \bar{Y}) \pm t_{\nu, \alpha/2} \sqrt{ \frac{S_1^2}{n} + \frac{S_2^2}{m}},$$
+onde $\nu$ são os graus de liberdade da distribuição $t$ obtido por uma aproximação.
+
+
 ## Intervalo de confiança para duas médias
 
 **Resumindo**
@@ -182,6 +243,7 @@ Variâncias             | $IC(\mu_1 - \mu_2, 1-\alpha)$
 Diferentes e conhecidas ($\sigma_1^2 \neq \sigma_2^2$) | $(\bar{X} - \bar{Y}) \pm z_{\alpha/2} \sqrt{\displaystyle \frac{\sigma_1^{2}}{n} + \frac{\sigma_2^{2}}{m}}$
 Iguais e conhecidas ($\sigma_1^2 = \sigma_2^2 =\sigma^2$) | $(\bar{X} - \bar{Y}) \pm z_{\alpha/2} \sqrt{\displaystyle \sigma^2 \left(\frac{1}{n} + \frac{1}{m} \right)}$
 Iguais e desconhecidas ($\sigma_1^2 = \sigma_2^2 =\sigma^2$) | $(\bar{X} - \bar{Y}) \pm t_{n+m-2, \alpha/2} \sqrt{\displaystyle S_p^2 \left(\frac{1}{n} + \frac{1}{m} \right)}$
+Diferente e desconhecidas ($\sigma_1^2 \neq \sigma_2^2$) | $(\bar{X} - \bar{Y}) \pm t_{\nu, \alpha/2} \sqrt{\displaystyle \frac{S_1^2}{n} + \frac{S_2^2}{m}}$
 
 
 ## Exemplo: tempo de incubação de dois vírus {.build}
@@ -199,7 +261,7 @@ y <- c(2.44, 1.49, 2.68, 2.60, 1.51,
 
 xbar <- round(mean(x), 2)
 ybar <- round(mean(y), 2)
-sigma21 <- 2
+sigma21 <- 2.25
 sigma22 <- 1
 n <- length(x)
 m <- length(y)
@@ -209,11 +271,22 @@ alpha <- .05
 z.alfa2 <- round(qnorm(1-alpha/2), 2)
 
 est <- xbar-ybar
-se.est <- sqrt(sigma21/n + sigma22/m)
-ic <- round(est + c(-1, 1)*z.alfa2*se.est, 2)
+
+## Assumindo variâncias diferentes e conhecidas
+se.est1 <- sqrt(sigma21/n + sigma22/m)
+ic1 <- round(est + c(-1, 1)*z.alfa2*se.est1, 2)
+
+## Assumindo variâncias iguais e desconhecidas
+s21 <- round(var(x), 2)
+s22 <- round(var(y), 2)
+
+t.alfa2 <- round(qt(1-alpha/2, n+m-2), 2)
+s2p <- round(((n-1)*s21 + (m-1)*s22)/(n+m-2), 2)
+se.est2 <- sqrt(s2p*(1/n + 1/m))
+ic2 <- round(est + c(-1, 1)*t.alfa2*se.est2, 2)
 ```
 
-O tempo de incubação do vírus 1 segue uma distribuição normal com média $\mu_1$ e desvio padrão $\sigma_{1}=\sqrt{`r sigma21`}$. Por outro lado, o tempo de incubação do vírus 2 segue uma distribuição normal com média $\mu_2$ e desvio padrão $\sigma_{2}=`r sqrt(sigma22)`$. Os tempos de incubação de ambos os vírus são considerados independentes. 
+O tempo de incubação do vírus 1 segue uma distribuição normal com média $\mu_1$ e desvio padrão $\sigma_{1}=`r sqrt(sigma21)`$. Por outro lado, o tempo de incubação do vírus 2 segue uma distribuição normal com média $\mu_2$ e desvio padrão $\sigma_{2}=`r sqrt(sigma22)`$. Os tempos de incubação de ambos os vírus são considerados independentes. 
 
 Realizaram um estudo de controle e os tempos de incubação registrados foram (tempo em meses):
 
@@ -249,161 +322,43 @@ Portanto, um Intervalo de $95\%$ de confiança para $\mu_1-\mu_2$ é dado por:
 $$\begin{aligned}
 IC(\mu_1-\mu_2, 0.95)&= (\bar{X} - \bar{Y}) \pm z_{0.025} \sqrt{\frac{\sigma_1^{2}}{n} + \frac{\sigma_2^{2}}{m}} \\
 &= (`r xbar` - `r ybar`) \pm `r z.alfa2` \sqrt{\frac{`r sigma21`}{`r n`} + \frac{`r sigma22`}{`r m`}} \\
-&= `r est` \pm `r z.alfa2` \times `r round(se.est, 2)` \\
-&= [`r ic[1]`, `r ic[2]`]
+&= `r est` \pm `r  round(z.alfa2*se.est1, 2)` = [`r ic1[1]`, `r ic1[2]`]
 \end{aligned}$$
 
-**Interpretação:** Com grau de confiança igual a `r (1-alpha)*100`\%, estimamos que a diferença entre o tempo médio de incubação do vírus 1 para o vírus 2 está entre `r ic[1]` e `r ic[2]` meses. 
+**Interpretação:** Com grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre o tempo médio de incubação do vírus 1 para o vírus 2 está entre `r ic1[1]` e `r ic1[2]` meses. 
 
-
-## Exemplo {.build}
-
-Dois tipos diferentes de tecido devem ser comparados. Uma máquina de testes *Martindale* pode comparar duas amostras ao mesmo tempo. O peso (em miligramas) para sete experimentos foram:
-
-Tecido|  1|  2|  3|  4|  5|  6|  7 
-------|---|---|---|---|---|---|---
-A     | 36| 26| 31| 38| 28| 20| 37 
-B     | 39| 27| 35| 42| 31| 39| 22 
-
-Construa um IC de 95% para a diferença entre os pesos médios dos tecidos. Admita que a variância é a mesma, e igual a 49. 
-
-Quais outras suposições são necessárias para que o IC seja válido?
-
-*Adaptado de: Profa. Nancy Garcia*, Notas de aula.
-
-
-## Exemplo (continuação) {.build}
-```{r, echo=FALSE}
-x <- c(36, 26, 31, 38, 28, 20, 37)
-y <- c(39, 27, 35, 42, 31, 39, 22)
-
-xbar <- round(mean(x), 2)
-ybar <- round(mean(y), 2)
-sigma2 <- 49
-
-sigma21 <- round(var(x), 2)
-sigma22 <- round(var(y), 2)
-n <- length(x)
-m <- length(y)
-
-## Intervalo de Confiança
-alpha <- .05 
-z.alfa2 <- round(qnorm(1-alpha/2), 2)
-
-est <- xbar-ybar
-se.est1 <- sqrt(sigma2*(1/n + 1/m))
-ic1 <- round(est + c(-1, 1)*z.alfa2*se.est1, 2)
-
-t.alfa2 <- round(qt(1-alpha/2, n+m-2), 2)
-s2p <- round(((n-1)*sigma21 + (m-1)*sigma22)/(n+m-2), 2)
-se.est2 <- sqrt(s2p*(1/n + 1/m))
-ic2 <- round(est + c(-1, 1)*t.alfa2*se.est2, 2)
-```
-
-Os tecidos do tipo A tem uma média amostral igual a $\bar{x}_A=`r xbar`$. Já os tecidos do tipo B têm média amostral de $\bar{x}_B=`r ybar`$. 
-
-A variância populacional é igual a `r sigma2`, enquanto as variâncias amostrais são `r sigma21` e `r sigma22`, respectivamente.
-
-**Suposições:** Como os tamanhos amostrais $n=m=`r n`$ são pequenos, devemos assumir os pesos dos tecidos dos dois tipos são normalmente distribuídos ou seja, $X_A \sim N(\mu_A, \sigma^2)$ e $X_B \sim N(\mu_B, \sigma^2)$. Além disso são independentes e com variâncias iguais.
-
-
-## Exemplo (continuação) {.build}
-
-Assumindo que as variâncias são iguais e **conhecidas** ($\sigma_1^2=\sigma_2^2=`r sigma2`$), um IC de 95% para $\mu_A - \mu_B$ é dado por:
-$$\begin{aligned}
-IC(\mu_A - \mu_B, 0.95) &= (\bar{X}_A - \bar{X}_B) \pm z_{0.025} \sqrt{\sigma^2 \left(\frac{1}{n} + \frac{1}{m} \right)} \\
-&= (`r xbar` - `r ybar`) \pm `r z.alfa2` \sqrt{`r sigma2` \left(\frac{1}{`r n`} + \frac{1}{`r m`}\right)} \\
-&= `r est` \pm `r z.alfa2` \times `r round(se.est1, 2)` \\
-&= [`r ic1[1]`, `r ic1[2]`]
-\end{aligned}
-$$
+Baseados nesse IC, o que podemos dizer a respeito da suspeita de que o tempo de incubação do vírus 1 é maior que o do vírus 2?
 
 Portanto, com um grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre os pesos médios dos tecidos do tipo A e tipo B está entre `r ic1[1]` e `r ic1[2]` mg. 
 
 
-## Exemplo (continuação) {.build}
+## Exemplo: tempo de incubação {.build}
 
-Vamos assumir agora que a variância populacional não fosse conhecida. 
+Vamos assumir agora que as variâncias populacionais não fossem conhecidas, porém pode-se assumir que são iguais. 
 
-Assumindo ainda que as variâncias são iguais mas **desconhecidas**, vamos então estimar a variância amostral combinada.
+Primeiramente precisamos calcular as variâncias amostrais, ou seja, 
+$$S_1^2=`r s21` \qquad \mbox{e} \qquad S_2^2=`r s22`$$ 
 
-Sabendo que $s_1^2=`r sigma21`$, $\quad s_2^2=`r sigma22` \quad$ e $\quad n=m=`r n`$, temos:
+Vamos então estimar a variância amostral combinada:
 $$\begin{aligned}
-s_p^2 &= \frac{(n-1)s_1^2 + (m-1)s_2^2}{n+m-2}\\
-&= \frac{(`r n`-1) `r sigma21` + (`r m`-1)`r sigma22`}{`r n` + `r m` - 2} \\
+S_p^2 &= \frac{(n-1)S_1^2 + (m-1)S_2^2}{n+m-2}\\
+&= \frac{(`r n`-1) (`r s21`) + (`r m`-1)(`r s22`)}{`r n` + `r m` - 2} \\
 &= `r s2p`
 \end{aligned}$$
 
-## Exemplo (continuação) {.build}
-Nesse caso, um IC de 95% para $\mu_A - \mu_B$ é dado por:
+
+## Exemplo: tempo de incubação {.build}
+Nesse caso, um IC de 95% para $\mu_1 - \mu_2$ é dado por:
 $$\begin{aligned}
-IC(\mu_A - \mu_B, 0.95) &= (\bar{X}_A - \bar{X}_B) \pm t_{n+m-2, 0.025} \sqrt{S_p^2 \left(\frac{1}{n} + \frac{1}{m} \right)} \\
+IC(\mu_1 - \mu_2, 0.95) &= (\bar{X} - \bar{Y}) \pm t_{n+m-2, 0.025} \sqrt{S_p^2 \left(\frac{1}{n} + \frac{1}{m} \right)} \\
 &= (`r xbar` - `r ybar`) \pm `r t.alfa2` \sqrt{`r s2p` \left(\frac{1}{`r n`} + \frac{1}{`r m`}\right)} \\
-&= `r est` \pm `r t.alfa2` \times `r round(se.est2, 2)` \\
+&= `r est` \pm `r round(t.alfa2*se.est2, 2)` \\
 &= [`r ic2[1]`, `r ic2[2]`]
 \end{aligned}
 $$
 
-Portanto, com um grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre os pesos médios dos tecidos do tipo A e tipo B está entre `r ic2[1]` e `r ic2[2]` mg. 
+Portanto, com um grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre o tempo médio de incubação do vírus 1 para o vírus 2 está entre `r ic2[1]` e `r ic2[2]` mg. 
 
-Note que a margem de erro desse IC é maior que o caso anterior.
-
-
-## Exemplo: tempo de adaptação {.build}
-Num estudo comparativo do tempo médio de adaptação (em anos), uma amostra aleatória, de 50 homens e 50 mulheres de um grande complexo industrial, produziu os seguintes resultados:
-
-  Estatística  | Homens | Mulheres
-------| ------ | --------
-Média | 3.2 | 3.7
-Desvio Padrão | 0.8 | 0.9
-
-Construa um IC de 95% para a diferença entre o tempo médio de adaptação para homens e mulheres.
-
-*Fonte:* Adaptado de Morettin \& Bussab, Estatística Básica $5^a$ edição, pág 365.
-
-
-## Exemplo (continuação) {.build}
-```{r, echo=FALSE}
-xbar <- 3.2
-ybar <- 3.7
-
-sigma1 <- 0.8
-sigma2 <- 0.9
-n <- m <- 50
-
-## Intervalo de Confiança
-alpha <- .05 
-t.alfa2 <- round(qt(1-alpha/2, n+m-2), 2)
-
-s2p <- round(((n-1)*sigma1^2 + (m-1)*sigma2^2)/(n+m-2), 2)
-
-est <- xbar - ybar
-se.est <- sqrt(s2p*(1/n + 1/m))
-ic <- round(est + c(-1, 1)*t.alfa2*se.est, 2)
-```
-
-Veja que não sabemos a variância populacional, mas temos os desvios-padrão amostrais e estes são bem próximos. Então iremos assumir que as variâncias são iguais porém desconhecidas. 
-
-Nesse caso, vamos então estimar a variância amostral combinada.
-
-Sabendo que $s_1=`r sigma1`$, $s_2=`r sigma2`$ e $n=m=`r n`$ temos:
-$$\begin{aligned}
-s_p^2 &= \frac{(n-1)s_1^2 + (m-1)s_2^2}{n+m-2}\\
-&= \frac{(`r n`-1) (`r sigma1`)^2 + (`r m`-1)(`r sigma2`)^2}{`r n` + `r m` - 2} \\
-&= `r s2p`
-\end{aligned}$$
-
-## Exemplo (continuação) {.build}
-Nesse caso, um IC de 95% para $\mu_H - \mu_M$ é dado por:
-$$\begin{aligned}
-IC(\mu_H - \mu_M, 0.95) &= (\bar{X}_H - \bar{X}_M) \pm t_{n+m-2, 0.025} \sqrt{S_p^2 \left(\frac{1}{n} + \frac{1}{m} \right)} \\
-&= (`r xbar` - `r ybar`) \pm `r t.alfa2` \sqrt{`r s2p` \left(\frac{1}{`r n`} + \frac{1}{`r m`}\right)} \\
-&= `r est` \pm `r t.alfa2` \times `r round(se.est, 2)` \\
-&= [`r ic[1]`, `r ic[2]`]
-\end{aligned}
-$$
-
-Com um grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre os tempos médios de adaptação entre homens e mulheres está entre `r ic[1]` e `r ic[2]` anos. 
 
 
 ## Intervalo de Confiança para duas proporções {.build}
@@ -436,73 +391,17 @@ Então, um IC de $100(1-\alpha)\%$ para $p_1 - p_2$ é dado por:
 $$IC(p_1 - p_2, 1-\alpha) = (\hat p_1 - \hat p_2) \pm z_{\alpha/2} \sqrt{\frac{\hat p_1 (1 - \hat p_1)}{n_1} + \frac{\hat p_2 (1 - \hat p_2)}{n_2}}$$
 
 
-## Exemplo {.build}
-Para o lançamento da nova embalagem de um sabonete a divisão de criação estuda duas propostas:
-
-*	A: amarela com letras vermelhas ou
-
-*	B: preta com letras douradas
-
-Eles acreditam que a proposta A chama mais a atenção que B.
-
-Realizaram uma pesquisa em dois supermercados “semelhantes” e perguntaram para um total de 1000 clientes se eles haviam notado a embalagem e então pediram para descrevê-la. Os resultados estão na  tabela seguir.
-
-## Exemplo (continuação) {.build}
-```{r, echo=FALSE}
-x1 <- 168
-n1 <- 400
-p1 <- x1/n1
-
-x2 <- 180
-n2 <- 600
-p2 <- x2/n2
-
-alpha <- .05 
-z.alfa2 <- round(qnorm(1-alpha/2), 2)
-
-est <- p1-p2
-se.est <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
-ic <- round(est + c(-1, 1)*z.alfa2*se.est, 3)
-```
-
-Proposta | Notaram | Não Notaram | Total
--------- | ------- | ----------- | -----
-A | 168 | 232 | 400
-B | 180 | 420 | 600
-Total | 348 | 652 | 1000
-
-* Seja $p_A$ a proporção de pessoas que notaram a proposta A e $p_B$ a proporção de pessoas que notaram a proposta B.
-
-* Encontre um IC de 95% para $p_A – p_B$
-
-* Usando os dados da tabela:
-$$\hat p_A = \frac{168}{400}=`r p1` \quad \mbox{e} \quad \hat p_B = \frac{180}{600}=`r p2` $$
-
-## Exemplo (continuação) {.build}
-Veja que as condições são satisfeitas.
-
-Então um IC de 95% para $p_A - p_B$ é dado por:
-$$\begin{aligned}
-IC(p_A - p_B, `r 1-alpha`) &= (\hat p_1 - \hat p_2) \pm z_{0.025} \sqrt{\frac{\hat p_1 (1 - \hat p_1)}{n_1} + \frac{\hat p_2 (1 - \hat p_2)}{n_2}} \\
-&= (`r p1` - `r p2`) \pm `r z.alfa2` \sqrt{\frac{`r p1` (`r 1-p1`)}{`r n1`} + \frac{`r p2` (`r 1-p2`)}{`r n2`}} \\
-&= `r est` \pm `r z.alfa2` \times `r round(se.est, 3)` \\
-&= [`r ic[1]`, `r ic[2]`]
-\end{aligned}
-$$
-
-Portanto, com um grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre as  proporções $p_A$ e $p_B$ está entre `r ic[1]` e `r ic[2]`. 
-
 
 ## Exemplo: Ensaio Clínico {.build}
 Um ensaio clínico é realizado para avaliar um novo tipo de tratamento contra uma doença e comparar os resultados com aqueles obtidos usando o tratamento tradicional. 
 
 Dos 50 pacientes tratados com o tratamento novo, 36 se curaram e dos 45 tratados com o antigo 29 se curaram. 
 
-Seja $p_1$ a proporção de curados com o tratamento novo e $p_2$ a proporção de curados com o tratamento antigo.
+Seja $p_1$ a proporção de curados com o tratamento novo e $p_2$ a proporção de curados com o tratamento antigo na população.
 
 Encontre um IC de 99% para $p_1 - p_2$.
 
-## Exemplo (continuação) {.build}
+## Exemplo: Ensaio Clínico {.build}
 ```{r, echo=FALSE}
 x1 <- 36
 n1 <- 50
@@ -520,18 +419,18 @@ se.est <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
 ic <- round(est + c(-1, 1)*z.alfa2*se.est, 3)
 ```
 
-A proporção de curados pelos tratamentos novo e antigo são, respectivamente:
-$$\hat p_1 = \frac{36}{50}=`r p1` \quad \mbox{e} \quad \hat p_2 = \frac{29}{45}=`r p2` $$
+A proporção de curados pelos tratamentos novo e antigo na amostra são:
+$$\hat{p}_1 = \frac{36}{50}=`r p1` \quad \mbox{e} \quad \hat p_2 = \frac{29}{45}=`r p2` $$
 
 Então um IC de 99% para $p_1 - p_2$ é dado por:
 $$\begin{aligned}
 IC(p_1 - p_2, `r 1-alpha`) &= (`r p1` - `r p2`) \pm z_{0.005} \sqrt{\frac{`r p1` (`r 1-p1`)}{`r n1`} + \frac{`r p2` (`r 1-p2`)}{`r n2`}} \\
 &= `r est` \pm `r z.alfa2` \times `r round(se.est, 3)` \\
-&= [`r ic[1]`, `r ic[2]`]
+& = `r est` \pm `r  round(z.alfa2*se.est, 3)` = [`r ic[1]`, `r ic[2]`]
 \end{aligned}
 $$
 
-Portanto, com um grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre as  proporções de curados pelos tratamentos novo e antigo está entre `r ic[1]` e `r ic[2]`. 
+Portanto, com grau de confiança de `r (1-alpha)*100`\%, estimamos que a diferença entre as  proporções de curados pelos tratamentos novo e antigo está entre `r ic[1]` e `r ic[2]`. 
 
 
 
@@ -550,3 +449,5 @@ Slides produzidos pelos professores:
 * Tatiana Benaglia
 
 * Benilton Carvalho
+
+* Rafael Maia
