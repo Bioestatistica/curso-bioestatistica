@@ -248,10 +248,21 @@ x
 y
 ```
 
+## Exemplo: tempo de incubação
+```{r, echo=FALSE, fig.width=5, fig.height=4}
+virus <- factor(rep(1:2, times=c(n, m)))
+tempo <- c(x, y)
+dados <- data.frame(Virus=virus, Tempo=tempo)
+
+library(ggplot2)
+ggplot(dados, aes(x=Virus, y=Tempo)) + 
+    geom_boxplot(aes(fill=Virus), show.legend = FALSE) +
+    ggtitle("Tempo de Incubação por Vírus") + ylab("Tempo (meses)") +
+    theme(text=element_text(size=14)) 
+```
+
 
 ## Exemplo: tempo de incubação de dois vírus {.build}
-
-Recentemente, pacientes contaminados com os vírus foram avaliados.
 
 Definindo as hipóteses as serem testadas:
 $$H_{0}: \mu_{1}-\mu_{2}=`r Delta0` \qquad \mbox{vs} \qquad H_{1}: \mu_{1}-\mu_{2} > `r Delta0`$$

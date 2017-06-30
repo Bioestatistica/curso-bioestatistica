@@ -315,6 +315,19 @@ $\sigma_1^2 = `r sigma21`$ e $\sigma_2^2= `r sigma22`$.
 
 Veja que as populações são normais, variâncias diferentes mas conhecidas. Além disso, $n=`r n`$ e $m=`r m`$.
 
+## Exemplo: tempo de incubação
+```{r, echo=FALSE, fig.width=5, fig.height=4}
+virus <- factor(rep(1:2, times=c(n, m)))
+tempo <- c(x, y)
+dados <- data.frame(Virus=virus, Tempo=tempo)
+
+library(ggplot2)
+ggplot(dados, aes(x=Virus, y=Tempo)) + 
+    geom_boxplot(aes(fill=Virus), show.legend = FALSE) +
+    ggtitle("Tempo de Incubação por Vírus") + ylab("Tempo (meses)") +
+    theme(text=element_text(size=14)) 
+```
+
 
 ## Exemplo: tempo de incubação de dois vírus {.build}
 
