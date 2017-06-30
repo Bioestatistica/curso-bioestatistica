@@ -66,17 +66,6 @@ No entanto, isso não é muito viável (e nem a forma mais eficiente) quando tem
 A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de **Análise de Variância (ANOVA)**.
 
 
-<!-- ## Análise de Variância {.build} -->
-
-<!-- **Exemplo:** O Departamento de Estatística oferece o curso ME414 todo semestre para várias turmas. Suponha que queremos saber se existe diferença significativa no desempenho na P1 entre as turmas A, B, C e I. -->
-
-<!-- Poderíamos comparar as médias duas a duas, certo? -->
-
-<!-- No entanto, isso não é muito viável quando temos muitos grupos. -->
-
-<!-- A técnica estatística adequada para esse tipo de problema, com a qual pode-se comparar se as médias de várias populações (grupos) são todas iguais com um único teste é chamada de **Análise de Variância (ANOVA)**. -->
-
-
 ## Análise de Variância - ANOVA  {.build}
 **Objetivo:** Comparar se as médias de 3 ou mais populações (grupos) são iguais.
 
@@ -223,7 +212,7 @@ Os valores críticos da distribuição $F$ para $\alpha=0.05$ ou $\alpha=0.01$ e
 **Valor Crítico**: Para um nível de significância $\alpha$, encontrar o valor crítico $F_{crit}$ na tabela $F$ com $k-1$ graus de liberdade no numerador e $k(n-1)$ graus de liberdade no denominador tal que $P(F_{k-1, k(n-1)} \geq F_{crit}) = \alpha.$
 
 
-```{r, echo=FALSE, fig.align="center", fig.width=6.5, fig.height=3, message=FALSE}
+```{r, echo=FALSE, fig.align="center", fig.width=6, fig.height=2.8, message=FALSE}
 library(openintro, verbose = FALSE)
 data(COL)
 alpha <- 0.10
@@ -254,7 +243,7 @@ text(fcrit+1.5, ymax/2, labels= bquote("área = "* P(F[.(dfs)] >= F[crit]) == al
 ```
 
 
-**Conclusão**: Rejeitamos $H_0$ se $F_{obs} \geq F_{crit} = F_{k-1, k(n-1), \alpha}$
+**Conclusão**: Rejeitamos $H_0$ se $F_{obs} \geq F_{crit} = F_{k-1, k(n-1), \alpha}$ ou, de forma equivalente, se o p-valor for menor que $\alpha$.
 
 
 ## Tabela ANOVA {.build}
@@ -317,14 +306,14 @@ g1 <- ggplot(dados, aes(x=Terapia, y=Ganho)) +
     ylab("Ganho de Peso (em lb)") + 
     theme(text=element_text(size=12))
 
-g1 + geom_boxplot(aes(fill=Terapia), show.legend = FALSE) + 
+g1 + geom_boxplot(aes(fill=Terapia), show.legend=FALSE) + 
     ggtitle("Boxplot")
 ```
 </div>
 
 <div, class="column-right">
 ```{r, fig.width=4, fig.height=3.5}
-g1 + geom_point(aes(colour=Terapia, group=Terapia), show.legend = FALSE, size=2) +
+g1 + geom_point(aes(colour=Terapia, group=Terapia), show.legend=FALSE, size=2, alpha=0.6) +
     geom_point(stat="summary", fun.y=mean, size=2) + 
     ggtitle("Gráfico de Pontos")
 ```
@@ -344,15 +333,16 @@ alpha <- 0.05
 fcrit <- round(qf(1-alpha, df1=df[1], df2=df[2]), 3) 
 
 anovafit[3, 1:2] <- colSums(anovafit[, 1:2])
-rownames(anovafit) <- c("Terapia (Entre)", "Erro (Dentro)", "Total")
-colnames(anovafit) <- c("GL", "SQ", "QM", "F", "p-valor")
+rownames(anovafit) <- c("Terapia", "Erro", "Total")
 
-kable(anovafit, digits = c(0, 2, 2, 2, 5), caption="Tabela ANOVA para comparação entre Terapias")
+kable(anovafit, digits = c(0, 2, 2, 2, 5), 
+      colnames = c("GL", "SQ", "QM", "F", "p-valor"), 
+      caption="Tabela ANOVA para comparação entre Terapias")
 ```
 
-Pela tabela ANOVA (F=3.85 e p-valor=0.028) temos evidência que os três grupos de terapia diferem significativamente em relação ao ganho de peso.
+Pela tabela ANOVA (F=3.85 e p-valor=0.028) temos evidência que pelo menos uma das médias do ganho de peso dentre os três grupos de terapia difere significativamente das demais.
 
-Mas quais grupos diferem entre si?
+Mas qual seria a terapia que difere da demais? Ou quais terapias diferem entre si?
 
 
 ## ANOVA - Distribuição F {.build}
@@ -377,6 +367,70 @@ axis(1, at=xobs, label= bquote(F[obs]))
 ```
 
 **Conclusão:** Para $\alpha = `r alpha`$, como $F_{obs}= `r F0` > `r fcrit` = F_{crit},$ rejeitamos a hipótese de que as médias de ganho de peso para todas as terapias são iguais.
+
+
+## Testes de Comparações Múltiplas {.build}
+
+Após detectar pela tabela ANOVA que pelo menos uma média difere das demais, podemos aplicar um dos testes de comparações múltiplas.
+
+Existem alguns testes de médias e cada um tem uma particularidade. Os mais importantes são:
+
+* **Teste LSD Fisher:** Compara todos os possíveis de pares de médias, controlando a probabilidade de erro tipo I de cada teste individualmente. 
+
+* **Teste de Tukey:** Compara todos os possíveis de pares de médias, controlando a probabilidade de erro tipo I global. 
+
+* **Teste de Dunnett:** Compara todas as médias em relação a um grupo controle.
+
+
+## Teste de Tukey {.build}
+
+É o teste de comparações múltiplas mais utilizado!
+
+Após determinarmos a diferença mínima significativa (ou Honest Significant Difference - HSD), podemos julgar se as médias são iguais ou não. 
+
+Em termos práticos, esse valor nos dá uma margem de igualdade, pois se a diferença entre dois tratamentos for maior do que isso, os médias são diferentes. Isto é, dizemos que duas médias $\mu_i$ e $\mu_j$ são estatisticamente diferentes se:
+$$\left|\overline{y}_{i \cdot} - \overline{y}_{j \cdot} \right| > T_\alpha,$$
+onde $\displaystyle T_\alpha = q_\alpha(k, k(n-1)) \sqrt{\frac{QM_E}{n}}$
+e $q_\alpha(k, k(n-1))$ é um valor tabelado obtido na Tabela de Tukey.
+
+
+## Teste de Tukey - Anorexia
+
+```{r}
+## MSE e dfe
+mse <- round(anovafit$`Mean Sq`[2], 2)
+dfe <- anovafit$Df[2]
+    
+## Nível de significância dos testes
+alpha <- 0.05
+    
+## Teste de Tukey
+a <- 3 # número de tratamentos
+n <- 17
+qalpha <- round(qtukey(1-alpha, a, df=dfe), 2)
+Talpha <- round(qalpha*sqrt(mse/(n)), 2)
+```
+
+Calculando a diferença mínimo significativa:
+
+$$T_\alpha = q_\alpha(k, kn-1) \sqrt{\frac{QM_E}{n}} \quad \Longrightarrow \quad T_{`r alpha`}=`r qalpha` \sqrt{\frac{`r mse`}{`r n`}} = `r Talpha`$$
+
+```{r}
+tTukey <- TukeyHSD(aov(Ganho ~ Terapia, data=dados))
+kable(tTukey$Terapia, digits = 3, 
+      col.names = c("Diferença", "LI", "LS", "p-valor ajustado"),
+      caption="Resultado do Teste de Tukey")
+```
+
+A única diferença significativa é entre a terapia de família e a controle.
+
+
+## Teste de Tukey - Anorexia
+```{r, fig.align="center"}
+par(mar=c(5, 12, 4, 2))
+plot(tTukey, las=1)
+```
+
 
 
 ## Exemplo: Qual dieta você faria? {.build}
