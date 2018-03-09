@@ -8,15 +8,6 @@ logo: ../logo_fcm_0.jpg
 ---
 
 
-## Introdução 
-
-* Em 1920, estudando dados de produtividade de cultivo, [Ronald Fisher](http://en.wikipedia.org/wiki/Ronald_Fisher) formou a base da estatística moderna.
-
-* Em 1925, Fisher escreveu o livro [Statistical Methods for Research Workers](http://en.wikipedia.org/wiki/Statistical_Methods_for_Research_Workers) para biólogos com problemas estatísticos similares aos que ele encontrou trabalhando com experimentos agrícolas em [Rothamsted](http://www.rothamsted.ac.uk).
-
-* Tópicos do livro: teste-t, correlação, teste qui-quadrado, análise de variância e regressão. 
-
-* Ainda hoje, estes são os principais tópicos de cursos de metodologia estatística. 
 
 ## Introdução
 
@@ -155,7 +146,7 @@ Uma diferença de 8% poderia acontecer ao acaso, mesmo que os dois tratamentos n
 
 Utilizando metodologia estatística, os pesquisadores chegaram à conclusão de que stents são prejudiciais para pacientes com risco de AVC.
 
-## Estudo de Caso: stents e prevenção de AVC {.build}
+## Estudo de Caso: stents e prevenção de AVC 
 <div class="red2">
 **CUIDADO!**
 
@@ -506,7 +497,7 @@ ggplot(data=dadosBili, aes(dadosBili$bili)) +
 <img src="figuras/K.png" width=400>
 </center>
 
-## Dados sobre vacinas nos EUA
+## Exemplo: vacinação nos EUA
 
 No link [http://graphics.wsj.com/infectious-diseases-and-vaccines/](http://graphics.wsj.com/infectious-diseases-and-vaccines/) temos vários gráficos mostrando muito bem o efeito de vacinas ao longo dos anos para cada estado americano, para várias doenças.
 
