@@ -392,7 +392,7 @@ Interpretação: distância típica entre uma observação e a média dos dados.
 Quanto maior $s$, maior a dispersão dos dados.
 
 
-## Exemplo{.build}
+## Exemplo
 
 Conjunto de dados $A: \{1,2,5,6,6\}$.
 
