@@ -52,18 +52,6 @@ Sendo:
 
 * Queremos encontrar um intervalo tal que a probabilidade do intervalo conter o verdadeiro valor de $p$ seja $(1-\alpha)\times 100 \%$
 
-## Intervalo de Confiança como Estimativa de p
-$$ \begin{aligned}
-0.95 & =  P\left(-1.96\leq Z \leq 1.96\right) \\
-& = P\left(-1.96\leq \frac{S_n-np}{\sqrt{np(1-p)}} \leq 1.96\right) \\
-& = P\left(-1.96\sqrt{np(1-p)}\leq S_n-np \leq 1.96\sqrt{np(1-p)}\right) \\
-& = P\left(\frac{-1.96\sqrt{np(1-p)}}{n}\leq \frac{S_n-np}{n} \leq \frac{1.96\sqrt{np(1-p)}}{n}\right) \\
-& = P\left(\hat{p}-1.96\sqrt{\frac{p(1-p)}{n}}\leq p \leq \hat{p}+1.96\sqrt{\frac{p(1-p)}{n}}\right) 
-\end{aligned}
-$$ 
-
-$$\hat{p}=\frac{S_n}{n}=\bar{X}_n$$
-
 
 ## Intervalo de Confiança como Estimativa de p 
 
@@ -146,56 +134,6 @@ lines(rep( 1.645,2), c(0,yMax), lty=2)
 text(0, yMax, '90%: de -1.64 a 1.64', pos=3)
 ```
 </center>
-
-## Como encontrar $z_{\alpha/2}$
-
-$$P(|Z|\leq z_{\alpha/2})=P(-z_{\alpha/2}\leq Z \leq z_{\alpha/2})=1-\alpha$$
-
-<center>
-```{r, echo=FALSE, results='hide', fig.height=5, fig.width=7}
-par(mar=c(5, 4, 1, 1) + 0.1)
-normTail(U = 2,L=-2,
-         col = COL[1],
-         xlim = c(-3, 3),
-         axes  =  FALSE,
-         lwd  =  2)
-at <- c(-2, 0,2)
-labels <- expression(-z[alpha/2], 0,z[alpha/2])
-axis(1, at, labels, cex.axis = 1)
-yMax <- 0.4
-
-text(0, yMax * 0.4, labels= expression('área '* 1-alpha), cex = 1.2)
-arrows(2.5, yMax / 2,
-       2.5, yMax / 10,
-       length = 0.1,
-       col = COL[1],
-       lwd = 1.5)
-text(2.5, yMax / 2, labels= expression('área '* alpha/2),
-     pos = 3,
-     cex = 1.2,
-     col = COL[1])
-
-
-arrows(-2.5, yMax / 2,
-       -2.5, yMax / 10,
-       length = 0.1,
-       col = COL[1],
-       lwd = 1.5)
-text(-2.5, yMax / 2, labels= expression('área '* alpha/2),
-     pos = 3,
-     cex = 1.2,
-     col = COL[1])
-```
-</center>
-
-
-## Exemplo
-
-Encontrar $z_{0.05}$ tal que $0.90 = P\left(-z_{0.05}\leq Z\leq z_{0.05}\right)$.
-
-<center><img src="figuras/NormalPadrao90.png" width=450></center>
-
-<center>Pela tabela, $z_{0.05} = 1.64$</center>
 
 
 ## Exemplo
