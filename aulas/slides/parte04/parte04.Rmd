@@ -123,7 +123,7 @@ Permite comparar a distribuição de endometrioma ($X$) conforme o tipo de adeno
 
 ## Exemplo
 
-<center>
+
 ```{r, echo=FALSE, eval=FALSE, fig.width=8, fig.height=4.5}
 ## Se quiser fazer o barplot normal trocar por 'eval=TRUE'
 par(mar=c(4.1, 4.1, 1.1, 2.1))
@@ -132,26 +132,25 @@ barplot(prop.table(x, 2), xlab=" ", ylab="Proporção", main=" ",
         col=c("lightgreen", "lightyellow", "lightpink"), cex.axis=1.3,
         cex.lab=1.3, cex=1.3, las=1) 
 ```
-</center>
 
-<center>
-```{r, echo=FALSE, fig.width=10, fig.height=4.5,warning=FALSE}
+
+```{r, echo=FALSE, fig.width=10, fig.height=4.5,warning=FALSE,fig.align='center',warning=FALSE,message=FALSE}
 ## Definir os parâmetros dos eixos para todos os gráficos
-eixos <- theme(axis.text = element_text(size=14), 
+eixos <- theme(axis.text = element_text(size=14),
                axis.title = element_text(size=14),
-               legend.title = element_text(size=14, face="bold"), 
+               legend.title = element_text(size=14, face="bold"),
                legend.text=element_text(size=14))
 
 x.long <- melt(prop.table(x, 2), varnames=c("Endometrioma", "Adenomiose"),
                value.name="Proporção")
 
-g <- ggplot(x.long, aes(x=Adenomiose, y=Proporção, fill=Endometrioma)) + 
+g <- ggplot(x.long, aes(x=Adenomiose, y=Proporção, fill=Endometrioma)) +
     geom_bar(stat="identity", width=0.7, position="dodge", colour="lightgrey") +
     scale_fill_brewer(name="Endometrioma", palette="Accent") +
     xlab("") + ylim(0, 0.8) + eixos
 ggplotly(g)
 ```
-</center>
+
 
 Observando o gráfico e a tabela de proporções parece haver evidências de associação entre a presença de endometrioma e o tipo de adenomiose.
 
@@ -180,196 +179,33 @@ Permite comparar a distribuição do tipo de adenomiose ($Y$) conforme a presen�
 
 ## Exemplo
 
-<center>
-```{r, echo=FALSE, eval=FALSE, fig.width=8, fig.height=4.5}
+
+```{r, echo=FALSE, eval=FALSE, fig.width=8, fig.height=4.5,fig.align='center',warning=FALSE,message=FALSE}
 par(mar=c(3.1, 4.1, 1.1, 2.1))
 barplot(t(prop.table(x, 1)), xlab=" ", ylab="Proporção", main=" ",
         beside=TRUE, legend.text=TRUE, ylim=c(0, .8), 
         col=c("lightgreen", "lightyellow", "lightpink"), cex.axis=1.3,
         cex.lab=1.3, cex=1.3, las=1) 
 ```
-</center>
 
-<center>
-```{r, echo=FALSE, fig.width=10, fig.height=5,warning=FALSE}
+
+```{r, echo=FALSE, fig.width=10, fig.height=5,warning=FALSE,fig.align='center',message=FALSE}
 x.long <- melt(prop.table(x, 1), varnames=c("Endometrioma", "Adenomiose"),
                value.name="Proporção")
 
 g <- ggplot(x.long, aes(x=Endometrioma, y=Proporção, fill=Adenomiose))+
     geom_bar(stat="identity", width=0.7, position="dodge", colour="lightgrey") +
-    scale_fill_brewer(name="Grau de Instrução", palette="Accent") +
+    scale_fill_brewer(name=" ", palette="Accent") +
     xlab("") + ylim(0, 1) + eixos
 ggplotly(g)
 ```
-</center>
 
 
 
 
 
 
-## Exemplo: Pesticidas{.smaller}
-> Uma [pesquisa](http://www.tandfonline.com/doi/abs/10.1080/02652030110113799#.VbOlP-hVhBA) foi feita para investigar a presença de pesticidas em alimentos orgânicos e convencionais.
 
-```{r, echo=FALSE}
-# A tabela a seguir apresenta a distribuição conjunta das frequências do tipo de alimento e presença de pesticida.
-x <- matrix(c(29, 98, 19485, 7086), nrow=2, byrow=TRUE)
-rownames(x) <- c("Orgânico", "Convencional")
-colnames(x) <- c("Pesticida Presente", "Pesticida Ausente") 
-
-y <- rbind(x, c(29 + 19485, 98 + 7086))
-y <- cbind(y, c(29 + 98, 19485 + 7086, sum(x)))
-rownames(y) <- c("Orgânico", "Convencional", "Total")
-colnames(y) <- c("Pesticida Presente", "Pesticida Ausente", "Total")
-kable(y)
-``` 
-
-Qual a proporção de alimentos com pesticida?
-
-$19514/26698=`r round(19514/26698, 3)`$
-
-Qual a proporção de alimentos com pesticidas dentre os orgânicos?
-
-$29/127=`r round(29/127, 3)`$
-
-Qual a proporção de alimentos com pesticidas dentre os convencionais?
-
-$19485/26571=`r round(19485/26571, 3)`$
-
-## Proporção Condicional
-
-**Proporção condicional**: condicionalmente à informação de uma variável, observamos a proporção da outra variável.
-
-- Qual a proporção de pesticidas entre alimentos orgânicos?
-
-- Qual a proporção de pesticidas entre alimentos convencionais?
-
-```{r, echo=FALSE}
-a <- addmargins(round(prop.table(x, 1), 2), 2)
-#kable(a)
-```
-
-|             | Pesticida Presente| Pesticida Ausente| Sum|
-|:------------|------------------:|-----------------:|---:|
-|Orgânico     |               0.23|              0.77|   1|
-|Convencional |               0.73|              0.27|   1|
-
-## Presença de pesticida por tipo de alimento
-<center>
-```{r, echo=FALSE, eval=FALSE, fig.width=7, fig.height=4.5}
-par(mar=c(5.1, 4.1, 1.1, 2.1))
-barplot(t(prop.table(x, 1)), xlab="Tipo de Alimento", 
-        ylab="Proporção", main=" ", beside=TRUE, legend.text=TRUE,
-        ylim=c(0, 1.1), col=c("lightpink","lightgreen"), cex.axis=1.3,
-        cex.lab=1.3, cex=1.3, las=1)
-```
-</center>
-
-<center>
-```{r, echo=FALSE, fig.width=8, fig.height=4.5,warning=FALSE}
-colnames(x) <- c("Presente", "Ausente") 
-x.long <- melt(prop.table(x, 1), varnames=c("Alimento", "Pesticida"), 
-               value.name="Proporção")
-
-g <- ggplot(x.long, aes(x=Alimento, y=Proporção, fill=Pesticida))+
-    geom_bar(stat="identity", width=0.6, position="dodge", colour="lightgrey") +
-    scale_fill_brewer(name="Pesticida", palette="Set2") +
-    xlab("Tipo de Alimento") + ylim(0, 0.9) + eixos
-ggplotly(g)
-```
-</center>
-
-Observando o gráfico e a tabela de proporções condicionais parece haver evidências de associação entre presença de pesticida e tipo de alimento.
-
-
-
-## Exemplo: Bebidas alcoólicas
-
-A Escola de Saúde Pública da Harvard fez uma pesquisa com 200 cursos de graduação em 2001.
-
-A pesquisa pergunta aos alunos sobre hábitos relacionados à bebida. 
-
-<div class="columns-2">
-
-* 4 drinks seguidos, entre mulheres, é classificado como bebida em excesso.
-
-* 5 drinks seguidos, entre homens, é classificado como bebida em excesso.
-
-<center><img src="figuras/drinks.jpeg" width=350></center>
-
-</div>
-
-
-## Exemplo: Bebidas alcoólicas
-
-```{r, echo=FALSE}
-x <- matrix(c(1908, 2017, 2854, 4125), nrow=2, byrow=TRUE)
-rownames(x) <- c("Masculino", "Feminino")
-colnames(x) <- c("Bebida em excesso - Sim", "Bebida em excesso - Não")
-
-y <- rbind(x, colSums(x))
-y <- cbind(y, as.vector(rowSums(y)))
-rownames(y) <- c("Masculino", "Feminino", "Total")
-colnames(y) <- c("Bebida em excesso - Sim", "Bebida em excesso - Não", "Total")
-#kable(y)
-```
-|          | Bebida em excesso - Sim| Bebida em excesso - Não| Total|
-|:---------|-----------------------:|-----------------------:|-----:|
-|Masculino |                    1908|                    2017|  3925|
-|Feminino  |                    2854|                    4125|  6979|
-|Total     |                    4762|                    6142| 10904|
-
-Qual o número de alunos:
-
-* do sexo masculino e que beberam em excesso?
-
-* do sexo feminino e que beberam em excesso?
-
-
-Usando diretamente a tabela, podemos responder à pergunta:
-**Há diferença entre homens e mulheres na proporção de ocorrência de bebida em excesso?**
-
-
-## Exemplo: Bebidas alcoólicas
-
-Proporções condicionais de ocorrência de bebida em excesso por gênero:
-
-
-```{r, echo=FALSE}
-a <- addmargins(round(prop.table(x, 1), 2), 2)
-kable(a)
-```
-
-Proporção de ocorrência de bebida em excesso entre homens: $$\frac{1908}{3925}=`r round(1908/3925, 2)`$$
-
-Proporção de ocorrência de bebida em excesso entre mulheres: $$\frac{2854}{6979}=`r round(2854/6979, 2)`$$
-
-## Ocorrência de bebida em excesso por gênero
-<center>
-```{r, echo=FALSE, eval=FALSE, fig.width=7, fig.height=4.5}
-par(mar=c(5.1, 4.1, 1.1, 2.1))
-barplot(t(prop.table(x, 1)), xlab="", ylab="Proporção", main=" ",
-        beside=TRUE, legend.text=TRUE, ylim=c(0, .9), 
-        col=c("lightpink", "lightgreen"), cex.axis=1.3, cex.lab=1.3, 
-        cex=1.3, las=1)
-```
-</center>
-
-<center>
-```{r, echo=FALSE, fig.width=8, fig.height=4.5,warning=FALSE}
-colnames(x) <- c("Sim", "Não")
-x.long <- melt(prop.table(x, 1), varnames=c("Sexo", "Excesso_Bebida"),
-               value.name="Proporção")
-
-g <- ggplot(x.long, aes(x=Sexo, y=Proporção, fill=Excesso_Bebida)) +
-    geom_bar(stat="identity", width=0.6, position="dodge", colour="lightgrey") +
-    scale_fill_brewer(name="Excesso?", palette="Set2") +
-    xlab("Sexo") + ylim(0, 0.7) + eixos
-ggplotly(g)
-```
-</center>
-
-Observando o gráfico e a tabela de proporções condicionais parece haver evidências de associação entre gênero e bebida em excesso.
 
 
 
@@ -396,14 +232,10 @@ E | 8 | 72
 Total | 25 | 300 
 
 ## Exemplo: Tempo de serviço e total de clientes
-<center>
-```{r, echo=FALSE, fig.height=4.5, fig.width=7,warning=FALSE}
+
+```{r, echo=FALSE, fig.height=4.5, fig.width=7,warning=FALSE,fig.align='center',message=FALSE}
 x <- c(2, 4, 5, 6, 8)
 y <- c(48, 56, 54, 60, 72)
-# par(mar=c(5.1, 4.1, 1.1, 2.1))
-# plot(x=x, y=y, xlab="Tempo de serviço (anos)", ylab="Número de clientes", 
-#      main=" ", pch=19, cex.axis=1.2, cex.lab=1.2, las=1, col="blue", lwd=2)
-
 dados <- data.frame(x=x, y=y)
 
 library(RColorBrewer)
@@ -414,7 +246,6 @@ g <- ggplot(dados, aes(x, y)) +
     xlab("Tempo de serviço (anos)") + ylab("Número de clientes") + eixos
 ggplotly(g)
 ```
-</center>
 
 O gráfico indica uma possível dependência linear positiva entre as variáveis anos de serviço e número de clientes.
 
@@ -435,18 +266,13 @@ data
 ```
 
 ## Exemplo: Renda e gasto com assistência médica
-<center>
-```{r, echo=FALSE, fig.height=4.5, fig.width=7,warning=FALSE}
-# par(mar=c(5.1, 4.1, 1.1, 2.1))
-# plot(x=x, y=y, xlab="Renda bruta", ylab=" % da renda gasta com assistência",
-#      main=" ", pch=19, cex.axis=1.2, cex.lab=1, col="blue", lwd=2, las=1)
 
+```{r, echo=FALSE, fig.height=4.5, fig.width=7,warning=FALSE,message=FALSE,fig.align='center'}
 g <- ggplot(data, aes(X, Y)) + 
     geom_point(col=mycol[1], size=3) +
     labs(x="Renda Bruta", y="% da renda gasta com assistência") + eixos
 ggplotly(g)
 ```
-</center>
 
 Nesse caso, a dependência entre $X$ e $Y$ parece ser linear negativa.
 
@@ -512,8 +338,8 @@ $$Corr(X, Y)=\frac{1}{n-1}\sum_{i=1}^{n}z_{x_i}z_{y_i}=\frac{3.8}{5-1}=0.95$$
 
 Número de passos diários coletados para uma pessoa usando um [Fitbit](http://en.wikipedia.org/wiki/Fitbit) durante 297 dias.
 
-<center>
-```{r, echo=FALSE, fig.height=3.5, fig.width=5,warning=FALSE}
+
+```{r, echo=FALSE, fig.height=3.5, fig.width=5,warning=FALSE,message=FALSE}
 fitbit <- read.csv("Fitbit.csv", sep=";")
 fitbit <- fitbit[-which(fitbit$steps<300), ] # removendo os dias em que não usou Fitbit
 
@@ -526,7 +352,7 @@ hist(fitbit$steps, nclass=20, xlab="Número de passos por dia",
      ylab="Frequência", col="lightblue", main="", xlim=c(0, 31000), las=1)
 abline(v=mean(fitbit$steps), col="red", lty=2, lwd=2)
 ```
-</center>
+
 
 Qual é maior? Média ou mediana?
 
@@ -539,18 +365,14 @@ Além do total de passos, Fitbit também registra o tempo gasto em cada tipo de 
 
 Há relação entre o total de passos e o tempo gasto em atividade intensa?
 
-<center>
-```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE}
-# par(mar=c(4.1, 4.1, 0.1, 2.1))
-# plot(x=fitbit$steps, y=fitbit$minutesVeryActive, xlab="Número de Passos", 
-#      ylab="Tempo (min) de atividade intensa", col="blue", las=1)
 
+```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE,message=FALSE,fig.align='center'}
 g <- ggplot(fitbit, aes(steps, minutesVeryActive)) + 
     geom_point(col=mycol[1], size=3, alpha=0.6) +
     labs(x="Número de Passos", y="Tempo (min) de atividade intensa") + eixos
 ggplotly(g)
 ```
-</center>
+
 
 Correlação: `r round(cor(x=fitbit$steps, y=fitbit$minutesVeryActive), 2)`
 
@@ -559,13 +381,8 @@ Correlação: `r round(cor(x=fitbit$steps, y=fitbit$minutesVeryActive), 2)`
 
 Há relação entre o total de passos e o tempo (em minutos) de sedentarismo?
 
-<center>
-```{r, echo=FALSE, fig.height=4, fig.width=6,warning=FALSE}
-## par(mar=c(5.1, 4.1, 1.1, 2.1))
-## plot(x=fitbit$steps[fitbit$minutesSedentary > 1000], 
-##      y <- fitbit$minutesSedentary[fitbit$minutesSedentary > 1000],
-##      xlab="Número de Passos", ylab="Tempo (min) sedentário", 
-##      col="blue", cex.lab=1.2, las=1)
+
+```{r, echo=FALSE, fig.height=4, fig.width=6,warning=FALSE,message=FALSE,fig.align='center'}
 
 fitbit2 <- subset(fitbit, minutesSedentary > 1000)
 g <- ggplot(fitbit2, aes(steps, minutesSedentary)) + 
@@ -573,7 +390,7 @@ g <- ggplot(fitbit2, aes(steps, minutesSedentary)) +
     labs(x="Número de Passos", y="Tempo (min) sedentário") + eixos
 ggplotly(g)
 ```
-</center>
+
 
 Correlação: `r round(cor(x=fitbit$steps[fitbit$minutesSedentary > 1000], y=fitbit$minutesSedentary[fitbit$minutesSedentary > 1000]), 2)`
 
@@ -584,18 +401,13 @@ Baseado na altura, peso e gênero, o Fitbit estima o comprimento de cada passo.
 
 Há relação entre o total de passos e distância percorrida?
 
-<center>
-```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE}
-# par(mar=c(5.1, 4.1, 1.1, 2.1))
-# plot(x=fitbit$steps, y=fitbit$distance, xlab="Número de Passos",
-#      ylab="Distância (km)", cex.lab=1.2, col="blue", las=1)
+```{r, echo=FALSE, fig.height=3.5, fig.width=5.5,warning=FALSE,message=FALSE,fig.align='center'}
 
 g <- ggplot(fitbit, aes(steps, distance)) + 
     geom_point(size=3, colour=mycol[1], alpha=0.6) +
     labs(x="Número de Passos", y="Distância (km)") + eixos
 ggplotly(g)
 ```
-</center>
 
 Correlação: `r round(cor(x=fitbit$steps, y=fitbit$distance), 2)`
 
@@ -659,7 +471,7 @@ Analfabetismo: % de analfabetos na população de 18 anos ou mais.
 
 
 <center>
-<img src="figuras/O.png" width=550>
+<img src="figuras/O.png" width=500>
 </center>
 
 
@@ -668,17 +480,17 @@ Analfabetismo: % de analfabetos na população de 18 anos ou mais.
 
 **Variável qualitativa:** região de NY
 
-<center><img src="figuras/ny1.png" width=500></center> 
+<center><img src="figuras/ny1.png" width=500></center>
 
 
 ## Histogramas dos acidentes de carro diários por região de NY
 
-<center><img src="figuras/ny2.png" width=1000></center> 
+<center><img src="figuras/ny2.png" width=1000></center>
 
 
 ## Boxplots dos acidentes de carro diários por região de NY {.smaller}
 
-<center><img src="figuras/ny3boxplot.png" width=800></center> 
+<center><img src="figuras/ny3boxplot.png" width=800></center>
 
 **Fonte:** [https://plot.ly/4916/~etpinard/](https://plot.ly/4916/~etpinard/)
 
@@ -696,7 +508,7 @@ adenomyosis who underwent hysterectomy](http://onlinelibrary.wiley.com/doi/10.11
 <center><img src="figuras/raquete.jpg" width=200></center>
 
 
-##
+## 
 
 Slides produzidos pelos professores:
 
